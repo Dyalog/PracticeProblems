@@ -1,0 +1,7 @@
+@media print { #navbar { display: none; }
+  iframe { display: none; }
+  .course-content { overflow: visible; font-size: 1rem; columns: 1; column-gap: 10pt; }
+  .course-content h1 { font-size: 1em; }
+  .course-content p { font-family: serif; }
+  img { page-break-inside: avoid; }
+  a:after { content: " (" attr(href) ") "; font-size: 0.8rem; font-weight: normal; } }

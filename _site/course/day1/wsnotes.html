@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="/img/favicon.png" sizes="64x64">
+	<title>
+	
+	
+	Workspace Basics
+	
+	</title>
+	<script>
+	window.MathJax = {
+		tex: {inlineMath: [["@@", "@@"]],displayMath: [["%%","%%"]]},
+		svg: {fontCache: 'global'}
+	};
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/alerts.css">
+	<link rel="stylesheet" href="/css/hints.css">
+	<link rel="stylesheet" href="/css/print.css">
+</head>
+<body>
+    <div>	
+		<div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("Workspace Basics");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="/psets/2019.html">2019</a>
+        
+    
+        
+            <br><a href="/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="/psets/2017.html">2017</a>
+        
+    
+    
+    
+</div>
+
+    </div>
+    <div>Some contente efuhskeff</div>
+	<div class="course-content">
+	<p>We sure have made a lot of functions so far. There seem to be a few variables in our workspace as well. We should save them somewhere for later.</p>
+
+<h3 id="whats-a-workspace">What’s a workspace?</h3>
+<p>If you have been using Dyalog, the session log is the page with all of your input and output so far.</p>
+
+<p>A workspace is a collection of names. We can obtain some lists of names using <a target="_blank" href="http://help.dyalog.com/latest/#Language/System%20Commands/Introduction.htm?Highlight=System%20commands"><strong>system commands</strong></a>.</p>
+
+<ul>
+  <li>Functions</li>
+</ul>
+
+<pre><code class="language-APL">	  )fns    ⍝ Functions
+	  )vars   ⍝ Variables (arrays)	  
+</code></pre>
+
+<p>These commands have the special <code class="language-plaintext highlighter-rouge">)COMMAND</code> syntax, and are only used when interacting with the session. They have no result to be used programmatically.</p>
+
+<h3 id="system-functions">System Functions</h3>
+<p><strong>System functions</strong> are functions of the form <code class="language-plaintext highlighter-rouge">⎕FUNCTION</code> and <em>do</em> return a result. Some have shy results which can be used by subsequent functions, or printed to the session output with <code class="language-plaintext highlighter-rouge">⎕←</code>.</p>
+
+<p>The Name List <code class="language-plaintext highlighter-rouge">⎕NL</code> function lists names.</p>
+
+<pre><code class="language-APL">	  ⎕NL 2    ⍝ List variables as a text matrix
+	  ⎕NL 3    ⍝ List functions
+	  ⎕NL-⍳9   ⍝ List all names as a nested vector of character vectors
+</code></pre>
+
+<h3 id="namespaces">Namespaces</h3>
+<p>If nested arrays are arrays inside arrays; <strong>namespaces</strong> are a bit like a workspace within a workspace. They are <strong>objects</strong> which contain collections of names, and these names can be listed as before, but using the dot <code class="language-plaintext highlighter-rouge">.</code> syntax from <a target="_blank" href="https://cs.stackexchange.com/questions/89031/what-is-the-origin-of-dot-notation">object-oriented</a> programming.</p>
+
+<pre><code class="language-APL">      'ns'⎕ns⍬       ⍝ Create an empty namespace called ns
+      ns.var←1 2 3   ⍝ Create a variable in ns called var
+      ns.fn←{⍺,⍵}    ⍝ Create a function in ns called fn
+      ⎕nl-⍳9	     ⍝ List names in the current namespace
+┌──┐
+│ns│
+└──┘
+      ns.⎕nl-⍳9      ⍝ List names in ns
+┌──┬───┐
+│fn│var│
+└──┴───┘
+      ⎕this.⎕nl-⍳9   ⍝ The current namespace is ⎕THIS
+┌──┐
+│ns│
+└──┘
+      #.⎕nl-⍳9       ⍝ The root namespace is #
+┌──┐
+│ns│
+└──┘
+</code></pre>
+
+<h3 id="mutable-objects">Mutable Objects</h3>
+<p>Variables are pass-by-value. This means that if one name is used to assign another name, changes to the first name are not reflected in the second name.</p>
+
+<pre><code class="language-APL">      var1←1 2 3
+      var2←var1     ⍝ The value of var1 is assigned to var2
+      var1←var1+6   ⍝ The value of var2 is changed
+      var2          ⍝ var2 retains the previous value
+1 2 3
+</code></pre>
+
+<p>Namespaces are objects and are pass-by-reference. All names which are assigned a reference can be used to refer to the original object.</p>
+
+<pre><code class="language-APL">      'ns1'⎕ns''
+      ns1.name←'Bob'
+      'ns2'⎕ns''
+      ns2←ns1
+      ns1.name←'Steve'
+      ns2.name
+Steve
+</code></pre>
+
+<h3 id="saving-and-loading">Saving and Loading</h3>
+<p>There is one more type of system-thing to mention, although you have seen the <code class="language-plaintext highlighter-rouge">]box</code> one before. Commands which begin with a right-square-bracket <code class="language-plaintext highlighter-rouge">]</code> are called <a target="_blank" href="">User Commands</a>. These are also only used while interacting with the session, but you can customise them and create your own.</p>
+
+<p>Dyalog webinar: <a target="_blank" href="https://dyalog.tv/Webinar/?v=LWJzRGrOC3k">Creating and Managing your own User Commands</a></p>
+
+<p>The example below shows how to save and load a workspace.</p>
+
+<pre><code class="language-APL">	  ]cd /tmp
+	  )save MyFirstWS
+	  )clear
+	  )load MyFirstWS
+</code></pre>
+
+<hr />
+<p><strong>NOTE</strong>
+If you have not been using Dyalog, you should install it now. From now on we begin to deal with aspects of the session and interactions with the file system and other external systems which might not be possible to without a local installation of Dyalog.
+—</p>
+
+<h1 id="end-of-day-1-tasks">End of Day 1 Tasks</h1>
+
+<ol>
+  <li>What is the rank of <code class="language-plaintext highlighter-rouge">⎕NL x</code> for any scalar or vector <code class="language-plaintext highlighter-rouge">x</code>?</li>
+  <li>What is the rank of <code class="language-plaintext highlighter-rouge">⎕NL -x</code> for any scalar or vector <code class="language-plaintext highlighter-rouge">x</code>?</li>
+  <li>Save Your Work
+    <ol>
+      <li>Use <code class="language-plaintext highlighter-rouge">]cd</code> to change to a directory on your machine where you would like to save your work.</li>
+      <li>Use <code class="language-plaintext highlighter-rouge">)wsid WSName</code> to change the name of your active workspace.</li>
+      <li>Use <code class="language-plaintext highlighter-rouge">)save</code> to save your workspace.</li>
+      <li>Use <code class="language-plaintext highlighter-rouge">)clear</code> to clear</li>
+      <li>Create a new namespace called ‘Day1’</li>
+      <li>Use <code class="language-plaintext highlighter-rouge">'Day1.⎕CY'WSName'</code> to copy the contents of your saved workspace into the <code class="language-plaintext highlighter-rouge">Day1</code> namespace.</li>
+      <li>Now <code class="language-plaintext highlighter-rouge">)save</code> again.
+ While <code class="language-plaintext highlighter-rouge">⎕SAVE</code> exists, it will overwrite any existing workspace file without asking first. Always use <code class="language-plaintext highlighter-rouge">)SAVE</code> when saving workspaces.</li>
+    </ol>
+  </li>
+</ol>
+
+	</div>
+</body>
+</html>

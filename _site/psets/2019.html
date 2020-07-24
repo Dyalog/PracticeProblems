@@ -1,0 +1,323 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" href="/img/favicon.png" sizes="64x64">
+        <title>Learn Dyalog APL</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <script type='text/javascript' src='/lib/tio-dyalog.js'></script>
+        <script type='text/javascript' src='/lib/pako.min.js'></script>    
+        <script type='text/javascript' src='/lib/test.js'></script>
+        <script>
+            var testCases;
+            async function loadTestCases(ptitle){
+                console.log(ptitle);
+                testCases = await fetch("/testcases/" + ptitle + ".json").then(function(response){return response.json()});
+            }
+
+        </script>
+
+    </head>
+    <body>
+
+        <div id="left">   
+            <div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("2019");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="/psets/2019.html" class="active">2019</a>
+                            
+                <br><button class="pbutton" onclick="show('P1_Chunky_Monkey')">
+                    P1_Chunky_Monkey
+                </button>                
+                            
+                <br><button class="pbutton" onclick="show('P2_Making_the_Grade')">
+                    P2_Making_the_Grade
+                </button>                
+                            
+                <br><button class="pbutton" onclick="show('P3_Grade_Distribution')">
+                    P3_Grade_Distribution
+                </button>                
+                            
+                <br><button class="pbutton" onclick="show('P4_Knight_Moves')">
+                    P4_Knight_Moves
+                </button>                
+                            
+                <br><button class="pbutton" onclick="show('P5_Doubling_Up')">
+                    P5_Doubling_Up
+                </button>                
+                            
+                <br><button class="pbutton" onclick="show('P6_Telephone_Names')">
+                    P6_Telephone_Names
+                </button>                
+                            
+                <br><button class="pbutton" onclick="show('P7_In_the_Center_of_It_All')">
+                    P7_In_the_Center_of_It_All
+                </button>                
+                            
+                <br><button class="pbutton" onclick="show('P8_Going_the_Distance')">
+                    P8_Going_the_Distance
+                </button>                
+                            
+                <br><button class="pbutton" onclick="show('P9_Area_Code_a_la_Gauss')">
+                    P9_Area_Code_a_la_Gauss
+                </button>                
+                            
+                <br><button class="pbutton" onclick="show('P10_Odd_and_Evens')">
+                    P10_Odd_and_Evens
+                </button>                
+                            
+        
+    
+        
+            <br><a href="/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="/psets/2017.html">2017</a>
+        
+    
+    
+    
+</div>
+
+        </div>
+        <div id="right">
+           <h1 id="apl-practice-problems">APL Practice Problems</h1>
+<h3 id="from-the-2019-apl-problem-solving-competition">from the 2019 APL Problem Solving Competition</h3>
+
+<div id="P1_Chunky_Monkey" class="problem">
+
+  <h2 id="chunky-monkey">1: Chunky Monkey</h2>
+  <p>Write a function that, given a scalar or vector as the right argument and a positive (&gt;0)integer chunk size <code class="language-plaintext highlighter-rouge">n</code> as the left argument, breaks the array’s items up into chunks of size <code class="language-plaintext highlighter-rouge">n</code>. If the number of elements in the array is not evenly divisible by <code class="language-plaintext highlighter-rouge">n</code>, then the last chunkwill have fewer than <code class="language-plaintext highlighter-rouge">n</code> elements.</p>
+
+  <p>💡 Hint: The partitioned enclose function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Partitioned%20Enclose.htm"><code class="language-plaintext highlighter-rouge">⊂</code></a> could be helpful for this problem.</p>
+
+  <h3 id="examples">Examples</h3>
+
+  <pre><code class="language-APL">      3 (fn) ⍳9   ⍝ ]Box on is used to display the result
+┌─────┬─────┬─────┐
+│1 2 3│4 5 6│7 8 9│
+└─────┴─────┴─────┘
+      3 (fn) ⍳11
+┌─────┬─────┬─────┬─────┐
+│1 2 3│4 5 6│7 8 9│10 11│
+└─────┴─────┴─────┴─────┘
+      10 (fn) 'Dyalog'
+┌──────┐
+│Dyalog│
+└──────┘
+      2 (fn) 'The' 'cat' 'in' 'the' 'hat' 'sat' 'pat'
+┌─────────┬────────┬─────────┬─────┐
+│┌───┬───┐│┌──┬───┐│┌───┬───┐│┌───┐│
+││The│cat│││in│the│││hat│sat│││pat││
+│└───┴───┘│└──┴───┘│└───┴───┘│└───┘│
+└─────────┴────────┴─────────┴─────┘
+      5 (fn) ''   ⍝ result is 0-element vector of text vectors
+      4 (fn) 5
+┌─┐
+│5│
+└─┘
+</code></pre>
+
+</div>
+
+<div id="P2_Making_the_Grade" class="problem">
+
+  <h2 id="making-the-grade">2: Making the Grade</h2>
+  <table>
+  <tr><td style="border:none;">
+    <table>
+      <tr>
+        <td>Score Range</td><td>Letter Grade</td>
+      </tr><tr>
+        <td>0-64</td><td>F</td>
+      </tr><tr>
+        <td>65-69</td><td>D</td>
+      </tr><tr>
+        <td>70-79</td><td>C</td>
+      </tr><tr>
+        <td>80-89</td><td>B</td>
+      </tr><tr>
+        <td>90-100</td><td>A</td>    
+      </tr>
+    </table>
+  </td>
+  <td style="border: none;">
+    <p>
+Write a function that, given an array of integer test scores in the inclusive range 0–100, returns an identically-shaped array of the corresponding letter grades according to the table to the left.
+    </p>
+  </td></tr>
+</table>
+
+  <p>💡 Hint: You may want to investigate the <em>interval index</em> function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Interval%20Index.htm"><code class="language-plaintext highlighter-rouge">⍸</code></a>.</p>
+
+  <h3 id="examples-1">Examples</h3>
+
+  <pre><code class="language-APL">      (fn) 0 64 65 69 70 79 80 89 90 100
+FFDDCCBBAA
+
+      (fn) ⍬  ⍝ returns an empty vector
+
+
+      (fn) 2 3⍴71 82 81 82 84 59
+CBB
+BBF
+</code></pre>
+
+</div>
+
+<div id="P3_Grade_Distribution" class="problem">
+
+  <h2 id="grade-distribution">3: Grade Distribution</h2>
+  <p>The school’s administrative department wants to publish some simple statistics. Given anon-empty character vector of single-letter grades, produce a 3-column, 5-row,alphabetically-sorted matrix of each grade, the number of occurrences of that grade, andthe percentage (rounded to 1 decimal position) of the total number of occurrences ofthat grade. The table should have a row for each grade even if there are no occurrencesof a grade. Note: due to rounding the last column might not total 100%.</p>
+
+  <p>💡 Hint: The key operator <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Operators/Key.htm"><code class="language-plaintext highlighter-rouge">⌸</code></a> could be useful for this problem.</p>
+
+  <h3 id="examples-2">Examples</h3>
+
+  <pre><code class="language-APL">      (fn) 9 3 8 4 7/'DABFC'
+A 3  9.7
+B 8 25.8
+C 7 22.6
+D 9 29  
+F 4 12.9
+
+      (fn) 20⍴'ABC'
+A 7 35
+B 7 35
+C 6 30
+D 0  0
+F 0  0
+
+      (fn) ,'B'
+A 0   0
+B 1 100
+C 0   0
+D 0   0
+F 0   0
+</code></pre>
+
+</div>
+<div id="P4_Knight_Moves" class="problem">
+
+  <p>💡 Hint:</p>
+
+  <h3 id="examples-3">Examples</h3>
+
+  <pre><code class="language-APL">
+</code></pre>
+
+</div>
+<div id="P5_Doubling_Up" class="problem">
+
+  <p>💡 Hint:</p>
+
+  <h3 id="examples-4">Examples</h3>
+
+  <pre><code class="language-APL">
+</code></pre>
+
+</div>
+<div id="P6_Telephone_Names" class="problem">
+
+  <p>💡 Hint:</p>
+
+  <h3 id="examples-5">Examples</h3>
+
+  <pre><code class="language-APL">
+</code></pre>
+
+</div>
+<div id="P7_In_the_Center_of_It_All" class="problem">
+
+  <p>💡 Hint:</p>
+
+  <h3 id="examples-6">Examples</h3>
+
+  <pre><code class="language-APL">
+</code></pre>
+
+</div>
+<div id="P8_Going_the_Distance" class="problem">
+
+  <p>💡 Hint:</p>
+
+  <h3 id="examples-7">Examples</h3>
+
+  <pre><code class="language-APL">
+</code></pre>
+
+</div>
+<div id="P9_Area_Code_a_la_Gauss" class="problem">
+
+  <p>💡 Hint:</p>
+
+  <h3 id="examples-8">Examples</h3>
+
+  <pre><code class="language-APL">
+</code></pre>
+
+</div>
+<div id="P10_Odd_and_Evens" class="problem">
+
+  <p>💡 Hint:</p>
+
+  <h3 id="examples-9">Examples</h3>
+
+  <pre><code class="language-APL">
+</code></pre>
+
+</div>
+
+        </div>  
+        <script src='/lib/lb.js'></script>
+    </body>
+</html>

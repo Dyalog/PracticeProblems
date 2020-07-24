@@ -1,0 +1,412 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="/img/favicon.png" sizes="64x64">
+	<title>
+	
+	
+	Multidimensional Arrays
+	
+	</title>
+	<script>
+	window.MathJax = {
+		tex: {inlineMath: [["@@", "@@"]],displayMath: [["%%","%%"]]},
+		svg: {fontCache: 'global'}
+	};
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/alerts.css">
+	<link rel="stylesheet" href="/css/hints.css">
+	<link rel="stylesheet" href="/css/print.css">
+</head>
+<body>
+    <div>	
+		<div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("Multidimensional Arrays");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="/psets/2019.html">2019</a>
+        
+    
+        
+            <br><a href="/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="/psets/2017.html">2017</a>
+        
+    
+    
+    
+</div>
+
+    </div>
+    <div>Some contente efuhskeff</div>
+	<div class="course-content">
+	<h3 id="shape">Shape</h3>
+<p>All arrays can be described using two vectors: the <strong>shape</strong> and the <strong>ravel</strong> of elements.</p>
+
+<p>The monadic <em>function</em> “ravel” <code class="language-plaintext highlighter-rouge">,</code> returns items of an array as a vector.</p>
+
+<pre><code class="language-APL">	  ]box on
+      ,'AB'∘.,'PQRS'
+┌──┬──┬──┬──┬──┬──┬──┬──┐
+│AP│AQ│AR│AS│BP│BQ│BR│BS│
+└──┴──┴──┴──┴──┴──┴──┴──┘
+</code></pre>
+
+<p>The monadic <em>function</em> “shape” <code class="language-plaintext highlighter-rouge">⍴</code> returns the shape of an array. This is a vector of the length of each dimension.</p>
+
+<pre><code class="language-APL">      ⍴ 3 4 ∘.× 1 10 100
+2 3
+      (⍴3 4) ,⍴ 1 10 100
+2 3
+</code></pre>
+
+<p>The general rule for a scalar function <code class="language-plaintext highlighter-rouge">f</code> (which maps between elements) is <code class="language-plaintext highlighter-rouge">{(⍴ ⍺ f ⍵) = (⍴⍺)⌈⍴⍵}</code>.</p>
+
+<p>The general rule for the outer product is <code class="language-plaintext highlighter-rouge">{(⍴ ⍺ ∘.f ⍵) = (⍴⍺),⍴⍵}</code>.</p>
+
+<hr />
+<p><strong>NOTE</strong>
+  Here is some extra info</p>
+
+<hr />
+
+<blockquote>
+  <p><strong>NOTE</strong>
+    Here is some info</p>
+</blockquote>
+
+<p class="alert alert-note">
+<span class="alert-symbol">i</span>
+<strong>Note:</strong>
+This is my note. All the content I type here is treated as a single paragraph. <br /><br /> Now I'm typing on a  new line.
+</p>
+
+<h3 id="reshape">Reshape</h3>
+<p>The dyadic function <strong>reshape</strong> <code class="language-plaintext highlighter-rouge">⍴</code> takes elements from <code class="language-plaintext highlighter-rouge">⍵</code> and creates an array of shape <code class="language-plaintext highlighter-rouge">⍺</code>.</p>
+
+<pre><code class="language-APL">      3 4⍴⍳12       
+1  2  3  4
+5  6  7  8
+9 10 11 12
+      3 4⍴⍳10000   ⍝ Only the first (×/⍴⍵) elements are used
+1  2  3  4
+5  6  7  8
+9 10 11 12
+      3 4⍴⍳3       ⍝ Elements are repeated if there are too few
+1 2 3 1
+2 3 1 2
+3 1 2 3
+
+</code></pre>
+
+<p>Arrays can have dimensions of length 0. These arrays have a shape but no values.</p>
+
+<pre><code class="language-APL">      2 1 5⍴⎕A   ⍝ Two matrices with one row each
+ABCDE
+     
+FGHIJ
+      2 0 5⍴⎕A   ⍝ Two matrices with no rows
+
+</code></pre>
+
+<p>The number of dimensions is the <em>rank</em> of an array. Dyalog supports arrays of up to rank 15.</p>
+
+<pre><code class="language-APL">      ≢⍴0 1∘.+2 3∘.-4 5∘.×6 7∘.÷8 9
+5
+</code></pre>
+
+<p>It is not always obvious what the shape of an array is from its display form in the session.</p>
+
+<pre><code class="language-APL">      X←'ABCD'
+      Y←'ABBA'
+      X=Y
+1 1 0 0
+
+      X←1 4⍴'ABCD'
+      X=Y
+RANK ERROR: Mismatched left and right argument ranks
+      X=Y
+       ∧
+</code></pre>
+
+<p>Using <code class="language-plaintext highlighter-rouge">≢⍴</code> can reveal differences.</p>
+
+<pre><code class="language-APL">      ≢⍴,2   ⍝ Vectors are rank-1 arrays
+1
+      ≢⍴2    ⍝ Scalars are rank-0 arrays
+0
+</code></pre>
+
+<p>While <code class="language-plaintext highlighter-rouge">=</code> is a <a target="_blank" href="https://aplwiki.com/wiki/Scalar_function">scalar function</a>, dyadic <strong>match</strong> <code class="language-plaintext highlighter-rouge">≡</code> simply returns <code class="language-plaintext highlighter-rouge">1</code> if two arrays are equivalent and <code class="language-plaintext highlighter-rouge">0</code> otherwise.</p>
+
+<pre><code class="language-APL">      (,2)≡2     ⍝ A vector is not a scalar
+0
+      (,1)≡⍴,2   ⍝ The shape is always a vector
+1	  
+      ⍬≡⍴2       ⍝ The shape of a scalar is the empty numeric vector zilde
+1
+      ⍬≡0⍴0      ⍝ Zilde has a shape of 0
+1
+      ⍬≡⍳0       ⍝ Array of the indices up to 0
+1
+      ''≡⍬       ⍝ EmptyCharacterArray ≢ EmptyNumericArray
+0
+	  ''≡'list of all my friends'   ⍝ An empty array joke
+1	  
+</code></pre>
+
+<h3 id="the-shape-of-the-result">The Shape of the Result</h3>
+<p>Now it is time for you to learn the truth about indexing. So far we have only seen indexing into a vector using another vector. However, the result of an indexing expression is the shape of the array of indices.</p>
+
+<pre><code class="language-APL">      'DYALOG'[2 3⍴6?6]
+DAY
+GLO
+</code></pre>
+
+<p>High rank <a target="_blank" href="http://help.dyalog.com/latest/#Language/Primitive%20Functions/Indexing.htm?Highlight=simple%20indexing">simple indexing</a> involves selecting from <code class="language-plaintext highlighter-rouge">0</code> or more dimensions or <em>axes</em> in an array.</p>
+
+<pre><code class="language-APL">      (2 3⍴'DYALOG')[;2]
+YO
+</code></pre>
+
+<p>Omitting an axes selects from the whole axes</p>
+
+<h3 id="multiline-input">Multiline Input</h3>
+<p>Type <code class="language-plaintext highlighter-rouge">)ED myfn</code> and press <code class="language-plaintext highlighter-rouge">Enter</code><br />
+Congratulations! You have now unlocked multi-line dfns!</p>
+
+<p>Paste the following into the editor after <code class="language-plaintext highlighter-rouge">myfn</code></p>
+
+<pre><code class="language-APL">←{
+⍝ My First Multi-line Dfn!
+⍝ ⍵: Simple character vector name
+⍝ ←: Words of encouragement
+'Wow, ',⍵,', you''re doing so well! Keep up the good work!'
+}
+</code></pre>
+
+<p>If you have a numpad on your keyboard, press the <code class="language-plaintext highlighter-rouge">/</code> key on your numpad to see your code magically reformatted.</p>
+
+<p>Press <code class="language-plaintext highlighter-rouge">Esc</code> to quit the editor while saving changes to <code class="language-plaintext highlighter-rouge">myfn</code>.</p>
+
+<h1 id="problem-set-5-high-rank-arrays">Problem Set 5: High Rank Arrays</h1>
+
+<ol>
+  <li>The Shape of the Result<br />
+ Without executing in an interpreter, evaluate the following expressions as if they were executed in order. Afterwards, use an interpreter to check your results.</li>
+</ol>
+
+<pre><code class="language-APL">      ⍴'new' 'old'∘., apple' ' pear' ∘., ' cider' ' pie' ' tree'
+      ⍴(2 2⍴⍳4)∘.÷1 10 100 1000
+      ⍴¯50 50∘.+1 10 100∘.×¯1 1
+      ≢⍴0 1∘.+2 3∘.-4∘.×5 6∘.÷7 8
+      a←1 2 1
+      ⍴⍬
+      ⍴''
+      ⍴⍬,⍬
+      ⍴⍪⍪⍳2
+      3⍪⍪⍳2
+      ⍴,⍪⍳8
+      b←2 3 4 1
+      ⍴a,b
+      c←1 5 3 4 1 5
+      ⍴,b∘.+c
+      ⍴b[b]
+      B←6⌊c∘.+c
+      ⍴B[a;c]
+      C←b∘.×B
+      ⍴C[;2;]
+      ⍴C[a;;b]
+</code></pre>
+
+<ol>
+  <li>
+    <p>Grille Cypher<br />
+ A Grille is a cryptographic device consisting of a square sheet with holes cut out which, when laid on top of a similarly-sized character matrix, reveals a hidden message (see figure 1).</p>
+
+    <div align="center">
+     <figure>
+         <img src="/img/grille.png" alt="A grille and grid cypher" width="100%" />
+         <figcaption>Figure 1. A grille and grid cypher</figcaption>
+     </figure>
+ </div>
+    <p>Write an APL function <code class="language-plaintext highlighter-rouge">Grille</code> that implements an electronic version of a grille which:</p>
+    <ul>
+      <li>takes a character matrix left argument, where a hash <code class="language-plaintext highlighter-rouge">'#'</code> represents opaque material and a space <code class="language-plaintext highlighter-rouge">' '</code>represents a hole.</li>
+      <li>takes a similarly-shaped character matrix right argumentcontaining the message.</li>
+      <li>returns the hidden message as a character vector.</li>
+    </ul>
+
+    <p>Example:</p>
+
+    <pre><code class="language-APL">       grid←6 6⍴'ESVWGTHOWTHZHIVSAICASSACFAAUCMNYMPCE'
+       grille←6 6⍴'##### #### ## # # ## ### ## ## #####'
+       grille grid
+ ┌──────┬──────┐
+ │##### │ESVWGT│
+ │#### #│HOWTHZ│
+ │# # # │HIVSAI│
+ │## ###│CASSAC│
+ │ ## ##│FAAUCM│
+ │ #####│NYMPCE│
+ └──────┴──────┘
+       grille Grille grid
+ THISISFUN
+</code></pre>
+  </li>
+  <li>
+    <p>Write a function <code class="language-plaintext highlighter-rouge">InRange</code> to select numbers from an array <code class="language-plaintext highlighter-rouge">⍵</code> which are within the range specified by a two-element vector <code class="language-plaintext highlighter-rouge">⍺</code>.</p>
+  </li>
+</ol>
+
+<pre><code class="language-APL">      2 6 InRange 3 4⍴1 3 8 6 2 5 5 8 4 10 9 10
+3 6 2 5 5 4
+</code></pre>
+
+<ol>
+  <li>
+    <p>Bar chart
+ Histograms are useful for representing frequency data. Before all the fancy charting applications of today, APL was quite adept at producing graphics from text.</p>
+
+    <p>Write a function Histogram which produces a histogram from a vector of frequencies using the <code class="language-plaintext highlighter-rouge">.</code> and <code class="language-plaintext highlighter-rouge">⎕</code> characters.</p>
+
+    <p>Example:</p>
+
+    <pre><code class="language-APL">       Histogram 3 1 4 1 5 9
+ ⎕⎕⎕......
+ ⎕........
+ ⎕⎕⎕⎕.....
+ ⎕........
+ ⎕⎕⎕⎕⎕....
+ ⎕⎕⎕⎕⎕⎕⎕⎕⎕
+</code></pre>
+  </li>
+  <li>
+    <p>Checkout Sum<br />
+ In a shop, each product is identified by a code. You are given the list of codes, and the corresponding prices:</p>
+
+    <pre><code class="language-APL">       pcodes←56 66 19 37 44 20 18 23 68 70 82
+       prices←9 27 10 15 12 5 8 9 98 7 22
+</code></pre>
+
+    <p>A customer gives you a list of items he intends to buy as a vector of code/quanitity pairs in the form <code class="language-plaintext highlighter-rouge">code,quantity, code,quantity, ...</code></p>
+
+    <pre><code class="language-APL">       wanabuy←37 1 70 20 19 2 82 5 23 10
+</code></pre>
+
+    <p>Write a function <code class="language-plaintext highlighter-rouge">Evaluate</code> which takes 
+ Evaluate the customer’s bill. You will likely want to solve this using several lines of APL.</p>
+
+    <pre><code class="language-APL">       pq←(0.5×≢wanabuy)2⍴wanabuy
+       +/pq[;2]×prices[pcodes⍳pq[;1]]
+ 375
+</code></pre>
+  </li>
+  <li>
+    <p>Monthly Sales
+ You are given a vector of sales data for <code class="language-plaintext highlighter-rouge">3</code> products over <code class="language-plaintext highlighter-rouge">2</code> years. The first <code class="language-plaintext highlighter-rouge">12</code> elements are sale for the first product for the first year, the second <code class="language-plaintext highlighter-rouge">12</code> elements represent sales of the 2nd products, and so on.</p>
+
+    <pre><code class="language-APL"> sales←156 287 180 261 242 102 244 211 286 152 127 38 78 67 101 181 78 78 110 287 250 84 246 268 55 32 87 254 198 252 298 231 102 215 60 196 122 56 194 58 161 177 143 184 280 208 89 10 18 70 212 195 174 176 285 1 159 208 92 223
+</code></pre>
+
+    <ol>
+      <li>Compute the total sales of each of the <code class="language-plaintext highlighter-rouge">5</code> products.</li>
+      <li>Compute the total sales for each year</li>
+      <li>
+        <p>The tax on sales varies by product, and changes each year. The tax for each product for each year is given in Table 1.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th> </th>
+              <th> </th>
+              <th> </th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> </td>
+              <td><strong>Product 1</strong></td>
+              <td><strong>Product 2</strong></td>
+              <td><strong>Product 3</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Year 1</strong></td>
+              <td>20%</td>
+              <td>18%</td>
+              <td>5%</td>
+            </tr>
+            <tr>
+              <td><strong>Year 2</strong></td>
+              <td>17.5%</td>
+              <td>12%</td>
+              <td>3%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ol>
+          <li>Compute the total tax on product 3 over 2 years</li>
+          <li>Compute the total tax on all products in year 2</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+	</div>
+</body>
+</html>

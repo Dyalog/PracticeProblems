@@ -1,0 +1,316 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="/img/favicon.png" sizes="64x64">
+	<title>
+	
+	
+	Going Deeper - Learn Dyalog APL
+	
+	</title>
+	<script>
+	window.MathJax = {
+		tex: {inlineMath: [["@@", "@@"]],displayMath: [["%%","%%"]]},
+		svg: {fontCache: 'global'}
+	};
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/alerts.css">
+	<link rel="stylesheet" href="/css/hints.css">
+	<link rel="stylesheet" href="/css/print.css">
+</head>
+<body>
+    <div>	
+		<div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("Going Deeper");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="/psets/2019.html">2019</a>
+        
+    
+        
+            <br><a href="/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="/psets/2017.html">2017</a>
+        
+    
+    
+    
+</div>
+
+    </div>
+    <div>Some contente efuhskeff</div>
+	<div class="course-content">
+	<h3 id="day-2">Day 2</h3>
+<p>Welcome back. At the end of the last section we saved our workspace. If you would like to continue to save your work as you go, please:</p>
+<ol>
+  <li>Load your previously saved workspace</li>
+  <li>Create a namespace called ‘Day2’ and change into that namespace.</li>
+</ol>
+
+<p>You are of course welcome to simply proceed through each section with a <code class="language-plaintext highlighter-rouge">)CLEAR</code> workspace.</p>
+
+<h3 id="depth">Depth</h3>
+<p>We introduced <em>stranding</em> to show how it formed vectors before the application of dyadic functions, for example:</p>
+
+<pre><code class="language-APL">      2 + 2 2 + 2   
+      2 + 2 (2 + 2)
+      (2 + 2) 2 + 2
+</code></pre>
+
+<p>Stranding is a useful way to form arrays. Generally, arrays separated by spaces form vectors.</p>
+
+<pre><code class="language-APL">      2 3⍴'DY' 'AL' 'OG'
+      enm←2 3⍴⍬
+      ecm←3 2⍴''
+      'a' 'b' 'c'
+      mixed←3 3⍴1 2 3 'a' 'b' 'c'
+      mixed2←3 3⍴1 2 3 'abc'
+      3 1⍴mixed enm ecm
+      ⍪mixed enm ecm
+      ↑mixed enm ecm
+      mixed,ecm
+      mixed⍪ecm
+      mixed⍪enm
+      3 3⍴mixed,ecm
+      3 3⍴mixed enm,ecm
+</code></pre>
+
+<p>A simple scalar is a rank-0 array which contains itself as its value.</p>
+
+<pre><code class="language-APL">      'a'≡⊃'a'   ⍝ The disclose of a simple scalar is itself
+      42≡⊂42     ⍝ As is the enclose
+</code></pre>
+
+<ol>
+  <li>
+    <p>What is the shape of <code class="language-plaintext highlighter-rouge">a,b</code> in terms of <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code>?</p>
+  </li>
+  <li>
+    <p>What is the shape of <code class="language-plaintext highlighter-rouge">a⍪b</code> in terms of <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code>?</p>
+  </li>
+  <li>
+    <p>When does <code class="language-plaintext highlighter-rouge">(a b)≡a,b</code>?</p>
+  </li>
+  <li>
+    <p>When does <code class="language-plaintext highlighter-rouge">(↑a b)≡a⍪b</code>?</p>
+  </li>
+</ol>
+
+<h3 id="primitive-loops">Primitive Loops</h3>
+
+<p>Experiment with the following expressions to determine what the each <code class="language-plaintext highlighter-rouge">¨</code> and bind <code class="language-plaintext highlighter-rouge">∘</code> operators do.</p>
+
+<pre><code class="language-APL">      's',¨'ong' 'ink' 'and'
+      'lph',¨'ong' 'ink' 'and'
+      (1 2)(2 2)(3 1)⍴¨3 4 5
+      2 2∘⍴¨3 4 5
+      (⍴∘3 4 5)¨2 2
+</code></pre>
+
+<h3 id="options">Options</h3>
+<p>Sometimes we would like a function to accept one or more option or parameter arguments.</p>
+
+<p>For example</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      'bob'{⍺∘≡¨⍵}'bob' 'dave' 'jim' 
+1 0 0
+      'bob'{⍺∘≡¨⍵}'bob'  
+0 0 0
+</code></pre></div></div>
+
+<p>Why does the second expression above return three values? This is remedied using the <em>enclose-if-simple</em> function (monadic <code class="language-plaintext highlighter-rouge">⊆</code>).</p>
+
+<pre><code class="language-APL">      {'bob'∘≡¨⊆⍵}'bob'  
+1
+</code></pre>
+
+<p>We can define stranding as the <code class="language-plaintext highlighter-rouge">Strand</code> function.</p>
+
+<pre><code class="language-APL">      Strans←{(⊂⍺),⊆⍵}
+      'bob'Strand'dave'Strand'jim'
+┌───┬────┬───┐
+│bob│dave│jim│
+└───┴────┴───┘
+</code></pre>
+
+<p>Or as the function <code class="language-plaintext highlighter-rouge">S←{⍺⍵}</code>.</p>
+
+<h3 id="word-problems">Word Problems</h3>
+
+<p>We are going to do some text processing on a dictionary of words.</p>
+
+<p>If you have access to the internet, the following expressions will download a text file dictionary (917kB in size) and store it as a nested vector of character vectors named <code class="language-plaintext highlighter-rouge">words</code>.</p>
+
+<pre><code class="language-APL">      ]Load HttpCommand
+      words ← (⎕UCS 10) {(⍺≠⍵)⊆⍵} (HttpCommand.Get'https://tinyurl.com/y7asendy').Data
+</code></pre>
+
+<p>If you have the file on your computer (maybe you were given it on a USB drive, for example) then you can load it into your workspace from disk using the following expressions.</p>
+
+<pre><code class="language-APL">      (le bom words) ← ⎕NGET'/path/to/words.txt'
+      words ← le (≠⊆⊢) words
+</code></pre>
+
+<p>Now answer the following questions about <code class="language-plaintext highlighter-rouge">words</code>.</p>
+
+<ol>
+  <li>
+    <p>How many words have at least 3 <code class="language-plaintext highlighter-rouge">'e'</code>s in them?</p>
+  </li>
+  <li>
+    <p>How many words have exactly two consecutive <code class="language-plaintext highlighter-rouge">'e'</code>s in them? 
+ The first three such words are <code class="language-plaintext highlighter-rouge">Aberdeen</code> <code class="language-plaintext highlighter-rouge">Abderdeen's</code> and <code class="language-plaintext highlighter-rouge">Aileen</code>.</p>
+  </li>
+  <li>
+    <p>What is the shortest word with two consecutive <code class="language-plaintext highlighter-rouge">'a'</code>s?</p>
+  </li>
+</ol>
+
+<p>A palindrome is the same when reversed. For example, <em>racecar</em> is a palindrome but <em>racecat</em> is not.</p>
+
+<ol>
+  <li>
+    <p>How many palindromes are there in <code class="language-plaintext highlighter-rouge">words</code>?</p>
+  </li>
+  <li>
+    <p>Which palindrome in <code class="language-plaintext highlighter-rouge">words</code> is the longest?</p>
+  </li>
+</ol>
+
+<h3 id="an-introduction-to-an-introduction-to-an-introduction-to-an-introduction-to-an-int">An introduction to an introduction to an introduction to an introduction to an int…</h3>
+
+<p>Try the following dfns with various numeric arguments. Which symbol refers to the function itself? Which symbol separates statements? Which symbol represents a condition? What is the default left argument?</p>
+
+<pre><code class="language-APL">      {⍺←1 1 ⋄ ⍵=2:⍺ ⋄ (⍺,(+/¯2↑⍺))∇⍵-1}
+</code></pre>
+
+<p>Give the function an appropriate name.</p>
+
+<p>When a function calls itself like this it is called <em>recursion</em>. APL tends to rely less on explicit iteration and recursion than most popular programming languages, but it is good to be able to do it when you need to.</p>
+
+<p>If a function gets stuck in an infinite loop, use <code class="language-plaintext highlighter-rouge">Action → Interrupt</code> in the menu. You can also use the key combination <code class="language-plaintext highlighter-rouge">Ctrl+Break</code> to interrupt a running function.</p>
+
+<ol>
+  <li>
+    <p>Write the shortest dfn which causes infinite recursion.</p>
+  </li>
+  <li>
+    <p>Write the shortest dfn which causes infinite recursion unless its argument is <code class="language-plaintext highlighter-rouge">0</code>.</p>
+  </li>
+  <li>
+    <p>The factorial function multiplies integers up to <code class="language-plaintext highlighter-rouge">⍵</code>. Write the factorial function as a <strong>recursive</strong> dfn called <code class="language-plaintext highlighter-rouge">Factorial</code>. Use the primitive <code class="language-plaintext highlighter-rouge">!</code> factorial function to check your solution.</p>
+  </li>
+  <li>
+    <p>Write an expression for the factorial function as a reduction (an expression which includes <code class="language-plaintext highlighter-rouge">f/</code> for some function <code class="language-plaintext highlighter-rouge">f</code>).</p>
+  </li>
+</ol>
+
+<h3 id="a-sort-of-detour">A Sort of Detour</h3>
+<p>Dyalog’s <em>grade-up</em> <code class="language-plaintext highlighter-rouge">⍋</code> and <em>grade-down</em> <code class="language-plaintext highlighter-rouge">⍒</code> functions are able to sort any array. However, they were not always this powerful. Here is a function for sorting numeric lists <code class="language-plaintext highlighter-rouge">NSort</code> and character matrices <code class="language-plaintext highlighter-rouge">TSort</code>.</p>
+
+<pre><code class="language-APL">      NSort←{0=⍴⍵:⍬⋄(U/⍵),∇(~U←⍵=⌊/⍵)/⍵}
+</code></pre>
+
+<pre><code class="language-APL">      ↑'Bracken' 'Dolphin' 'Saucer' 'Magnet' 'Floop'
+</code></pre>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TSort←{⍺[((⍴⍵)[2])S ⍺⍳⍵]}</code></li>
+  <li><code class="language-plaintext highlighter-rouge">S←{⍺=0:⍵ ⋄ (⍺-1)S ⍵[⍋⍵[;⍺];]}</code></li>
+</ul>
+
+<p>What do the following expressions tell you about the <code class="language-plaintext highlighter-rouge">⍋</code> grade-up and <code class="language-plaintext highlighter-rouge">⍒</code> grade-down functions on high-rank arrays?</p>
+
+<pre><code class="language-APL">      ⍋4 2 2⍴∊1 2 3 4,¨?4⍴(⊂3⍴10)
+      ⍒4 2 2⍴'ABCD',¨{⎕A[⍵]}¨?4⍴(⊂3⍴10)
+</code></pre>
+
+<h4 id="rank-practice">Rank Practice</h4>
+
+<ol>
+  <li>Model Each
+ Write models of the following functions using rank <code class="language-plaintext highlighter-rouge">⍤</code> instead of each <code class="language-plaintext highlighter-rouge">¨</code>. That is, write <code class="language-plaintext highlighter-rouge">IotaEach</code>, <code class="language-plaintext highlighter-rouge">SumEach</code> and <code class="language-plaintext highlighter-rouge">ReshapeEach</code> as dfns which use the rank operator and do not use the each operator.
+    <pre><code class="language-APL">       IotaEach 1 2 3              ⍝ ⍳¨1 2 3
+ ┌─┬───┬─────┐
+ │1│1 2│1 2 3│
+ └─┴───┴─────┘
+       SumEach 2 3⍴ IotaEach ⍳6    ⍝ +/¨2 3⍴⍳¨⍳6
+  1  3  6
+ 10 15 21
+
+       2 2 ReshapeEach (1 2) 3 4   ⍝ 2 2∘⍴¨(1 2) 3 4
+ ┌───┬───┬───┐
+ │1 2│3 3│4 4│
+ │1 2│3 3│4 4│
+ └───┴───┴───┘
+</code></pre>
+  </li>
+  <li>
+    <p>Split k-cells 
+ The <em>split</em> function (monadic <code class="language-plaintext highlighter-rouge">↓</code>) splits an array of rank ≥2 by rows, returning an array of shape <code class="language-plaintext highlighter-rouge">¯1↓⍴⍵</code>. Use <em>enclose</em> <code class="language-plaintext highlighter-rouge">⊂</code> with the rank operator <code class="language-plaintext highlighter-rouge">⍤</code> to create a function <code class="language-plaintext highlighter-rouge">Split</code> which always splits an array into a nested vector of the major cells of <code class="language-plaintext highlighter-rouge">⍵</code>.</p>
+
+    <pre><code class="language-APL">       Split 3 2 2 3⍴⍳9
+   ┌─────┬─────┬─────┐
+   │1 2 3│4 5 6│7 8 9│
+   │4 5 6│7 8 9│1 2 3│
+   │     │     │     │
+   │7 8 9│1 2 3│4 5 6│
+   │1 2 3│4 5 6│7 8 9│
+   └─────┴─────┴─────┘
+</code></pre>
+  </li>
+</ol>
+
+	</div>
+</body>
+</html>

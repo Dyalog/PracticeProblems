@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="/img/favicon.png" sizes="64x64">
+	<title>
+	
+	
+	The Outer Product - Learn Dyalog APL
+	
+	</title>
+	<script>
+	window.MathJax = {
+		tex: {inlineMath: [["@@", "@@"]],displayMath: [["%%","%%"]]},
+		svg: {fontCache: 'global'}
+	};
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/alerts.css">
+	<link rel="stylesheet" href="/css/hints.css">
+	<link rel="stylesheet" href="/css/print.css">
+</head>
+<body>
+    <div>	
+		<div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("The Outer Product");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="/psets/2019.html">2019</a>
+        
+    
+        
+            <br><a href="/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="/psets/2017.html">2017</a>
+        
+    
+    
+    
+</div>
+
+    </div>
+    <div>Some contente efuhskeff</div>
+	<div class="course-content">
+	<div align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m2krbWBd1WU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+
+<h3 id="creating-a-matrix">Creating a Matrix</h3>
+<p>The “outer product” <code class="language-plaintext highlighter-rouge">∘.f</code> operator applies its function operand <code class="language-plaintext highlighter-rouge">f</code> between all combinations of elements of its left and right argument arrays.</p>
+
+<pre><code class="language-APL">      f←{⍺+⍵}
+      1 2 3 ∘.f 10 20 30
+11 21 31
+12 22 32
+13 23 33
+</code></pre>
+
+<p>For example, the catenate function <code class="language-plaintext highlighter-rouge">,</code> (comma) will join two lists together. We can use the outer product to join combinations of words from two lists.</p>
+
+<pre><code class="language-APL">      1 4 9 , 6 5 4
+1 4 9 6 5 4
+      'joined up' , 'text vectors'
+joined uptext vectors
+
+      'chicken' 'pork' 'vegetable' ∘., ' chow mein' ' with cashew nuts'
+┌───────────────────┬──────────────────────────┐
+│chicken chow mein  │chicken with cashew nuts  │
+├───────────────────┼──────────────────────────┤
+│pork chow mein     │pork with cashew nuts     │
+├───────────────────┼──────────────────────────┤
+│vegetable chow mein│vegetable with cashew nuts│
+└───────────────────┴──────────────────────────┘
+</code></pre>
+
+<h3 id="reduce-down">Reduce down</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Reduce-first `⌿` on a matrix will reduce along columns instead of rows. 
+
+```APL
+      ∘.÷⍨⍳3
+1 0.5 0.3333333333
+2 1   0.6666666667
+3 1.5 1           
+      +/∘.÷⍨⍳3               ⍝ Sum of rows
+1.833333333 3.666666667 5.5
+      +⌿∘.÷⍨⍳3               ⍝ Sum of columns
+6 3 2   
+```
+</code></pre></div></div>
+
+<h3 id="comparison-functions">Comparison Functions</h3>
+
+<p>Up to now the only comparison function we have seen is <code class="language-plaintext highlighter-rouge">=</code>. You should be aware that APL includes logical comparison functions <code class="language-plaintext highlighter-rouge">&lt; ≤ = ≠ ≥ &gt;</code>.</p>
+
+<p>Furthermore all necessary primitives have been explicitly introduced before each problem set. Many APL interpreters include a <em>language bar</em> to aid with typing symbols. Necessary constructs will continue to be introduced in each section. However, you are encouraged to explore the language bar and experiment with the primitive functions, as these constitute your core vocabulary for solving problems.</p>
+
+<div align="center">
+<img src="/img/lb.png" alt="APL symbols" width="50%" />
+</div>
+
+<p>As you continue through these sessions fewer outright explanations will be given, and you are encouraged to experiment with the given examples to develop an understanding of the language.</p>
+
+<h1 id="problem-set-4-array-oriented-solutions-with-matrices">Problem Set 4: Array-Oriented solutions with Matrices</h1>
+
+<ol>
+  <li>Back to School
+    <ol>
+      <li>
+        <p>Write a function to produce the multiplication table from <code class="language-plaintext highlighter-rouge">1</code> to <code class="language-plaintext highlighter-rouge">⍵</code>.</p>
+
+        <pre><code class="language-APL">       MulTable 7
+ 1  2  3  4  5  6  7
+ 2  4  6  8 10 12 14
+ 3  6  9 12 15 18 21
+ 4  8 12 16 20 24 28
+ 5 10 15 20 25 30 35
+ 6 12 18 24 30 36 42
+ 7 14 21 28 35 42 49          
+</code></pre>
+      </li>
+      <li>
+        <p>Write a function to produce the addition table from <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">⍵</code>.</p>
+
+        <pre><code class="language-APL">       AddTable 6
+ 0 1 2 3  4  5  6
+ 1 2 3 4  5  6  7
+ 2 3 4 5  6  7  8
+ 3 4 5 6  7  8  9
+ 4 5 6 7  8  9 10
+ 5 6 7 8  9 10 11
+ 6 7 8 9 10 11 12         
+</code></pre>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Making the Grade</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th> </th>
+          <th> </th>
+          <th> </th>
+          <th> </th>
+          <th> </th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Score Range</strong></td>
+          <td><code class="language-plaintext highlighter-rouge">0-64</code></td>
+          <td><code class="language-plaintext highlighter-rouge">65-69</code></td>
+          <td><code class="language-plaintext highlighter-rouge">70-79</code></td>
+          <td><code class="language-plaintext highlighter-rouge">80-89</code></td>
+          <td><code class="language-plaintext highlighter-rouge">90-100</code></td>
+        </tr>
+        <tr>
+          <td><strong>Letter Grade</strong></td>
+          <td>F</td>
+          <td>D</td>
+          <td>C</td>
+          <td>B</td>
+          <td>A</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Write a function that, given an array of integer test scores in the inclusive range 0 to 100, returns a list of letter grades according to the table above.</p>
+
+    <pre><code class="language-APL">       Grade 0 10 75 78 85
+ FFCCB
+</code></pre>
+  </li>
+  <li>
+    <p>Optimus Prime</p>
+
+    <p>A prime number is divisible by only itself and <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+    <p>Write a dfn which returns all of the prime numbers between <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">⍵</code>.</p>
+
+    <pre><code class="language-APL">       Primes 10
+ 2 3 5 7
+       Primes 30
+ 2 3 5 7 11 13 17 19 23 29   
+</code></pre>
+  </li>
+</ol>
+
+	</div>
+</body>
+</html>

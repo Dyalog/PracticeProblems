@@ -1,0 +1,16 @@
+/* Colors */
+/* Accordion styles */
+.tab { position: relative; line-height: 1.8; border-radius: 4px; margin-left: 3ex; margin-right: 3ex; max-width: 99%; position: relative; color: black; overflow: hidden; }
+.tab input { position: absolute; opacity: 0; z-index: -1; }
+.tab-label { display: flex; justify-content: flex-start; padding: 1em; background: #fffff3; font-weight: normal; cursor: pointer; /* Icon */ }
+.tab-label:hover { background: #ffffc0; }
+.tab-label::before { transform-origin: center center; content: "\25B6"; width: 1em; height: 1em; text-align: center; transition: all 0.3s; }
+.tab-label::after { display: none; }
+.tab-content { max-height: 0; padding: 0 1em; color: black; background: #fffff3; transition: all 0.3s; }
+.tab-close { display: flex; justify-content: flex-end; padding: 1em; font-size: 0.75em; background: #fffff3; cursor: pointer; }
+.tab-close:hover { background: #ffffc0; }
+
+input:checked + .tab-label { background: #ffffc0; }
+input:checked + .tab-label::before { transform: rotate(90deg); }
+input:checked + .tab-label::after { display: none; }
+input:checked ~ .tab-content { max-height: 100vh; padding: 1em; }

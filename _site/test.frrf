@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' /><meta name='viewport' content='width=device-width, initial-scale=1'/>
+    <link rel='shortcut icon' href='favicon.ico'/><title>2019 APL Problem Solving Competition Phase I Problem Set</title>   
+    <link rel="stylesheet" href="style.css"/>    
+    <script type='text/javascript' src='lib/tio-dyalog.js'></script>
+    <script type='text/javascript' src='/lib/pako.min.js'></script>    
+    <script type='text/javascript' src='/lib/test.js'>
+    <script>
+      $=s=>document.querySelector(s);
+      $$=s=>document.querySelectorAll(s);
+      function submit(id){
+        console.log('submit');
+        $('#output').innerHTML = $("#" + id).value;         
+      }
+    </script>    
+    </head>
+  <body>
+    <script src='lib/lb.js'></script>
+    <input type='text' id='q0'></input>
+    <button onclick='submitSolution("q0")'>Submit</button>
+    <div id='output'></div>
+  </body>
+</html>

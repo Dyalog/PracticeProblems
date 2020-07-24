@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" href="/img/favicon.png" sizes="64x64">
+        <title>Learn Dyalog APL</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <script type='text/javascript' src='/lib/tio-dyalog.js'></script>
+        <script type='text/javascript' src='/lib/pako.min.js'></script>    
+        <script type='text/javascript' src='/lib/test.js'></script>
+        <script>
+            var testCases;
+            async function loadTestCases(ptitle){
+                console.log(ptitle);
+                testCases = await fetch("/testcases/" + ptitle + ".json").then(function(response){return response.json()});
+            }
+
+        </script>
+
+    </head>
+    <body>
+
+        <div id="left">   
+            <div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("APL Practice Problems");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="/psets/2019.html">2019</a>
+        
+    
+        
+            <br><a href="/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="/psets/2017.html">2017</a>
+        
+    
+    
+    
+</div>
+
+        </div>
+        <div id="right">
+           <h1 id="apl-practice-problems">APL Practice Problems</h1>
+
+<p>This site has automatically validated practice problems for <a href="https://aplwiki.com">APL</a>. These problems are sourced from <a href="https://www.dyalog.com/student-competition.htm">The APL Problem Solving Competition</a>.</p>
+
+<p>Each problem begins with a task description, followed by a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint will open the Dyalog documentation page for the suggested primitive.</p>
+
+<p>After the hint is a section of example cases which, among others, are included in theautomated tests. Use these as a basis for implementing your solution</p>
+
+<h1 id="sample-problem-counting-vowels">Sample Problem: Counting Vowels</h1>
+
+<p>Write an APL function to count the number of vowels (A, E, I, O, U) in an array consisting of uppercase letters (A–Z).</p>
+
+<p>💡 Hint: The membership function <a href="http://help.dyalog.com/latest/#Language/Primitive%20Functions/Membership.htm"><code class="language-plaintext highlighter-rouge">X∊Y</code></a> could be helpful for this problem.</p>
+
+<p>Examples</p>
+
+<pre><code class="language-APL">      (your_function) 'COOLAPL'
+3
+      (your_function) ''          ⍝ empty argument
+0
+      (your_function) 'NVWLSHR'   ⍝ no vowels here
+0
+</code></pre>
+
+<p>Below are three sample solutions. All three produce the correct answer, but the first twofunctions would be ranked higher by the competition judging committee. This is becausethe first two demonstrate better use of array-oriented programming.</p>
+
+<pre><code class="language-APL">      ({+/⍵∊'AEIOU'}) 'COOLAPL'   ⍝ good dfn
+3
+      (+/∊∘'AEIOU') 'COOLAPL'     ⍝ good tacit function
+3
+      ⍝ suboptimal dfn:      {(+/⍵='A')+(+/⍵='E')+(+/⍵='I')+(+/⍵='O')+(+/⍵='U')} 'COOLAPL'
+3
+</code></pre>
+
+<p>If you were to put any of the above functions above in the input field below and click Submit, you’ll see that they only pass the basic test cases. This is because none of those functions handle arrays with 2 or more dimensions. The system will also give you an example of a multi-dimensional edge case that failed, so you can attempt to improve your solution.</p>
+
+<p>Try entering <code class="language-plaintext highlighter-rouge">{+/,⍵∊'AEIOU'}</code> which handles all test cases.</p>
+
+<script>
+    testCases = {"P0_Sample_Problem": {"a": ["'COOLAPL'","''","'NVWLSHR'","{⍵[?⍨≢⍵]}'AEIOU',⎕A[?26⍴⍨9+?16]"],"b": ["2 3⍴'APLYES'","⎕A[?26⍴⍨1+?2⍴⍨1+?2]","''⍴⍨¯1+?⍨3"],"f": "{+/,⍵∊'AEIOU'}","p": "{⊃⍣(1=≢,⍵)⊢⍵}"}};
+</script>
+
+<p><input id="P0_Sample_Problem_Input" />
+<button onclick="submitSolution('P0_Sample_Problem')">Submit</button></p>
+<div id="P0_Sample_Problem_Output"></div>
+
+        </div>  
+        <script src='/lib/lb.js'></script>
+    </body>
+</html>

@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="/img/favicon.png" sizes="64x64">
+	<title>
+	
+	
+	Selecting from Lists - Learn Dyalog APL
+	
+	</title>
+	<script>
+	window.MathJax = {
+		tex: {inlineMath: [["@@", "@@"]],displayMath: [["%%","%%"]]},
+		svg: {fontCache: 'global'}
+	};
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/alerts.css">
+	<link rel="stylesheet" href="/css/hints.css">
+	<link rel="stylesheet" href="/css/print.css">
+</head>
+<body>
+    <div>	
+		<div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("Selecting from Lists");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="/psets/2019.html">2019</a>
+        
+    
+        
+            <br><a href="/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="/psets/2017.html">2017</a>
+        
+    
+    
+    
+</div>
+
+    </div>
+    <div>Some contente efuhskeff</div>
+	<div class="course-content">
+	<div align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Gb7KFDlJV1Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+
+<h3 id="indexing">Indexing</h3>
+<p>In many other programming languages, “selection” is used to describe control structures such as “if then else” or “switch case”. In APL, we can get a similar effect by literally “selecting” elements from arrays.</p>
+
+<pre><code class="language-APL">      'APPLE'[1 3 4]                         ⍝ Select elements 1, 3 and 4
+APL      
+      ⍸ 1 0 0 1 0 1                          ⍝ Where are the 1s?
+1 4 6
+      (⍳5) IsDivisibleBy 2                   ⍝ 1 Where ⍺ is even
+0 1 0 1 0
+      {⍵[⍸⍵ IsDivisibleBy 123]}⎕AVU          ⍝ Numbers in ⎕AVU divisible by 123
+0 123 8364 246
+</code></pre>
+
+<h3 id="replicatecompress">Replicate/Compress</h3>
+<p>Finding the indices of a boolean array using the “where” function <code class="language-plaintext highlighter-rouge">⍸</code> is an unnecessary extra step since we know that indices will never be repeated in this case.</p>
+
+<p>The <strong>replicate</strong> function <code class="language-plaintext highlighter-rouge">/</code> (yes, some symbols have <a target="_blank" href="https://aplwiki.com/wiki/Function-operator_overloading">multiple meanings</a>) repeats elements of an array along rows.</p>
+
+<pre><code class="language-APL">      1 2 3/'ABC'
+ABBCCC
+      1 2 3/2 3⍴'DYALOG'
+DYYAAA
+LOOGGG
+      1 ¯2 3/2 3⍴'DYALOG'
+D  AAA
+L  GGG
+</code></pre>
+
+<p>When used with a boolean array, the function is called <strong>compress</strong>.</p>
+
+<pre><code class="language-APL">      0 1 0/2 3⍴'DYALOG'
+Y
+O
+</code></pre>
+
+<h3 id="shapereshape">Shape/Reshape</h3>
+
+<p>In the previous section you wrote the <code class="language-plaintext highlighter-rouge">Tally</code> function. There are two related <a href="https://aplwiki.com/wiki/Primitive_function"><em>primitive</em> functions</a> <code class="language-plaintext highlighter-rouge">≢</code> and <code class="language-plaintext highlighter-rouge">⍴</code>. The examples above show the creation of arrays using reshape (dyadic <code class="language-plaintext highlighter-rouge">⍴</code>).</p>
+
+<p>Take a moment to experiment with the shape <code class="language-plaintext highlighter-rouge">⍴</code>, tally <code class="language-plaintext highlighter-rouge">≢</code> and reshape <code class="language-plaintext highlighter-rouge">⍴</code> functions to get a feel for how they behave.</p>
+
+<p class="alert alert-note">
+<span class="alert-symbol">i</span>
+<strong>Note:</strong>
+You may find some arguments to reshape produce intolerably long output. Use the command <code class="language-APL">]rows -fold=3</code> to truncate the output.
+</p>
+
+<h1 id="problem-set-3-selecting-from-lists">Problem Set 3: Selecting from Lists</h1>
+
+<ol>
+  <li>Simple Simon Says Select These Elements
+    <ol>
+      <li>
+        <p>Write a function to get even numbers from a numeric list.</p>
+
+        <pre><code class="language-APL">       Even ⍳10
+ 2 4 6 8 10
+       Even 1 17 19 22 32 15
+ 22 32   
+</code></pre>
+      </li>
+      <li>
+        <p>Write a function to get numbers which are divisible by <code class="language-plaintext highlighter-rouge">5</code> from a numeric list.</p>
+
+        <pre><code class="language-APL">       Div5 ⍳50
+ 5 10 15 20 25 30 35 40 45 50
+       Div5 12 13 15 20 19 55 16
+ 15 20 55    
+</code></pre>
+      </li>
+      <li>
+        <p>Write a function to get numbers which are divisible by <code class="language-plaintext highlighter-rouge">⍺</code> from a numeric list.</p>
+
+        <pre><code class="language-APL">       3 Div ⍳30
+ 3 6 9 12 15 18 21 24 27 30
+       7 Div 11 17 21 42 18 7 0 70
+ 21 42 7 0 70          
+</code></pre>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Without without<br />
+ Write a dfn which does’t use <code class="language-plaintext highlighter-rouge">~</code> to remove spaces from a text vector.</p>
+
+    <pre><code class="language-APL">       NoSpace'here is some text'
+ hereissometext
+       NoSpace'there   are   more   spaces   here'
+ therearemorespaceshere
+</code></pre>
+  </li>
+  <li>
+    <p>Where without Where<br />
+ Write a dfn which doesn’t use <code class="language-plaintext highlighter-rouge">⍸</code> to find the indices of <code class="language-plaintext highlighter-rouge">1</code>s in a boolean vector.</p>
+
+    <pre><code class="language-APL">       Where 0 1 0 1 0 0 1 
+ 2 4 7
+</code></pre>
+  </li>
+  <li>
+    <p>sdrawkcab s’taht woN</p>
+
+    <p>Write a dfn without using <code class="language-plaintext highlighter-rouge">⌽</code> which reverses its right argument.</p>
+
+    <pre><code class="language-APL">       Reverse 'Some characters'
+ sretcarahc emoS
+       Reverse ⍳10
+ 10 9 8 7 6 5 4 3 2 1       
+</code></pre>
+  </li>
+</ol>
+
+	</div>
+</body>
+</html>

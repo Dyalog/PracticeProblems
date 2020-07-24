@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="/img/favicon.png" sizes="64x64">
+	<title>
+	
+	
+	Handling Data - Learn Dyalog APL
+	
+	</title>
+	<script>
+	window.MathJax = {
+		tex: {inlineMath: [["@@", "@@"]],displayMath: [["%%","%%"]]},
+		svg: {fontCache: 'global'}
+	};
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/alerts.css">
+	<link rel="stylesheet" href="/css/hints.css">
+	<link rel="stylesheet" href="/css/print.css">
+</head>
+<body>
+    <div>	
+		<div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("Handling Data");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="/psets/2019.html">2019</a>
+        
+    
+        
+            <br><a href="/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="/psets/2017.html">2017</a>
+        
+    
+    
+    
+</div>
+
+    </div>
+    <div>Some contente efuhskeff</div>
+	<div class="course-content">
+	<h3 id="sort">Sort</h3>
+
+<pre><code class="language-APL">      names←'Finn' 'Charlotte' 'George' 'Anna' 'Bob' 'Dave' 'Ellie'
+      scores←9 6 3 10 8 1
+      heights←1.72 1.65 1.69 1.7 1.8 1.72 1.56
+      names[⍋heights]
+      (⍉↑names scores)[⍒scores;]
+</code></pre>
+
+<h3 id="categorise">Categorise</h3>
+
+<p><code class="language-plaintext highlighter-rouge">⍸ ⌸</code></p>
+
+<pre><code class="language-APL">HHist←{                               
+     ⎕←bc←(⍺⍸⍵){≢⍵}⌸⍵           
+     ⎕←hist←{'.⎕'[1+⍵∘.≥⍳⌈/⍵]}bc
+     ⍺,hist                     
+ }    
+</code></pre>
+
+<p>The following tasks will use the <code class="language-plaintext highlighter-rouge">csv</code> and <code class="language-plaintext highlighter-rouge">tempdata</code> variables from the <a href="/course/day3/14#native-files">previous section</a>.</p>
+
+<ol>
+  <li>Write a function <code class="language-plaintext highlighter-rouge">CatCSV</code> which uses key <code class="language-plaintext highlighter-rouge">⌸</code> to categorise data in <code class="language-plaintext highlighter-rouge">csv</code> and reshapes it to match <code class="language-plaintext highlighter-rouge">tempdata</code>.
+    <pre><code class="language-APL">       tempdata ≡ CatCSV csv
+ 1
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="clean">Clean</h3>
+
+<h3 id="summary">Summary</h3>
+
+	</div>
+</body>
+</html>

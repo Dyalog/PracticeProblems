@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="/img/favicon.png" sizes="64x64">
+	<title>
+	
+	
+	Reductions - Learn Dyalog APL
+	
+	</title>
+	<script>
+	window.MathJax = {
+		tex: {inlineMath: [["@@", "@@"]],displayMath: [["%%","%%"]]},
+		svg: {fontCache: 'global'}
+	};
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/alerts.css">
+	<link rel="stylesheet" href="/css/hints.css">
+	<link rel="stylesheet" href="/css/print.css">
+</head>
+<body>
+    <div>	
+		<div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("Reductions");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="/psets/2019.html">2019</a>
+        
+    
+        
+            <br><a href="/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="/psets/2017.html">2017</a>
+        
+    
+    
+    
+</div>
+
+    </div>
+    <div>Some contente efuhskeff</div>
+	<div class="course-content">
+	<h3 id="array-basics">Array Basics</h3>
+<p>Expermient with the expressions in the following block to gain an understanding of the functions. Then, write a brief definition in English for each expression. For example: <code class="language-plaintext highlighter-rouge">{2×⍳⍵}   ⍝ Even integers from 2 to 2×⍵ inclusive</code>. The first two have been given for you.</p>
+
+<pre><code class="language-APL">      rain←?7 5 12⍴250   ⍝ rain is the monthly rainfall in millimeters over 7 years for 5 countries
+      3 4⍴⍳12            ⍝ A 3 row, 4 column matrix of the integers from 1 to 12 inclusive      
+      ⍴cards←'A123456789TJQK'∘.,'♠♥♦♣'
+      ⍉cards
+      (,cards)[?52]
+      alph←2 3 4⍴⎕A
+      ,alph      
+</code></pre>
+
+<ol>
+  <li>
+    <ol>
+      <li>Use the match function <code class="language-plaintext highlighter-rouge">≡</code> to determine which expressions below produce the empty character vector <code class="language-plaintext highlighter-rouge">''</code> and the empty numeric vector <code class="language-plaintext highlighter-rouge">⍬</code>.
+        <pre><code class="language-APL">       0⍴0
+       0↑⎕A 
+       ⍳0
+       0⍴''
+       0⍴'def'
+       0 0⍴'abc'
+       2 0 3⍴⍳6
+       rain[⍸rain&gt;250]
+       alph[⍸alph='Z']
+       ⌈⌿⍬⍬
+       ⎕JSON'{}'
+       ⎕JSON'[]'
+       ⎕JSON'""'
+</code></pre>
+      </li>
+      <li>Write a function <code class="language-plaintext highlighter-rouge">IsEmpty</code> to determine if an array has an empty axis.
+        <pre><code class="language-APL">       IsEmpty 2 0 3⍴⍳4
+ 1
+       IsEmpty 2 2 3⍴⍳4
+ 0
+       IsEmpty 0
+ 0
+       IsEmpty 0⍴0
+ 1
+</code></pre>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>What is the shape of a scalar?</p>
+
+    <p>A <em>simple array</em> array contains only scalar numbers and/or characters.</p>
+
+    <p>Arrays generally can contain any other array. These are called <em>nested arrays</em>. For example, <code class="language-plaintext highlighter-rouge">cards</code> is a nested matrix of character vectors.</p>
+
+    <pre><code class="language-APL">       ⍴¨1 2 3 4   ⍝ What is the shape of each scalar in ⍳4?
+       ⍴¨cards     ⍝ What is the shape of each array in cards?
+</code></pre>
+  </li>
+  <li>
+    <p>Any simple array can be described using two vectors. Which two primitive functions (that is, functions represented by symbols) return these vectors when given a simple array argument?</p>
+  </li>
+  <li>The <em>rank</em> of an array is the number <em>axes</em> or <em>dimensions</em> an array has. If the shape of an array is given by the vector result of the shape function <code class="language-plaintext highlighter-rouge">⍴</code>, give an expression for the rank of an array.</li>
+</ol>
+
+<h3 id="some-points-in-space">Some Points in Space</h3>
+
+<p>The positions of 5 points in 3D space are given by the matrix <code class="language-plaintext highlighter-rouge">pos←5 3⍴0 1 3 4 2</code>.</p>
+
+<ol start="5">
+  <li>
+    <p>Write a function <code class="language-plaintext highlighter-rouge">NormRows</code> to normalise each vector in <code class="language-plaintext highlighter-rouge">pos</code> so that the sum of squares of each vector is <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+    <pre><code class="language-APL">       +/pos*2
+ 10 20 26 5 29
+       +/(NormRows pos)*2
+ 1 1 1 1 1 
+       ÷/2-/pos   
+ 0.5 1 2 ¯2 ¯0.5
+       ÷/2-/NormRows pos   ⍝ Relative proportions stay the same
+ 0.5 1 2 ¯2 ¯0.5    
+</code></pre>
+  </li>
+  <li>
+    <p>Write a function <code class="language-plaintext highlighter-rouge">AddRows</code> to add a vector to a matrix.</p>
+
+    <pre><code class="language-APL">       1 ¯3 4 AddRows pos
+ 1 ¯2 7
+ 5 ¯1 4
+ 2  0 8
+ 3 ¯3 5
+ 4  1 6
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="summary-statistics">Summary Statistics</h3>
+
+<p>Below each expression below, write a brief statement of what it does. If necessary, consult the hint which follows the group of expressions.</p>
+
+<pre><code class="language-APL">      (+⌿⍤1)rain   ⍝ Total rainfall for each of 7 years in 5 countries
+      +⌿rain          
+      (+⌿⍤2)rain
+      (+⌿⍤3)rain
+      ⌈⌿rain
+      (⌈⌿⍤2)rain
+      rain[⍸rain&gt;250]
+</code></pre>
+
+<div class="tab">
+	<input type="checkbox" id="shape" />
+	<label class="tab-label" for="shape">&nbsp;Hint:</label>
+	<div class="tab-content">
+		Look at the shapes of the arguments and the results, <code class="language-apl">⍴rain</code> and <code class="language-apl">⍴+⌿rain</code> etc.
+	</div>
+</div>
+
+<ol>
+  <li>
+    <p>Write a expression to find the average monthly rainfall for each of the 7 years in each of the 5 countries.</p>
+  </li>
+  <li>
+    <p>Write an expression to find the total annual rainfall averaged over 7 years for each of the 5 countries.</p>
+  </li>
+  <li>
+    <p>Assign scalar numeric values (single numbers) to the variables <code class="language-plaintext highlighter-rouge">years</code> <code class="language-plaintext highlighter-rouge">countries</code> <code class="language-plaintext highlighter-rouge">months</code> such that the <code class="language-plaintext highlighter-rouge">rain</code> data can be summarised as follows.</p>
+    <pre><code class="language-APL">       ⍴(+⌿⍤years)rain       ⍝ Sum over years
+ 5 12
+       ⍴(+⌿⍤countries)rain   ⍝ Sum over countries
+ 7 12
+       ⍴(+⌿⍤months)rain      ⍝ Sum over months
+ 7 5
+</code></pre>
+  </li>
+</ol>
+
+<p>The <code class="language-plaintext highlighter-rouge">⍤</code> (jot-diaresis) symbol in this context is called <em>rank</em>. We will learn why in the next section.</p>
+
+<h3 id="bonus">Bonus</h3>
+<p>For your interest, here are some reductions of note. Try to ask yourself why they give the results they do. Could they have been given different definitions?</p>
+
+<pre><code class="language-APL">      +/⍬
+      ×/⍬
+      ⌊/⍬
+      ,/'APPLE' 'DOG' 'BISCUIT'
+</code></pre>
+
+	</div>
+</body>
+</html>

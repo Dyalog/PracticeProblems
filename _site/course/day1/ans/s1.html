@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Solutions and Explanations 1 | Learn Dyalog APL</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Solutions and Explanations 1" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://0.0.0.0:4000/course/day1/ans/s1.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/course/day1/ans/s1.html" />
+<meta property="og:site_name" content="Learn Dyalog APL" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"http://0.0.0.0:4000/course/day1/ans/s1.html","headline":"Solutions and Explanations 1","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=18cee4476bacc81d3fc301ef0aa69d8e5726dfe1">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="http://0.0.0.0:4000/">Learn Dyalog APL</a></h1>
+      
+
+      <h1 id="solutions-and-explanations-1">Solutions and Explanations 1</h1>
+
+<h2 id="problem-set-1">Problem Set 1</h2>
+
+<h3 id="111">1.1.1</h3>
+
+<pre><code class="language-APL">      ×/⍳12          ⍝ 1.1.1.a
+479001600
+      +/(⍳17)*2      ⍝ 1.1.1.b
+1785
+      +/2×⍳100       ⍝ 1.1.1.c
+10100
+      +/(2×⍳100)-1   ⍝ 1.1.1.d
+10000      
+</code></pre>
+
+<p>1.1.1.e) Expressions evaluate from right to left and functions have long right scope and short left scope. The order of operations can be made explicit with parentheses.</p>
+
+<p><code class="language-plaintext highlighter-rouge">84 - (12 - (1 - (13 - (28 - (9 - (6 - 15))))))</code></p>
+
+<h3 id="112">1.1.2</h3>
+
+<pre><code class="language-APL">      +/(⍳467)*2        ⍝ 1.1.2.a
+34058310
+      +/(¯1+2×⍳812)*2   ⍝ 1.1.2.b
+713849500
+      +/(⍳68)*3         ⍝ 1.1.2.c
+5503716
+</code></pre>
+
+<h3 id="113">1.1.3</h3>
+<p>In these examples, the arithmetic is more or less trivial. However, the goal is for students to discover a mathematical way of finding the length of a vector as they have not yet been introduced to shape <code class="language-plaintext highlighter-rouge">⍴</code> or tally <code class="language-plaintext highlighter-rouge">≢</code>.</p>
+
+<pre><code class="language-APL">      +/⎕AVU                                 ⍝ 1.1.3.a
+646112
+      ×/⎕AVU                                 ⍝ 1.1.3.b
+0
+      +/⎕AVU=⎕AVU ⋄ +/⎕AVU÷⎕AVU ⋄ +/⎕AVU*0   ⍝ 1.1.3.c
+256
+256
+256
+      (+/⎕AVU)÷+/⎕AVU=⎕AVU                   ⍝ 1.1.3.d
+2523.875
+</code></pre>
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    
+  </body>
+</html>
