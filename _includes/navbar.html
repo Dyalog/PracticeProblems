@@ -1,0 +1,59 @@
+<div id="navbar">
+    <script>        
+        window.onload = function(){
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            b.forEach(fn=btn=>{
+                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
+            });
+            p.forEach(fn=pbm=>{
+                let pdiv = document.createElement("div");   
+                let pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                let sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "Submit";
+                let odiv = document.createElement("div")
+                odiv.id = pbm.id + "_Output";
+                pbm.append(pi);
+                pbm.append(sub);
+                pbm.append(odiv);
+                pbm.append(pdiv);                
+            });
+            loadTestCases("{{ page.title }}");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="/">Home</a>
+	<br>
+    {% assign sets = site.psets | sort | reverse %}
+    {% for pset in sets %}
+        {% if pset.title == page.title %}
+            <br><a href="{{ pset.url }}" class="active">{{ pset.title }}</a>
+            {% for p in page.problems %}                
+                <br><button class="pbutton" onclick="show('{{ p }}')">
+                    {{ p }}
+                </button>                
+            {% endfor %}                
+        {% else %}
+            <br><a href="{{ pset.url }}">{{ pset.title }}</a>
+        {% endif %}
+    {% endfor %}
+    
+    
+</div>

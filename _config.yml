@@ -1,0 +1,10 @@
+title: APL Practice Problems
+repository: dyalog/PracticeProblems
+exclude:
+  - svelte-components
+  - node_modules
+  - package.json
+  - package-lock.json
+collections:
+  psets:
+    output: true
