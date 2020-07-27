@@ -15,7 +15,7 @@
    "10","?10⍴10"],
   "b": ["⍬","(?10)⍴5",
    "(?10)⍴?10"],
-   "f": "{⍴∪⌈\⍵}"
+  "f": "{⍴∪⌈\\⍵}"
  },
  "P2_Number_Splitting": {
   "a": ["1.234","3.1415",
@@ -42,7 +42,7 @@
   "b": ["-551","-1",
    "-2018",
    "-?5000"],
-  "f": "{↑{'Monkey' 'Rooster' 'Dog' 'Pig' 'Rat' 'Ox' 'Tiger' 'Rabbit' 'Dragon' 'Snake' 'Horse' 'Goat'[0 1 2 3 4 5 6 7 8 9 10 11⍸⍵]}12|⍵+0>⍵}1564"
+  "f": "{↑{'Monkey' 'Rooster' 'Dog' 'Pig' 'Rat' 'Ox' 'Tiger' 'Rabbit' 'Dragon' 'Snake' 'Horse' 'Goat'[0 1 2 3 4 5 6 7 8 9 10 11⍸⍵]}12|⍵+0>⍵}"
  },
  "P5_What's_Your_Sign?_Revisited": {
   "a": ["2 23","10 31",
@@ -50,7 +50,7 @@
    "?12,?29"],
   "b": ["7 22","6 21",
    "12 21","4 19",
-   "4 20"]
+   "4 20"],
   "f": "{↑{'Capricorn' 'Aquarius' 'Pisces' 'Aries' 'Taurus' 'Gemini' 'Cancer' 'Leo' 'Virgo' 'Libra' 'Scorpio' 'Sagittarius' 'Capricorn'[0 1 2 3 4 5 6 7 8 9 10 11 12⍸⍵]}(12 2⍴1 20 2 19 3 21 4 20 5 21 6 21 7 23 8 23 9 23 10 23 11 22 12 22)⍸⍵}"
  },
  "P6_What's_Your_Angle?": {
@@ -59,7 +59,7 @@
    "'>stuff<>/stuff<'","'<'",
    "'<><><><><><><><>'"],
   "b": ["''","'<name<>first>'",
-   "'>name><first<'","'<><name><><first><>'"
+   "'>name><first<'","'<><name><><first><>'",
    "'><'","'name<first>Drake</first><last>Mallard</last>/name'"],
   "f": "{0=+/2≠+⌿⍉((⌈(+/+⌿'<>'∘.=⍵)÷2) 2⍴⍵[⍸+⌿'<>'∘.=⍵])=(⌈(+/+⌿'<>'∘.=⍵)÷2) 2⍴'<>'}"
  },
@@ -106,5 +106,5 @@
   "b": [["'d'","'d'"],["''","''"],
    ["'a'","'b'"],["''","'a'"]],
   "f": "{52=+/(+⌿⍉(⍉⍺∘.='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'),52 1⍴0)=+⌿⍉(⍉⍵∘.='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'),52 1⍴0}"
- },
+ }
 }
