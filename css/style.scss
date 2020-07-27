@@ -42,7 +42,7 @@ body {
 }
 #navbar > a, .pbutton{
     display: block;    
-    border-radius: 0.2em;
+    border-radius: 0;    
     padding: 1.4rem 1.25rem;
     margin-bottom: -1px;
     background-color: #f6f6d9;
@@ -73,10 +73,33 @@ body {
 	margin: 0 1vw;
 }
 
-#left, #right{display:inline-block;position:absolute;}
-#left {width:17em;}
+#left, #right{ display:inline-block; position:absolute; }
+#left { width:17em; left: 0; }
 #right {left: 17em; width: calc(100vw - 18em); padding-bottom: 5em;}
 .problem {display: none;}
+.pdiv {
+    margin: 1em;
+    display: inline-flex;
+    width: 95%;
+}
+.pdiv > span {
+    background: #ccc;
+    height: 100%;
+    display: inline-block;
+    padding: 0.5em;
+    color: #777;
+    font-family: APL385;
+    border-radius: 0.5em 0 0 0.5em;
+}
+.pdiv > input { flex-grow: 1; margin-right: -0.1em; }
+.pdiv > button {
+    font-size: 1.1em; 
+    border-radius: 0 0.5em 0.5em 0; 
+    color: #928abd;
+    background: white;    
+    cursor: pointer;
+}
+.pdiv > button:hover {color: white; background: #928abd; transition: 0.2s;}
 
 h2, h3, h4 {left: 3vw;}
 ol ol {list-style-type: lower-alpha;}
@@ -123,9 +146,12 @@ pre {margin: 0.5vh 3vw;}
     border-radius: 0.25rem;
     font-family: "APL385";
     padding: 2px;
+    padding-left: 1em;
     word-wrap: break-word;
     top: 0;
     position: fixed;
+    left: 0;
+    width: 100%;
 }
 
 .ngn_lb b {

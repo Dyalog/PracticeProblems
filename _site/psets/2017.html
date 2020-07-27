@@ -6,21 +6,15 @@
         <link rel="icon" href="/img/favicon.png" sizes="64x64">
         <title>Learn Dyalog APL</title>
         <link rel="stylesheet" href="/css/style.css">
-        <script type='text/javascript' src='/lib/tio-dyalog.js'></script>
-        <script type='text/javascript' src='/lib/pako.min.js'></script>    
-        <script type='text/javascript' src='/lib/test.js'></script>
         <script>
             var testCases;
             async function loadTestCases(ptitle){
                 console.log(ptitle);
-                testCases = await fetch("/testcases/" + ptitle + ".json").then(function(response){return response.json()});
+                testCases = await fetch("http://0.0.0.0:4000/testcases/" + ptitle + ".json").then(function(response){return response.json()});
             }
-
         </script>
-
     </head>
     <body>
-
         <div id="left">   
             <div id="navbar">
     <script>        
@@ -31,20 +25,24 @@
                 btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
             });
             p.forEach(fn=pbm=>{
-                let pdiv = document.createElement("div");   
-                let pi = document.createElement("input");
+                var pdiv = document.createElement("div");    
+                pdiv.classList.add("pdiv");               
+                var your_fn = document.createElement("span");
+                your_fn.innerHTML = "your_function ← "
+                var pi = document.createElement("input");
                 pi.id = pbm.id + "_Input";                             
-                let sub = document.createElement("button");
+                var sub = document.createElement("button");
                 sub.onclick = function(){
                     submitSolution(pbm.id);
                 }
-                sub.innerHTML = "Submit";
-                let odiv = document.createElement("div")
+                sub.innerHTML = "✓ Submit";                
+                var odiv = document.createElement("div")
                 odiv.id = pbm.id + "_Output";
-                pbm.append(pi);
-                pbm.append(sub);
-                pbm.append(odiv);
-                pbm.append(pdiv);                
+                pdiv.append(your_fn);
+                pdiv.append(pi);
+                pdiv.append(sub);                
+                pbm.append(pdiv);
+                pbm.append(odiv);                
             });
             loadTestCases("2017");
         }
@@ -63,20 +61,20 @@
             }
         }
     </script>
-	<a id="back" href="/">Home</a>
+	<a id="back" href="http://0.0.0.0:4000">Home</a>
 	<br>
     
     
         
-            <br><a href="/psets/2020.html">2020</a>
+            <br><a href="http://0.0.0.0:4000/psets/2020.html">2020</a>
         
     
         
-            <br><a href="/psets/2019.html">2019</a>
+            <br><a href="http://0.0.0.0:4000/psets/2019.html">2019</a>
         
     
         
-            <br><a href="/psets/2018.html">2018</a>
+            <br><a href="http://0.0.0.0:4000/psets/2018.html">2018</a>
         
     
         

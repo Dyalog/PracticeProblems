@@ -44,6 +44,6 @@ Try entering `{+/,⍵∊'AEIOU'}` which handles all test cases.
 <script>
     testCases = {"P0_Sample_Problem": {"a": ["'COOLAPL'","''","'NVWLSHR'","{⍵[?⍨≢⍵]}'AEIOU',⎕A[?26⍴⍨9+?16]"],"b": ["2 3⍴'APLYES'","⎕A[?26⍴⍨1+?2⍴⍨1+?2]","''⍴⍨¯1+?⍨3"],"f": "{+/,⍵∊'AEIOU'}","p": "{⊃⍣(1=≢,⍵)⊢⍵}"}};
 </script>
-<input id="P0_Sample_Problem_Input">
-<button onclick="submitSolution('P0_Sample_Problem')">Submit</button>
+
+<div class="pdiv"><span>your_function ← </span><input id="P0_Sample_Problem_Input"><button onclick="submitSolution('P0_Sample_Problem')">✓ Submit</button></div>
 <div id="P0_Sample_Problem_Output"></div>

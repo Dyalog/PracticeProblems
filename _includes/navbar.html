@@ -7,20 +7,24 @@
                 btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
             });
             p.forEach(fn=pbm=>{
-                let pdiv = document.createElement("div");   
-                let pi = document.createElement("input");
+                var pdiv = document.createElement("div");    
+                pdiv.classList.add("pdiv");               
+                var your_fn = document.createElement("span");
+                your_fn.innerHTML = "your_function ← "
+                var pi = document.createElement("input");
                 pi.id = pbm.id + "_Input";                             
-                let sub = document.createElement("button");
+                var sub = document.createElement("button");
                 sub.onclick = function(){
                     submitSolution(pbm.id);
                 }
-                sub.innerHTML = "Submit";
-                let odiv = document.createElement("div")
+                sub.innerHTML = "✓ Submit";                
+                var odiv = document.createElement("div")
                 odiv.id = pbm.id + "_Output";
-                pbm.append(pi);
-                pbm.append(sub);
-                pbm.append(odiv);
-                pbm.append(pdiv);                
+                pdiv.append(your_fn);
+                pdiv.append(pi);
+                pdiv.append(sub);                
+                pbm.append(pdiv);
+                pbm.append(odiv);                
             });
             loadTestCases("{{ page.title }}");
         }
@@ -39,19 +43,19 @@
             }
         }
     </script>
-	<a id="back" href="/">Home</a>
+	<a id="back" href="{{ site.url }}{{ site.baseurl }}">Home</a>
 	<br>
     {% assign sets = site.psets | sort | reverse %}
     {% for pset in sets %}
         {% if pset.title == page.title %}
-            <br><a href="{{ pset.url }}" class="active">{{ pset.title }}</a>
+            <br><a href="{{ site.baseurl }}{{ pset.url }}" class="active">{{ pset.title }}</a>
             {% for p in page.problems %}                
                 <br><button class="pbutton" onclick="show('{{ p }}')">
                     {{ p }}
                 </button>                
             {% endfor %}                
         {% else %}
-            <br><a href="{{ pset.url }}">{{ pset.title }}</a>
+            <br><a href="{{ site.url }}{{ site.baseurl }}{{ pset.url }}">{{ pset.title }}</a>
         {% endif %}
     {% endfor %}
     

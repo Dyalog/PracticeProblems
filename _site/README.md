@@ -1,11 +1,9 @@
-# Learn Dyalog APL Workshop
-## A self-contained course for instructors
+# Practice Problems
+Automatic Validation of APL Practice Problems
 
-### Requirements
-* Jekyll
-* Ruby
+[problems.tryapl.org](https://problems.tryapl.org)
 
-### Local Development & Testing
-1. `bundle install`
-2. `./serve.sh`
+Problem descriptions for each set in `_psets`
+
+The left menu is automatically generated using Jekyll/Liquid and JavaScript in `_includes/navbar.html`
 
