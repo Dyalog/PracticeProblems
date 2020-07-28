@@ -46,4 +46,4 @@ Try entering `{+/,⍵∊'AEIOU'}` which handles all test cases.
 </script>
 
 <div class="pdiv"><span>your_function ← </span><input id="P0_Sample_Problem_Input"><button onclick="submitSolution('P0_Sample_Problem')">✓ Submit</button></div>
-<div id="P0_Sample_Problem_Output"></div>
+<div id="P0_Sample_Problem_Output" class="tioOutput"></div>
