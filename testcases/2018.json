@@ -9,7 +9,7 @@
   "f": "{+/,⍵∊'AEIOU'}",
   "p": "{⊃⍣(1=≢,⍵)⊢⍵}"
  },
- "P1_Oh_Say_Can_You_See?": {
+ "P1_Oh_Say_Can_You_See": {
   "a": ["5 5 2 10 3 15 10",
    "⌽ 5 5 2 10 3 15 10",
    "10","?10⍴10"],
@@ -35,7 +35,7 @@
    "⍬,?10","(?10)⍴1"],
   "f": "{(((≢⍵)+⍳(+/⍵)+1-≢⍵)-1),↑'*'⍴⍨¨+/(((≢⍵)+⍳(+/⍵)+1-≢⍵)-1)∘.=,+/¨⍳⍵}"
  },
- "P4_What's_Your_Sign?": {
+ "P4_Whats_Your_Sign": {
   "a": ["2018",
   "1564","?5000",
   "1248","1"],
@@ -44,7 +44,7 @@
    "-?5000"],
   "f": "{↑{'Monkey' 'Rooster' 'Dog' 'Pig' 'Rat' 'Ox' 'Tiger' 'Rabbit' 'Dragon' 'Snake' 'Horse' 'Goat'[0 1 2 3 4 5 6 7 8 9 10 11⍸⍵]}12|⍵+0>⍵}"
  },
- "P5_What's_Your_Sign?_Revisited": {
+ "P5_Whats_Your_Sign_Revisited": {
   "a": ["2 23","10 31",
    "1 1","12 31",
    "?12,?29"],
@@ -53,7 +53,7 @@
    "4 20"],
   "f": "{↑{'Capricorn' 'Aquarius' 'Pisces' 'Aries' 'Taurus' 'Gemini' 'Cancer' 'Leo' 'Virgo' 'Libra' 'Scorpio' 'Sagittarius' 'Capricorn'[0 1 2 3 4 5 6 7 8 9 10 11 12⍸⍵]}(12 2⍴1 20 2 19 3 21 4 20 5 21 6 21 7 23 8 23 9 23 10 23 11 22 12 22)⍸⍵}"
  },
- "P6_What's_Your_Angle?": {
+ "P6_Whats_Your_Angle": {
   "a": ["'<name><first>Drake</first><last>Mallard</last></name>'",
    "'<math><relation>2<3</relation></math>'",
    "'>stuff<>/stuff<'","'<'",
@@ -89,7 +89,7 @@
    ["0 0 0","2 3 4⍴⍳24"]],
   "f": "{((≢⍺)=⍴⍴⍵)∧((≢⍺)=+/⍺∊⍳⍴⍴⍵)∧((×≢⍺)×⌈/⍺)=+/(⍳(×≢⍺)×⌈/⍺)∊⍺}"
  },
- "P9_Earlier,_Later,_or_the_Same?": {
+ "P9_Earlier,_Later,_or_the_Same": {
   "a": [["2018 4 1 12 34 56 789","2018 4 1 16 45 12 800"],
    ["2018 4 1 12 34 56 789"," 2017 4 1 12 34 56 789"],
    ["?5000 12 29 24 60 60","?5000 12 29 24 60 60"]],
