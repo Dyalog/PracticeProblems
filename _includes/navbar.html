@@ -1,11 +1,14 @@
 <div id="navbar">
-    <script>        
-        window.onload = function(){
+    <script>         
+        C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
+        window.onload = function(){                    
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
             let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
-            b.forEach(fn=btn=>{
-                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
-            });
+            let pt = document.querySelectorAll("h2");
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML };            
+            s=new URLSearchParams(location.search) // Options from URL 
+            console.log(s.get("goto"))
+            if (expr = s.get("goto")) {show(expr)};
             p.forEach(fn=pbm=>{
                 var pdiv = document.createElement("div");    
                 pdiv.classList.add("pdiv");               
@@ -19,6 +22,7 @@
                 }
                 sub.innerHTML = "✓ Submit";                
                 var odiv = document.createElement("div")
+                odiv.classList.add("tioOutput");
                 odiv.id = pbm.id + "_Output";
                 pdiv.append(your_fn);
                 pdiv.append(pi);
@@ -30,7 +34,7 @@
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
-            let b = document.querySelectorAll(".pbutton");
+            let b = document.querySelectorAll(".pbutton");            
             for (let i=0; i<p.length; i++){                
                 if (id == p[i].id) {
                     p[i].style.display = "block";
@@ -50,7 +54,7 @@
         {% if pset.title == page.title %}
             <br><a href="{{ site.baseurl }}{{ pset.url }}" class="active">{{ pset.title }}</a>
             {% for p in page.problems %}                
-                <br><button class="pbutton" onclick="show('{{ p }}')">
+                <br><button class="pbutton" onclick="C('{{p}}');show('{{ p }}')">
                     {{ p }}
                 </button>                
             {% endfor %}                

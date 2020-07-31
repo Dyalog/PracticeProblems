@@ -9,6 +9,8 @@ Each problem begins with a task description, followed by a hint suggesting one o
 
 After the hint is a section of example cases which, among others, are included in theautomated tests. Use these as a basis for implementing your solution
 
+{% include note.html content="The APL executor runs Dyalog version 17.1. Your solutions must work on this or earlier versions of Dyalog." %}
+
 # Sample Problem: Counting Vowels
 
 Write an APL function to count the number of vowels (A, E, I, O, U) in an array consisting of uppercase letters (A–Z).
@@ -46,4 +48,4 @@ Try entering `{+/,⍵∊'AEIOU'}` which handles all test cases.
 </script>
 
 <div class="pdiv"><span>your_function ← </span><input id="P0_Sample_Problem_Input"><button onclick="submitSolution('P0_Sample_Problem')">✓ Submit</button></div>
-<div id="P0_Sample_Problem_Output"></div>
+<div id="P0_Sample_Problem_Output" class="tioOutput"></div>
