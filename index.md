@@ -7,7 +7,7 @@ This site has automatically validated practice problems for [APL](https://aplwik
 
 Each problem begins with a task description, followed by a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint will open the Dyalog documentation page for the suggested primitive.
 
-After the hint is a section of example cases which, among others, are included in theautomated tests. Use these as a basis for implementing your solution
+After the hint is a section of example cases which, among others, are included in the automated tests. Use these as a basis for implementing your solution
 
 {% include note.html content="The APL executor runs Dyalog version 17.1. Your solutions must work on this or earlier versions of Dyalog." %}
 
