@@ -12,25 +12,38 @@
     }
 }
 
-a {
-    /*width: 5em;*/
-    background: #eae9f3;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 0.7rem;
-    color: black;
-    padding: 0.3em;
-    z-index: 2;   
-}
-a:hover {background: #928abd;color: white;}
-
 body {
-    background: #fffff3;    
+    color:#555;
     font-family: 'Inter', sans-serif;
     text-rendering: optimizeLegibility;
     line-height: 2em;
     margin-bottom: 5em;
 }
+button {
+    cursor: pointer;
+}
+pre, code {
+    color: #000;
+    padding: 0.3em 0.3em 0.3em 0.3em;    
+    overflow: auto;    
+    font-family: "APL385";
+    line-height: 1.2em;
+    white-space: pre;
+}
+a, a code  {
+    color: #655aa0;
+}
+pre > * {padding: 0;}
+pre > * > * {padding: 0;}
+
+a{
+    text-decoration: none;
+    border-bottom: 0.25ex dotted #928abd;
+    z-index: 2;
+}
+a:hover {border-bottom: 0.25ex solid #655aa0;;}
+
+
 
 /* menu */
 
@@ -41,6 +54,8 @@ body {
 #navbar > h1 {
 }
 #navbar > a, .pbutton{
+    color: #000;
+    text-align: center;   
     display: block;    
     border-radius: 0;    
     padding: 1.4rem 1.25rem;
@@ -52,12 +67,15 @@ body {
     text-align: left; 
     background: #eae9f3; 
     width: 100%;
-    padding: 0.8rem 1.4rem
+    padding: 0.8rem 1.4rem 0.8rem 3rem;
+    text-indent: -2rem;
 }
-#navbar > .pbutton:hover { cursor: pointer; background-color: #BBB5D6; }
-#navbar > a{}
-#navbar > a:hover, .pbutton:hover{  
-    cursor: pointer;
+#navbar > .pbutton span {
+    text-indent:0;
+    width: 2rem;
+    display:inline-block;
+}
+#navbar > a:hover, #navbar > .pbutton:hover{  
     background-color: #BBB5D6;    
 }
 #navbar > .active{
@@ -75,7 +93,7 @@ body {
 
 #left, #right{ display:inline-block; position:absolute; }
 #left { width:17em; left: 0; }
-#right {left: 17em; width: calc(100vw - 18em); padding-bottom: 5em;}
+#right {left: 17em; width: calc(100vw - 20em); padding-bottom: 5em;}
 .problem {display: none;}
 .pdiv {
     margin: 1em;
@@ -93,13 +111,15 @@ body {
 }
 .pdiv > input { flex-grow: 1; margin-right: -0.1em; font-family: "APL385"; font-size: 1.5em;}
 .pdiv > button {
+    font-weight: bold;
     font-size: 1.1em; 
     border-radius: 0 0.5em 0.5em 0; 
-    color: #928abd;
-    background: white;    
+    color: #fff;
+    background: #090;
+    border: none;    
     cursor: pointer;
 }
-.pdiv > button:hover {color: white; background: #928abd; transition: 0.2s;}
+.pdiv > button:hover { background: #0c0; transition: 0.2s;}
 .tioOutput {padding: 0 1em 0 12em;}
 
 h2, h3, h4 {left: 3vw;}
@@ -111,31 +131,6 @@ table tbody tr td {
     padding: 0.3em;
 }
 
-pre {margin: 0.5vh 3vw 3vh 3vw;}
-
-pre {    
-    background: #3C4F76;
-    color: white;
-    padding: 0.3em 0.7em 0.3em 0.7em;    
-    overflow: auto;    
-    border-radius: 0.7em;
-    font-family: "APL385";
-    line-height: 1.2em;
-    white-space: pre;    
-}
-
-code {
-    padding: 0.3em 0.3em 0.3em 0.3em;    
-    overflow: auto;    
-    border-radius: 0.7em;
-    font-family: "APL385";
-    line-height: 1.2em;
-    white-space: pre;}
-
-pre > * {padding: 0;}
-pre > * > * {padding: 0;}
-pre {margin: 0.5vh 3vw;}
-
 .language-APL {font-family: APL385;}
 
 /* language bar */
@@ -144,7 +139,6 @@ pre {margin: 0.5vh 3vw;}
     background-color: #eae9f3;
     color: #555;
     cursor: default;
-    border-radius: 0.25rem;
     font-family: "APL385";
     padding: 2px;
     padding-left: 1em;
@@ -153,6 +147,7 @@ pre {margin: 0.5vh 3vw;}
     position: fixed;
     left: 0;
     width: 100%;
+    box-shadow: 0 0 2px #000;
 }
 
 .ngn_lb b {
