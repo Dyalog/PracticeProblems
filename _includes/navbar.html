@@ -3,9 +3,10 @@
         C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
         window.onload = function(){                    
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
-            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
             let pt = document.querySelectorAll("h2");
             for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML };            
+            document.title = {{ page.title }} + " P" + b[0].innerHTML + " - APL Practice Problems";
             s=new URLSearchParams(location.search) // Options from URL 
             console.log(s.get("goto"))
             if (expr = s.get("goto")) {show(expr)};
@@ -39,6 +40,7 @@
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
+                    document.title = {{ page.title }} + " P" + b[i].innerHTML + " - APL Practice Problems";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
@@ -50,7 +52,7 @@
 	<a id="back" href="{{ site.url }}{{ site.baseurl }}">Home</a>
 	<br>
     {% assign sets = site.psets | sort | reverse %}
-    {% for pset in sets %}
+    {% for pset in sets %}        
         {% if pset.title == page.title %}
             <br><a href="{{ site.baseurl }}{{ pset.url }}" class="active">{{ pset.title }}</a>
             {% for p in page.problems %}                

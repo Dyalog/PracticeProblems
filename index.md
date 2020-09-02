@@ -1,5 +1,6 @@
 ---
 layout: set
+title: Home
 ---
 # APL Practice Problems
 
