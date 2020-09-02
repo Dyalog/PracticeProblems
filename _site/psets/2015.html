@@ -1,0 +1,397 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" href="/img/favicon.png" sizes="64x64">
+        <title>Learn Dyalog APL</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/alerts.css">
+        <script type="text/javascript" src="/lib/pako.min.js"></script>
+        <script type="text/javascript" src="/lib/tio-dyalog.js"></script>
+        <script type="text/javascript" src="/lib/test.js"></script>
+        <script>            
+            var testCases;
+            async function loadTestCases(ptitle){
+                console.log(ptitle);
+                testCases = await fetch("http://0.0.0.0:4000/testcases/" + ptitle + ".json").then(function(response){return response.json()});
+            }
+        </script>
+    </head>
+    <body>
+        <div id="left">   
+            <div id="navbar">
+    <script>         
+        C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
+        window.onload = function(){                    
+            let p = document.querySelectorAll(".problem");p[0].style.display = "block";
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            let pt = document.querySelectorAll("h2");
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };            
+            s=new URLSearchParams(location.search) // Options from URL 
+            console.log(s.get("goto"))
+            if (expr = s.get("goto")) {show(expr)};
+            p.forEach(fn=pbm=>{
+                var pdiv = document.createElement("div");    
+                pdiv.classList.add("pdiv");               
+                var your_fn = document.createElement("span");
+                your_fn.innerHTML = "your_function ← "
+                var pi = document.createElement("input");
+                pi.id = pbm.id + "_Input";                             
+                var sub = document.createElement("button");
+                sub.onclick = function(){
+                    submitSolution(pbm.id);
+                }
+                sub.innerHTML = "✔ Test";                
+                var odiv = document.createElement("div")
+                odiv.classList.add("tioOutput");
+                odiv.id = pbm.id + "_Output";
+                pdiv.append(your_fn);
+                pdiv.append(pi);
+                pdiv.append(sub);                
+                pbm.append(pdiv);
+                pbm.append(odiv);                
+            });
+            loadTestCases("2015");
+        }
+        function show(id) {
+            let p = document.querySelectorAll(".problem");
+            let b = document.querySelectorAll(".pbutton");            
+            for (let i=0; i<p.length; i++){                
+                if (id == p[i].id) {
+                    p[i].style.display = "block";
+                    b[i].classList.add("active");
+                    console.log(b[i]);
+                } else {
+                    p[i].style.display = "none";
+                    b[i].classList.remove("active");
+                }
+            }
+        }
+    </script>
+	<a id="back" href="http://0.0.0.0:4000">Home</a>
+	<br>
+    
+    
+        
+            <br><a href="http://0.0.0.0:4000/psets/2020.html">2020</a>
+        
+    
+        
+            <br><a href="http://0.0.0.0:4000/psets/2019.html">2019</a>
+        
+    
+        
+            <br><a href="http://0.0.0.0:4000/psets/2018.html">2018</a>
+        
+    
+        
+            <br><a href="http://0.0.0.0:4000/psets/2017.html">2017</a>
+        
+    
+        
+            <br><a href="http://0.0.0.0:4000/psets/2016.html">2016</a>
+        
+    
+        
+            <br><a href="/psets/2015.html" class="active">2015</a>
+                            
+                <br><button class="pbutton" onclick="C('P1_Nag_A_Ram');show('P1_Nag_A_Ram')">
+                    P1_Nag_A_Ram
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P2_Longest_Streak');show('P2_Longest_Streak')">
+                    P2_Longest_Streak
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P3_Farey_Tale');show('P3_Farey_Tale')">
+                    P3_Farey_Tale
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P4_PDI_Progessive_Dyadic_Iota');show('P4_PDI_Progessive_Dyadic_Iota')">
+                    P4_PDI_Progessive_Dyadic_Iota
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P5_Hes_so_mean_he_has_no_standard_deviation');show('P5_Hes_so_mean_he_has_no_standard_deviation')">
+                    P5_Hes_so_mean_he_has_no_standard_deviation
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P6_Hey_This_is_My_Space');show('P6_Hey_This_is_My_Space')">
+                    P6_Hey_This_is_My_Space
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P7_Just_In_Upper_Case');show('P7_Just_In_Upper_Case')">
+                    P7_Just_In_Upper_Case
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P8_Unlucky_13');show('P8_Unlucky_13')">
+                    P8_Unlucky_13
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P9_Id_Like_Mine_Scrambled_Please');show('P9_Id_Like_Mine_Scrambled_Please')">
+                    P9_Id_Like_Mine_Scrambled_Please
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P10_Blaiseing_a_Trail');show('P10_Blaiseing_a_Trail')">
+                    P10_Blaiseing_a_Trail
+                </button>                
+                            
+        
+    
+    
+    
+</div>
+
+        </div>
+        <div id="right">
+           <h1 id="apl-practice-problems">APL Practice Problems</h1>
+<h3 id="from-the-2016-apl-problem-solving-competition">from the 2016 APL Problem Solving Competition</h3>
+
+<div id="P1_Nag_A_Ram" class="problem">
+
+  <h2 id="nag-a-ram">1: Nag A Ram</h2>
+  <p>Write a function that takes two character vectors as its left and right arguments and returns <code class="language-plaintext highlighter-rouge">1</code> if they are anagrams of each other. An anagram of a string uses all of the letters of the string ignoring word spacing, capitalisation, and punctuation.</p>
+
+  <h3 id="examples">Examples:</h3>
+
+  <pre><code class="language-APL">      'anagram' your_function 'Nag A Ram' 
+1
+      'Dyalog APL' your_function 'Dog Pay All' 
+1
+      '' your_function '  !#!' 
+1
+      'abcde' your_function 'zyxwvu'
+0
+</code></pre>
+
+</div>
+
+<div id="P2_Longest_Streak" class="problem">
+
+  <h2 id="longest-streak">2: Longest Streak</h2>
+  <p>Write a function that takes a numeric vector and returns the length of the longest streak of positive growth.</p>
+
+  <h3 id="examples-1">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 1 2 3 4 5 6 7 8 9 
+8
+      your_function 1 
+0
+      your_function 9 8 7 6 5 4
+0
+      your_function 1 5 3 4 2 6 7 8
+3
+</code></pre>
+
+</div>
+
+<div id="P3_Farey_Tale" class="problem">
+
+  <h2 id="farey-tale">3: Farey Tale</h2>
+
+  <h3 id="examples-2">Examples:</h3>
+  <p>From <a href="http://en.wikipedia.org/wiki/Farey_sequence">http://en.wikipedia.org/wiki/Farey_sequence</a> - In mathematics, the Farey sequence of order n is the sequence of completely reduced fractions between 0 and 1 which, when in lowest terms, have denominators less than or equal to n, arranged in order of increasing size. Each Farey sequence starts with the value 0, denoted by the fraction 0⁄1, and ends with the value 1, denoted by the fraction 1⁄1.</p>
+
+  <p>Write a function that takes an integer right argument and returns a vector of the terms in the Farey sequence of that order. Each element in the returned vector is itself a 2-element vector of numerator and denominator for the corresponding term.</p>
+
+  <pre><code class="language-APL">      your_function 0 
+┌───┐
+│0 1│
+└───┘
+      your_function 1
+┌───┬───┐
+│0 1│1 1│
+└───┴───┘
+      your_function 5
+┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│0 1│1 5│1 4│1 3│2 5│1 2│3 5│2 3│3 4│4 5│1 1│
+└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+</code></pre>
+
+</div>
+
+<div id="P4_PDI_Progessive_Dyadic_Iota" class="problem">
+
+  <h2 id="pdi---progressive-dyadic-iota">4: PDI - Progressive Dyadic Iota</h2>
+  <p>The index-of function <code class="language-plaintext highlighter-rouge">X⍳Y</code> returns a simple integer vector that identifies where the <a href="https://aplwiki.com/wiki/Major_cell">major cells</a> of <code class="language-plaintext highlighter-rouge">Y</code> are first found in <code class="language-plaintext highlighter-rouge">X</code>. If a major cell of <code class="language-plaintext highlighter-rouge">Y</code> cannot be found in <code class="language-plaintext highlighter-rouge">X</code>, then the corresponding item of the returned array will be <code class="language-plaintext highlighter-rouge">1+≢X</code>.</p>
+
+  <p>Example of <code class="language-plaintext highlighter-rouge">X⍳Y</code>:</p>
+  <pre><code class="language-APL">      'DYALOG APL' ⍳  'AAALLLB' 
+3 3 3 4 4 4 11
+</code></pre>
+
+  <p><em>Progressive dyadic iota</em> is similar to <code class="language-plaintext highlighter-rouge">⍳</code> except that it returns the index of subsequent matches in the left argument until they are exhausted. Write a function that implements progressive dyadic iota.</p>
+
+  <h3 id="examples-3">Examples:</h3>
+
+  <pre><code class="language-APL">      'DYALOG APL' your_function 'AAALLLB' 
+3 8 11 4 10 11 11
+      '' your_function 'test'  ⍝ should work with empty left argument 
+1 1 1 1 
+      ⍬≡'test' {your_function} ''  ⍝ should work with empty right argument
+1
+</code></pre>
+
+</div>
+
+<div id="P5_Hes_so_mean_he_has_no_standard_deviation" class="problem">
+
+  <h2 id="hes-so-mean-he-has-no-standard-deviation">5: He’s so mean, he has no standard deviation</h2>
+  <p>The standard deviation of a population is calculated by taking the square root of the average of the squared differences of the values from their average value. The mathematical formula is:</p>
+
+  <div align="center">
+<img src="http://0.0.0.0:4000/img/stdev.svg" />
+</div>
+
+  <p>where <strong>x̄</strong> is the mean average value and <strong>n</strong> is the number of values.</p>
+
+  <p>Write a function that returns the population standard deviation of its numeric array right argument.</p>
+
+  <h3 id="examples-4">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 1 2 3 4 5
+1.414213562
+      your_function 10 10⍴⍳100  ⍝ and higher dimensions as well
+28.86607005
+</code></pre>
+
+</div>
+
+<div id="P6_Hey_This_is_My_Space" class="problem">
+
+  <h2 id="hey-this-is-my-space">6: Hey! This is My Space</h2>
+  <p>Write a function that takes, as each of its right and left arguments, a pair of co-ordinates representing diagonally opposite corners of two rectangles and returns a <code class="language-plaintext highlighter-rouge">1</code> if the rectangles overlap. The co-ordinates could be either (upper-left, lower-right) or (upper-right, lower left).</p>
+
+  <div align="center">
+<img src="http://0.0.0.0:4000/img/overlaprect.png" style="width: 50vw;" />
+</div>
+
+  <h3 id="examples-5">Examples:</h3>
+
+  <pre><code class="language-APL">      (1 1)(5 5) your_function (3 3)(7 7)
+1
+      (1 1)(5 5) your_function (5 5)(1 1)
+1
+      (1 1)(3 3) your_function (4 4)(7 7)
+0
+      (1.1 1.1)(5.5 5.5) your_function (3.3 3.3)(4.4 4.4)
+1 
+</code></pre>
+
+</div>
+
+<div id="P7_Just_In_Upper_Case" class="problem">
+
+  <h2 id="just-in-upper-case">7: Just in (Upper) Case</h2>
+  <p>Membership <code class="language-plaintext highlighter-rouge">X∊Y</code> returns a boolean array of shape <code class="language-plaintext highlighter-rouge">⍴X</code> with <code class="language-plaintext highlighter-rouge">1</code>s indicating where elements of <code class="language-plaintext highlighter-rouge">Y</code> occur in <code class="language-plaintext highlighter-rouge">X</code>. For a vector <code class="language-plaintext highlighter-rouge">X</code> this results in a very convenient boolean mask.</p>
+
+  <p>In many instances, it is desirable to perform case-insensitive comparisons and operations. Write a function to perform case-insensitive membership between two arrays.</p>
+
+  <p>For full marks, consider membership of <a href="https://aplwiki.com/wiki/Cell">cells</a> in high-rank arrays, your function should still return a vector when comparing cells of the same rank, for example (<code class="language-plaintext highlighter-rouge">3 2⍴⎕A</code>) and (<code class="language-plaintext highlighter-rouge">1 2⍴'cd'</code>).</p>
+
+  <h3 id="examples-6">Examples:</h3>
+
+  <pre><code class="language-APL">      'dyalog' your_function 'APL'
+0 0 1 1 0 0
+      'bramley' your_function 'HAMPSHIRE'
+0 1 1 1 0 1 0
+</code></pre>
+
+</div>
+
+<div id="P8_Unlucky_13" class="problem">
+
+  <h2 id="unlucky-13">8: Unlucky 13</h2>
+  <p>You’ve just been hired by a new company and you’ve learned that the owner has triskaidekaphobia (fear of the number 13). As such he’s issued a corporate mandate that no output from any program shall include the number 13 – 12.99 will be used instead. Your boss wants you to implement a function to process output and change the 13s to 12.99. For now, you need only concern yourself with numeric data and not worry about 13s that are formatted in text.</p>
+
+  <h3 id="examples-7">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 13
+12.99
+      your_function ⍳15 
+1 2 3 4 5 6 7 8 9 10 11 12 12.99 14 15
+      your_function 6+5 6 7 8 9
+11 12 12.99 14 15
+      your_function 13 130 13.13 1300  ⍝ we only care about the number 13
+12.99 130 13.13 1300
+</code></pre>
+
+</div>
+
+<div id="P9_Id_Like_Mine_Scrambled_Please" class="problem">
+
+  <h2 id="id-like-mine-scrambled-please">9: I’d Like Mine Scrambled Please</h2>
+  <p>There is <a href="https://en.wikipedia.org/wiki/Typoglycemia">an urban myth</a> about some research that was supposedly done at Cambridge University that purports changing the order of the interior letters in the words of a sentence does not significantly hamper the readability of the sentence.</p>
+
+  <p>Put another way…<br />
+Teher is an ubran mtyh aobut smoe rseaecrh taht was spuopesldy dnoe at Cmarbdige Uinevsrtiy taht pruoptrs cahgnnig the odrer of the itnreoir lteetrs in the wrods of a sneetcne deos not sgiinifactnly hmaepr the raeadibilty of the sneetcne.</p>
+
+  <p>In the above example, for words that contain more than 3 letters, the first and last letters remain the same while all of the interior letters are transposed in groups of two, ignoring punctuation. If there are an odd number of letters in the interior of the word, then the last letter is left as it is.</p>
+
+  <p>Write a function that takes a character vector word as its left argument and returns the word’s letters juxtaposed as described above.</p>
+
+  <h3 id="examples-8">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 'argument'
+agrmunet
+      ]box on
+      your_function¨'this' 'is' 'awesome'
+┌────┬──┬───────┐
+│tihs│is│aewosme│
+└────┴──┴───────┘
+      ]box off 
+      your_function¨'this' 'is' 'awesome'
+ tihs  is  aewosme 
+</code></pre>
+
+</div>
+
+<div id="P10_Blaiseing_a_Trail" class="problem">
+
+  <h2 id="blaiseing-a-trail">10: Blaise’ing a Trail</h2>
+  <p>The APL expression to compute Pascal’s triangle of order <code class="language-plaintext highlighter-rouge">n</code> is fairly simple.</p>
+
+  <pre><code class="language-APL">      {{⍉⍵∘.!⍵}0,⍳⍵} 10
+1  0  0   0   0   0   0   0  0  0 0
+1  1  0   0   0   0   0   0  0  0 0
+1  2  1   0   0   0   0   0  0  0 0
+1  3  3   1   0   0   0   0  0  0 0
+1  4  6   4   1   0   0   0  0  0 0
+1  5 10  10   5   1   0   0  0  0 0
+1  6 15  20  15   6   1   0  0  0 0
+1  7 21  35  35  21   7   1  0  0 0
+1  8 28  56  70  56  28   8  1  0 0
+1  9 36  84 126 126  84  36  9  1 0
+1 10 45 120 210 252 210 120 45 10 1
+</code></pre>
+
+  <p>However, the output leaves something to be desired. Write a function that takes an integer right argument representing the order of the Pascal’s triangle to be created and returns a “nicely” formatted character matrix.  Because we’re using a mono-spaced font and can only format whole character positions, lines to not have to be perfectly centered and may vary by a character position.</p>
+
+  <h3 id="examples-9">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 10 
+                 1                     
+                1 1           
+               1 2 1                   
+              1 3 3 1        
+             1 4 6 4 1    
+           1 5 10 10 5 1        
+         1 6 15 20 15 6 1               
+        1 7 21 35 35 21 7 1          
+      1 8 28 56 70 56 28 8 1        
+    1 9 36 84 126 126 84 36 9 1     
+1 10 45 120 210 252 210 120 45 10 1
+      your_function 1
+ 1 
+1 1
+      your_function 0 
+1 
+</code></pre>
+
+</div>
+
+           
+        </div>  
+        <script src='/lib/lb.js'></script>
+    </body>
+</html>

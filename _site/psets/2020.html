@@ -6,10 +6,11 @@
         <link rel="icon" href="/img/favicon.png" sizes="64x64">
         <title>Learn Dyalog APL</title>
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/alerts.css">
         <script type="text/javascript" src="/lib/pako.min.js"></script>
         <script type="text/javascript" src="/lib/tio-dyalog.js"></script>
         <script type="text/javascript" src="/lib/test.js"></script>
-        <script>
+        <script>            
             var testCases;
             async function loadTestCases(ptitle){
                 console.log(ptitle);
@@ -20,13 +21,16 @@
     <body>
         <div id="left">   
             <div id="navbar">
-    <script>        
-        window.onload = function(){
+    <script>         
+        C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
+        window.onload = function(){                    
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
             let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
-            b.forEach(fn=btn=>{
-                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
-            });
+            let pt = document.querySelectorAll("h2");
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };            
+            s=new URLSearchParams(location.search) // Options from URL 
+            console.log(s.get("goto"))
+            if (expr = s.get("goto")) {show(expr)};
             p.forEach(fn=pbm=>{
                 var pdiv = document.createElement("div");    
                 pdiv.classList.add("pdiv");               
@@ -38,8 +42,9 @@
                 sub.onclick = function(){
                     submitSolution(pbm.id);
                 }
-                sub.innerHTML = "✓ Submit";                
+                sub.innerHTML = "✔ Test";                
                 var odiv = document.createElement("div")
+                odiv.classList.add("tioOutput");
                 odiv.id = pbm.id + "_Output";
                 pdiv.append(your_fn);
                 pdiv.append(pi);
@@ -51,7 +56,7 @@
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
-            let b = document.querySelectorAll(".pbutton");
+            let b = document.querySelectorAll(".pbutton");            
             for (let i=0; i<p.length; i++){                
                 if (id == p[i].id) {
                     p[i].style.display = "block";
@@ -71,43 +76,43 @@
         
             <br><a href="/psets/2020.html" class="active">2020</a>
                             
-                <br><button class="pbutton" onclick="show('P1_Lets_Split')">
+                <br><button class="pbutton" onclick="C('P1_Lets_Split');show('P1_Lets_Split')">
                     P1_Lets_Split
                 </button>                
                             
-                <br><button class="pbutton" onclick="show('P2_Characters')">
+                <br><button class="pbutton" onclick="C('P2_Characters');show('P2_Characters')">
                     P2_Characters
                 </button>                
                             
-                <br><button class="pbutton" onclick="show('P3_Columns')">
+                <br><button class="pbutton" onclick="C('P3_Columns');show('P3_Columns')">
                     P3_Columns
                 </button>                
                             
-                <br><button class="pbutton" onclick="show('P4_Take_a_Leap')">
+                <br><button class="pbutton" onclick="C('P4_Take_a_Leap');show('P4_Take_a_Leap')">
                     P4_Take_a_Leap
                 </button>                
                             
-                <br><button class="pbutton" onclick="show('P5_Integer_Range')">
+                <br><button class="pbutton" onclick="C('P5_Integer_Range');show('P5_Integer_Range')">
                     P5_Integer_Range
                 </button>                
                             
-                <br><button class="pbutton" onclick="show('P6_Move_To_Front')">
+                <br><button class="pbutton" onclick="C('P6_Move_To_Front');show('P6_Move_To_Front')">
                     P6_Move_To_Front
                 </button>                
                             
-                <br><button class="pbutton" onclick="show('P7_Bits')">
+                <br><button class="pbutton" onclick="C('P7_Bits');show('P7_Bits')">
                     P7_Bits
                 </button>                
                             
-                <br><button class="pbutton" onclick="show('P8_Zigzag')">
+                <br><button class="pbutton" onclick="C('P8_Zigzag');show('P8_Zigzag')">
                     P8_Zigzag
                 </button>                
                             
-                <br><button class="pbutton" onclick="show('P9_Rise_and_Fall')">
+                <br><button class="pbutton" onclick="C('P9_Rise_and_Fall');show('P9_Rise_and_Fall')">
                     P9_Rise_and_Fall
                 </button>                
                             
-                <br><button class="pbutton" onclick="show('P10_Stacking_It_Up')">
+                <br><button class="pbutton" onclick="C('P10_Stacking_It_Up');show('P10_Stacking_It_Up')">
                     P10_Stacking_It_Up
                 </button>                
                             
@@ -123,6 +128,14 @@
     
         
             <br><a href="http://0.0.0.0:4000/psets/2017.html">2017</a>
+        
+    
+        
+            <br><a href="http://0.0.0.0:4000/psets/2016.html">2016</a>
+        
+    
+        
+            <br><a href="http://0.0.0.0:4000/psets/2015.html">2015</a>
         
     
     
@@ -287,6 +300,9 @@ D¥⍺⌊○9
 </div>
 
 <div id="P6_Move_To_Front" class="problem">
+
+  <h2 id="move-to-the-front">6: Move to the Front</h2>
+
   <p>Write a function that, given a right argument which is an integer vector and a left argument which is an integer scalar, reorders the right argument so any elements equal to the left argument come first while all other elements keep their order.</p>
 
   <p>💡 Hint: The Grade Up function <a href="https://help.dyalog.com/latest/#Language/Primitive%20Functions/Grade%20Up%20Monadic.htm"><code class="language-plaintext highlighter-rouge">⍋Y</code></a> could be helpful for this problem.</p>
@@ -424,7 +440,7 @@ A
 </code></pre>
 
 </div>
-
+           
         </div>  
         <script src='/lib/lb.js'></script>
     </body>

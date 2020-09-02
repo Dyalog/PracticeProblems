@@ -5,7 +5,7 @@
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
             let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
             let pt = document.querySelectorAll("h2");
-            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML };            
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };            
             s=new URLSearchParams(location.search) // Options from URL 
             console.log(s.get("goto"))
             if (expr = s.get("goto")) {show(expr)};
@@ -20,7 +20,7 @@
                 sub.onclick = function(){
                     submitSolution(pbm.id);
                 }
-                sub.innerHTML = "✓ Submit";                
+                sub.innerHTML = "✔ Test";                
                 var odiv = document.createElement("div")
                 odiv.classList.add("tioOutput");
                 odiv.id = pbm.id + "_Output";
