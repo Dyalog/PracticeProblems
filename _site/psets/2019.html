@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/img/favicon.png" sizes="64x64">
-        <title>Learn Dyalog APL</title>
+        <title>2019 - APL Practice Problems</title>
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/alerts.css">
         <script type="text/javascript" src="/lib/pako.min.js"></script>
@@ -25,9 +25,10 @@
         C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
         window.onload = function(){                    
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
-            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
             let pt = document.querySelectorAll("h2");
-            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };            
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
+            document.title = 2019 + " P" + pt[0].innerHTML + " - APL Practice Problems";            
             s=new URLSearchParams(location.search) // Options from URL 
             console.log(s.get("goto"))
             if (expr = s.get("goto")) {show(expr)};
@@ -56,11 +57,13 @@
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
-            let b = document.querySelectorAll(".pbutton");            
+            let b = document.querySelectorAll(".pbutton"); 
+            let pt = document.querySelectorAll("h2");           
             for (let i=0; i<p.length; i++){                
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
+                    document.title = 2019 + " P" + pt[i].innerHTML + " - APL Practice Problems";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
@@ -72,11 +75,15 @@
 	<a id="back" href="http://0.0.0.0:4000">Home</a>
 	<br>
     
-    
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/help.html">Help</a>
+        
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2020.html">2020</a>
         
-    
+            
         
             <br><a href="/psets/2019.html" class="active">2019</a>
                             
@@ -121,19 +128,19 @@
                 </button>                
                             
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2018.html">2018</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2017.html">2017</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2016.html">2016</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2015.html">2015</a>
         
@@ -183,7 +190,6 @@
 }
 
 #shoelace {
-  background: #f5f2f0;
   border-left: 3px solid #fc9732!important;
   border: solid 1px #ccc;
   border-bottom: solid;
@@ -239,9 +245,9 @@
 <div id="P1_Chunky_Monkey" class="problem">
 
   <h2 id="chunky-monkey">1: Chunky Monkey</h2>
-  <p>Write a function that, given a scalar or vector as the right argument and a positive (&gt;0)integer chunk size <code class="language-plaintext highlighter-rouge">n</code> as the left argument, breaks the array’s items up into chunks of size <code class="language-plaintext highlighter-rouge">n</code>. If the number of elements in the array is not evenly divisible by <code class="language-plaintext highlighter-rouge">n</code>, then the last chunkwill have fewer than <code class="language-plaintext highlighter-rouge">n</code> elements.</p>
+  <p>Write a function that, given a scalar or vector as the right argument and a positive (&gt;0) integer chunk size <code class="language-plaintext highlighter-rouge">n</code> as the left argument, breaks the array’s items up into chunks of size <code class="language-plaintext highlighter-rouge">n</code>. If the number of elements in the array is not evenly divisible by <code class="language-plaintext highlighter-rouge">n</code>, then the last chunkwill have fewer than <code class="language-plaintext highlighter-rouge">n</code> elements.</p>
 
-  <p>💡 Hint: The partitioned enclose function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Partitioned%20Enclose.htm"><code class="language-plaintext highlighter-rouge">⊂</code></a> could be helpful for this problem.</p>
+  <p>💡 Hint: The partitioned enclose function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Partitioned%20Enclose.htm"><code class="language-plaintext highlighter-rouge">X⊂Y</code></a> could be helpful for this problem.</p>
 
   <h3 id="examples">Examples</h3>
 
@@ -281,15 +287,15 @@
       <tr>
         <td>Score Range</td><td>Letter Grade</td>
       </tr><tr>
-        <td>0-64</td><td>F</td>
+        <td>0–64</td><td>F</td>
       </tr><tr>
-        <td>65-69</td><td>D</td>
+        <td>65–69</td><td>D</td>
       </tr><tr>
-        <td>70-79</td><td>C</td>
+        <td>70–79</td><td>C</td>
       </tr><tr>
-        <td>80-89</td><td>B</td>
+        <td>80–89</td><td>B</td>
       </tr><tr>
-        <td>90-100</td><td>A</td>    
+        <td>90–100</td><td>A</td>    
       </tr>
     </table>
   </td>
@@ -300,7 +306,7 @@ Write a function that, given an array of integer test scores in the inclusive ra
   </td></tr>
 </table>
 
-  <p>💡 Hint: You may want to investigate the <em>interval index</em> function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Interval%20Index.htm"><code class="language-plaintext highlighter-rouge">⍸</code></a>.</p>
+  <p>💡 Hint: You may want to investigate the <em>interval index</em> function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Interval%20Index.htm"><code class="language-plaintext highlighter-rouge">X⍸Y</code></a>.</p>
 
   <h3 id="examples-1">Examples</h3>
 
@@ -465,9 +471,9 @@ Consider a chess board as an 8×8 matrix with square `(1 1)` in the upper left c
 
   <h2 id="doubling-up">5: Doubling Up</h2>
 
-  <p>Given a word or a list of words, return a Boolean vector where <code class="language-plaintext highlighter-rouge">1</code> indicates a word with one or more consecutive duplicated, case-sensitive, letters. Each word will have at least one letter and will consist entirely of either uppercase (A-Z) or lowercase (a-z) letters. Words consisting of a single letter can be scalars.</p>
+  <p>Given a word or a list of words, return a Boolean vector where <code class="language-plaintext highlighter-rouge">1</code> indicates a word with one or more consecutive duplicated, case-sensitive, letters. Each word will have at least one letter and will consist entirely of either uppercase (A–Z) or lowercase (a–z) letters. Words consisting of a single letter can be scalars.</p>
 
-  <p>💡 Hint: The nest function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Nest.htm"><code class="language-plaintext highlighter-rouge">⊆</code></a> could be useful.</p>
+  <p>💡 Hint: The nest function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Nest.htm"><code class="language-plaintext highlighter-rouge">⊆Y</code></a> could be useful.</p>
 
   <h3 id="examples-4">Examples</h3>
 
@@ -516,7 +522,7 @@ Some telephone keypads have letters of the alphabet embossed on their keytops. S
 </table>
   <p>Write an APL function that takes a character vector right argument that consists of digits and uppercase letters and returns an integer vector of the corresponding digits on the keypad.</p>
 
-  <p>💡 Hint: Your solution might make use of the membership function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Membership.htm"><code class="language-plaintext highlighter-rouge">∊</code></a>.</p>
+  <p>💡 Hint: Your solution might make use of the membership function <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Membership.htm"><code class="language-plaintext highlighter-rouge">X∊Y</code></a>.</p>
 
   <h3 id="examples-5">Examples</h3>
 
@@ -533,9 +539,9 @@ Some telephone keypads have letters of the alphabet embossed on their keytops. S
 
   <h2 id="in-the-center-of-it-all">7: In the Center of It All</h2>
 
-  <p>Given a right argument of a list of words (or possibly a single word) and a left argument of a width, return a character matrix that has width columns and one row per word, where each word is centered within the row. If width is smaller than the length of a word,truncate the word from the right. If there are an odd number of spaces to center within, leave the extra space on the right.</p>
+  <p>Given a right argument of a list of words (or possibly a single word) and a left argument of a width, return a character matrix that has width columns and one row per word, where each word is centered within the row. If width is smaller than the length of a word, truncate the word from the right. If there are an odd number of spaces to center within, leave the extra space on the right.</p>
 
-  <p>💡 Hint: The mix <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Mix.htm"><code class="language-plaintext highlighter-rouge">↑</code></a> and rotate <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Rotate.htm"><code class="language-plaintext highlighter-rouge">⌽</code></a> functions will probably be useful here.</p>
+  <p>💡 Hint: The mix <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Mix.htm"><code class="language-plaintext highlighter-rouge">↑Y</code></a> and rotate <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Rotate.htm"><code class="language-plaintext highlighter-rouge">X⌽Y</code></a> functions will probably be useful here.</p>
 
   <h3 id="examples-6">Examples</h3>
 
@@ -615,7 +621,7 @@ Competitio
 
         <p>Given a vector of <code class="language-plaintext highlighter-rouge">(X Y)</code> points, or a single <code class="language-plaintext highlighter-rouge">X Y</code> point, determine the total distance covered when travelling in a straight line from the first point to the next one, and so on until the last point, then returning directly back to the start. For example, given the points <code class="language-plaintext highlighter-rouge">(A B C) ← (¯1.5 ¯1.5)(1.5 2.5)(1.5 ¯1.5)</code>, the distance <code class="language-plaintext highlighter-rouge">A</code> to <code class="language-plaintext highlighter-rouge">B</code> is <code class="language-plaintext highlighter-rouge">5</code>, <code class="language-plaintext highlighter-rouge">B</code> to <code class="language-plaintext highlighter-rouge">C</code> is <code class="language-plaintext highlighter-rouge">4</code> and <code class="language-plaintext highlighter-rouge">C</code> back to <code class="language-plaintext highlighter-rouge">A</code> is <code class="language-plaintext highlighter-rouge">3</code>, for a total of <code class="language-plaintext highlighter-rouge">12</code>.</p>
 
-        <p>💡 Hint: The rotate <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Rotate.htm"><code class="language-plaintext highlighter-rouge">⌽</code></a> and power <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Power.htm"><code class="language-plaintext highlighter-rouge">*</code></a> functions might be useful.</p>
+        <p>💡 Hint: The rotate <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Rotate.htm"><code class="language-plaintext highlighter-rouge">X⌽Y</code></a> and power <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Power.htm"><code class="language-plaintext highlighter-rouge">X*Y</code></a> functions might be useful.</p>
 
       </td></tr>
 </table>
@@ -639,7 +645,7 @@ Competitio
 
   <p>Gauss’s area formula, also known as <a href="https://en.wikipedia.org/wiki/Shoelace_formula">the shoelace formula</a>, is an algorithm to calculate the area of a simple polygon (a polygon that does not intersect itself). It’s called the shoelace formula because of a common method using matrices to evaluate it. For example, the area of the triangle described by the vertices <code class="language-plaintext highlighter-rouge">(2 4)(3 ¯8)(1 2)</code> can be calculated by “walking around” the perimeter back to the first vertex, then drawing diagonals between the columns as shown below. The pattern created by the intersecting diagonals resembles shoelaces, hence the name “shoelace formula”</p>
 
-  <p>💡 Hint: You may want to investigate the rotate first <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Rotate%20First.htm"><code class="language-plaintext highlighter-rouge">⊖</code></a> function.</p>
+  <p>💡 Hint: You may want to investigate the rotate first <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Functions/Rotate%20First.htm"><code class="language-plaintext highlighter-rouge">X⊖Y</code></a> function.</p>
 
   <table id="shoelace">
 <tbody><tr>
@@ -790,7 +796,7 @@ Competitio
 
   <p>Given a vector of words, separate the words into two vectors – one containing all the words that have an odd number of letters and the other containing all the words that have an even number of letters.</p>
 
-  <p>💡 Hint: You may want to look into the dyadic form of the key operator <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Operators/Key.htm"><code class="language-plaintext highlighter-rouge">⌸</code></a>.</p>
+  <p>💡 Hint: You may want to look into the dyadic form of the key operator <a href="http://help.dyalog.com/latest/Content/Language/Primitive%20Operators/Key.htm"><code class="language-plaintext highlighter-rouge">X f⌸ Y</code></a>.</p>
 
   <h3 id="examples-9">Examples</h3>
 

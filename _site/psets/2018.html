@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/img/favicon.png" sizes="64x64">
-        <title>Learn Dyalog APL</title>
+        <title>2018 - APL Practice Problems</title>
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/alerts.css">
         <script type="text/javascript" src="/lib/pako.min.js"></script>
@@ -25,9 +25,10 @@
         C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
         window.onload = function(){                    
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
-            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
             let pt = document.querySelectorAll("h2");
-            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };            
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
+            document.title = 2018 + " P" + pt[0].innerHTML + " - APL Practice Problems";            
             s=new URLSearchParams(location.search) // Options from URL 
             console.log(s.get("goto"))
             if (expr = s.get("goto")) {show(expr)};
@@ -56,11 +57,13 @@
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
-            let b = document.querySelectorAll(".pbutton");            
+            let b = document.querySelectorAll(".pbutton"); 
+            let pt = document.querySelectorAll("h2");           
             for (let i=0; i<p.length; i++){                
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
+                    document.title = 2018 + " P" + pt[i].innerHTML + " - APL Practice Problems";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
@@ -72,15 +75,19 @@
 	<a id="back" href="http://0.0.0.0:4000">Home</a>
 	<br>
     
-    
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/help.html">Help</a>
+        
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2020.html">2020</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2019.html">2019</a>
         
-    
+            
         
             <br><a href="/psets/2018.html" class="active">2018</a>
                             
@@ -125,15 +132,15 @@
                 </button>                
                             
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2017.html">2017</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2016.html">2016</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2015.html">2015</a>
         
@@ -144,7 +151,15 @@
 
         </div>
         <div id="right">
-           <h1 id="apl-practice-problems">APL Practice Problems</h1>
+           <style>
+#skyline span {
+    font-size: 50%;
+    height: 0;
+    display: inline-block;
+}
+</style>
+
+<h1 id="apl-practice-problems">APL Practice Problems</h1>
 <h3 id="from-the-2018-apl-problem-solving-competition">from the 2018 APL Problem Solving Competition</h3>
 
 <div id="P1_Oh_Say_Can_You_See" class="problem">
@@ -153,7 +168,7 @@
 
   <p>Imagine standing in front of a line of skyscrapers of varying heights.  Assume that you can always see a skyscraper that is taller than a closer skyscraper. For example, a person on the left of the diagram below can see 3 skyscrapers – the first, fourth, and sixth from left to right. In contrast, a person on the right can see 2 skyscrapers – the seventh and sixth.</p>
 
-  <pre class="language-APL" style="background: none; color: #000;">
+  <pre id="skyline" class="language-APL" style="background: none; color: #000;">
                                         ┌───┐        
                                         │   │
                                         │   │
@@ -169,7 +184,7 @@
      │   │  │   │         │   │  ┌───┐  │   │  │   │
      │   │  │   │  ┌───┐  │   │  │   │  │   │  │   │
      │   │  │   │  │   │  │   │  │   │  │   │  │   │ 
-     │ 5 │  │ 5 │  │ 2 │  │10 │  │ 3 │  │15 │  │10 │ 
+     │ 5 │  │ 5 │  │ 2 │  │<span> </span>10<span> </span>│  │ 3 │  │<span> </span>15<span> </span>│  │<span> </span>10<span> </span>│ 
     ─┘   └──┘   └──┘   └──┘   └──┘   └──┘   └──┘   └─
 </pre>
 
@@ -214,6 +229,8 @@
   <h2 id="rolling-along">3: Rolling Along</h2>
 
   <p>Using the key operator <a href="http://help.dyalog.com/latest/#Language/Primitive%20Operators/Key.htm"><code class="language-plaintext highlighter-rouge">⌸</code></a>, write an APL expression that, given an integer scalar or vector representing the number of sides on each of a set of dice, will return a histogram showing the distribution curve for the possible totals that can be rolled using those dice. The histogram is a 2-column matrix where the left column contains the possible totals for the dice, and the right column has vectors containing asterisks representing the number of occurrences of the corresponding totals.  Trailing spaces are allowed in the character vectors.</p>
+
+  <p>Note: If you have <code class="language-plaintext highlighter-rouge">]boxing on</code> then the result will look different.</p>
 
   <h3 id="examples-2">Examples:</h3>
 
@@ -268,12 +285,14 @@
           <th> </th>
           <th> </th>
           <th> </th>
+          <th> </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>2018</td>
           <td>Dog</td>
+          <td> </td>
           <td>2012</td>
           <td>Dragon</td>
         </tr>
@@ -282,6 +301,7 @@
         <tr>
           <td>2017</td>
           <td>Rooster</td>
+          <td> </td>
           <td>2011</td>
           <td>Rabbit</td>
         </tr>
@@ -290,6 +310,7 @@
         <tr>
           <td>2016</td>
           <td>Monkey</td>
+          <td> </td>
           <td>2010</td>
           <td>Tiger</td>
         </tr>
@@ -298,6 +319,7 @@
         <tr>
           <td>2015</td>
           <td>Goat</td>
+          <td> </td>
           <td>2009</td>
           <td>Ox</td>
         </tr>
@@ -306,6 +328,7 @@
         <tr>
           <td>2014</td>
           <td>Horse</td>
+          <td> </td>
           <td>2008</td>
           <td>Rat</td>
         </tr>
@@ -314,6 +337,7 @@
         <tr>
           <td>2013</td>
           <td>Snake</td>
+          <td> </td>
           <td>2007</td>
           <td>Pig</td>
         </tr>
@@ -322,7 +346,7 @@
 
   </div>
 
-  <p>Note that the year 1 AD (represented as 1) follows the year 1 BC (represented as ¯1) with no intervening “0” year.</p>
+  <p>Note that the year 1 AD (represented as <code class="language-plaintext highlighter-rouge">1</code>) follows the year 1 BC (represented as <code class="language-plaintext highlighter-rouge">¯1</code>) with no intervening “0” year.</p>
 
   <p>Write an APL expression that, given a scalar integer year, returns a character vector (string) of the Chinese zodiac sign for that year.  For the purposes of this problem, assume that each year number corresponds to exactly one Chinese zodiac animal.</p>
 
@@ -358,49 +382,49 @@ Dog
       <tbody>
         <tr>
           <td>Aries</td>
-          <td>March 21-April 19</td>
+          <td>March 21–April 19</td>
           <td>Libra</td>
-          <td>September 23-October 22</td>
+          <td>September 23–October 22</td>
         </tr>
       </tbody>
       <tbody>
         <tr>
           <td>Taurus</td>
-          <td>April 20-May 20</td>
+          <td>April 20–May 20</td>
           <td>Scorpio</td>
-          <td>October 23-November 21</td>
+          <td>October 23–November 21</td>
         </tr>
       </tbody>
       <tbody>
         <tr>
           <td>Gemini</td>
-          <td>May 21-June 20</td>
+          <td>May 21–June 20</td>
           <td>Sagittarius</td>
-          <td>November 22-December 21</td>
+          <td>November 22–December 21</td>
         </tr>
       </tbody>
       <tbody>
         <tr>
           <td>Cancer</td>
-          <td>June 21-July 22</td>
+          <td>June 21–July 22</td>
           <td>Capricorn</td>
-          <td>December 22-January 19</td>
+          <td>December 22–January 19</td>
         </tr>
       </tbody>
       <tbody>
         <tr>
           <td>Leo</td>
-          <td>July 23-August 22</td>
+          <td>July 23–August 22</td>
           <td>Aquarius</td>
-          <td>January 20-February 18</td>
+          <td>January 20–February 18</td>
         </tr>
       </tbody>
       <tbody>
         <tr>
           <td>Virgo</td>
-          <td>August 23-September 22</td>
+          <td>August 23–September 22</td>
           <td>Pisces</td>
-          <td>February 19-March 20</td>
+          <td>February 19–March 20</td>
         </tr>
       </tbody>
     </table>
@@ -423,7 +447,7 @@ Scorpio
 
   <h2 id="whats-your-angle">6: What’s Your Angle?</h2>
 
-  <p>XML elements are denoted with content enclosed in beginning and ending tags. The tags themselves are enclosed in left and right angle brackets ‘&lt;’  and ‘&gt;’. The only valid occurrences of angle brackets are as a part of beginning or ending tags.</p>
+  <p>XML elements are denoted with content enclosed in beginning and ending tags. The tags themselves are enclosed in left and right angle brackets <code class="language-plaintext highlighter-rouge">&lt;</code>  and <code class="language-plaintext highlighter-rouge">&gt;</code>. The only valid occurrences of angle brackets are as a part of beginning or ending tags.</p>
 
   <p>For example, the following is valid<br />
 <code class="language-plaintext highlighter-rouge">&lt;name&gt;&lt;first&gt;Drake&lt;/first&gt;&lt;last&gt;Mallard&lt;/last&gt;&lt;/name&gt;</code></p>
@@ -431,7 +455,7 @@ Scorpio
   <p>Whereas the following is not valid XML<br />
 <code class="language-plaintext highlighter-rouge">&lt;math&gt;&lt;relation&gt;2&lt;3&lt;/relation&gt;&lt;/math&gt;</code></p>
 
-  <p>One easy validation is to check that the angle brackets are properly balanced – all left angle brackets ‘&lt;’ must be “closed” with right angle brackets ‘&gt;’ before another occurrence of a left angle bracket.</p>
+  <p>One easy validation is to check that the angle brackets are properly balanced – all left angle brackets <code class="language-plaintext highlighter-rouge">&lt;</code> must be “closed” with right angle brackets <code class="language-plaintext highlighter-rouge">&gt;</code> before another occurrence of a left angle bracket.</p>
 
   <p>Write an APL expression that, given a character scalar or vector representing some XML, returns 1 if the angle brackets are properly balanced and 0 if not.</p>
 
@@ -457,11 +481,11 @@ Scorpio
 
   <p>Logical bitwise shifting is a common operation where bits in a fixed width field are moved to the left or right by a specified amount, <code class="language-plaintext highlighter-rouge">N</code>,  causing <code class="language-plaintext highlighter-rouge">N</code> bits to be “shifted out” at one end and <code class="language-plaintext highlighter-rouge">N</code> 0’s to be filled in at the other end.</p>
 
-  <p>For example, shifting the following vector by 3<br />
+  <p>For example, shifting the following vector by <code class="language-plaintext highlighter-rouge">3</code><br />
       <code class="language-plaintext highlighter-rouge">1 0 1 1 1 0 1 1</code><br />
 would result in<br />
       <code class="language-plaintext highlighter-rouge">0 0 0 1 0 1 1 1</code><br />
-and shifting by ¯3 would result in<br />
+and shifting by <code class="language-plaintext highlighter-rouge">¯3</code> would result in<br />
       <code class="language-plaintext highlighter-rouge">1 1 0 1 1 0 0 0</code></p>
 
   <p>Write an APL expression that given a right argument of a Boolean scalar or vector, and left argument scalar integer of the shift amount, returns an appropriately shifted transformation of the right argument.</p>

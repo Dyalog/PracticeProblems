@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/img/favicon.png" sizes="64x64">
-        <title>Home - APL Practice Problems</title>
+        <title>Help - APL Practice Problems</title>
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/alerts.css">
         <script type="text/javascript" src="/lib/pako.min.js"></script>
@@ -28,7 +28,7 @@
             let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
             let pt = document.querySelectorAll("h2");
             for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
-            document.title = Home + " P" + pt[0].innerHTML + " - APL Practice Problems";            
+            document.title = Help + " P" + pt[0].innerHTML + " - APL Practice Problems";            
             s=new URLSearchParams(location.search) // Options from URL 
             console.log(s.get("goto"))
             if (expr = s.get("goto")) {show(expr)};
@@ -53,7 +53,7 @@
                 pbm.append(pdiv);
                 pbm.append(odiv);                
             });
-            loadTestCases("Home");
+            loadTestCases("Help");
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
@@ -63,7 +63,7 @@
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
-                    document.title = Home + " P" + pt[i].innerHTML + " - APL Practice Problems";
+                    document.title = Help + " P" + pt[i].innerHTML + " - APL Practice Problems";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
@@ -77,7 +77,8 @@
     
             
         
-            <br><a href="http://0.0.0.0:4000/psets/help.html">Help</a>
+            <br><a href="/psets/help.html" class="active">Help</a>
+                            
         
             
         
@@ -112,54 +113,38 @@
         <div id="right">
            <h1 id="apl-practice-problems">APL Practice Problems</h1>
 
-<p>This site has automatically validated practice problems for <a href="https://aplwiki.com">APL</a>. These problems are sourced from <a href="https://www.dyalog.com/student-competition.htm">The APL Problem Solving Competition</a>.</p>
+<h3>Help</h3>
+<ul>
+<li><p>The problems are designed to be solved using short APL dfns or tacit functions. If you find yourself writing more than a couple of statements in your solution, you can probably find a better way to do it.</p></li>
 
-<p>Each problem begins with a task description, some followed by a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint will open the Dyalog documentation page for the suggested primitive.</p>
+<li><p>A dfn is one or more APL statements enclosed in braces <code class="APL">{}</code>. The left hand argument, if any, is represented in a dfn by <code class="APL">⍺</code>, while the right hand argument is represented by <code class="APL">⍵</code>. For example:</p>
+<pre class="APL">      'Hello' {⍺,'-',⍵,'!'} 'world'
+Hello-world!</pre><p>A dfn terminates on the first statement that is not an assignment. If that statement produces a value, the dfn returns that value as its result. The diamond symbol <code class="APL">⋄</code> separates APL statements. For example:
+</p><pre class="APL">      'left' { ⍵ ⋄ ⍺ } 'right'
+right</pre><p>For more information on dfns, use <a href="https://aplwiki.com/wiki/Dfn" target="_blank">the APL Wiki</a>.</p></li>
 
-<p>Each problem text ends with a section of example cases which, among others, are included in the automated tests. Use these as a basis for implementing your solution.</p>
+<li><p>A tacit function is an APL expression that does not explicitly mention its arguments. In the example below <code class="APL">(+⌿÷≢)</code> is a tacit function which computes the average of a vector (list) of numbers.</p><pre class="APL">      (+⌿÷≢) 1 2 3 4 5 6
+3.5</pre>
+<p>For more information on tacit functions, see <a href="https://aplwiki.com/wiki/Tacit_programming" target="_blank">the APL Wiki</a>.</p></li>
 
-<p class="alert alert-note">
-<span class="alert-symbol">i</span>
-<strong>Note:</strong>
-The validation system runs Dyalog version 17.1 so your solutions must work on this version of Dyalog APL.
-</p>
+<li><p>Each problem has a description and one or more examples. Wherever you see <i><code class="APL">your_function</code></i> is where you should insert your solution (either a dfn or tacit function). Do not add comments to your solutions.</p></li>
 
-<h1 id="sample-problem-counting-vowels">Sample Problem: Counting Vowels</h1>
+<li><p>Your code must run in a default Dyalog environment using <code class="APL">(⎕ML ⎕IO)←1</code>. If you use other settings for <code class="APL">⎕ML</code> or <code class="APL">⎕IO</code>, they must be local. If you don't know what that means, don't worry, it won't matter to you.</p></li>
 
-<p>Write an APL function to count the number of vowels (A, E, I, O, U) in an array consisting of uppercase letters (A–Z).</p>
+<li><p>Several of the problem descriptions will describe arguments that can be a scalar (a single element) or a vector (a list). This is largely pedantic, but in such cases your functions should produce correct results for both types of input.</p></li>
 
-<p>💡 Hint: The membership function <a href="http://help.dyalog.com/latest/#Language/Primitive%20Functions/Membership.htm"><code class="language-plaintext highlighter-rouge">X∊Y</code></a> could be helpful for this problem.</p>
+<li><p>The symbol <code class="APL">⍝</code> is the APL comment symbol. In some of the examples, we provide comments to give you more information about the problem.</p></li>
 
-<p>Examples</p>
-
-<pre><code class="language-APL">      (your_function) 'COOLAPL'
-3
-      (your_function) ''          ⍝ empty argument
-0
-      (your_function) 'NVWLSHR'   ⍝ no vowels here
-0
-</code></pre>
-
-<p>Below are three sample solutions. All three produce the correct answer, but the first twofunctions would be ranked higher by the competition judging committee. This is becausethe first two demonstrate better use of array-oriented programming.</p>
-
-<pre><code class="language-APL">      ({+/⍵∊'AEIOU'}) 'COOLAPL'   ⍝ good dfn
-3
-      (+/∊∘'AEIOU') 'COOLAPL'     ⍝ good tacit function
-3
-      ⍝ suboptimal dfn:      {(+/⍵='A')+(+/⍵='E')+(+/⍵='I')+(+/⍵='O')+(+/⍵='U')} 'COOLAPL'
-3
-</code></pre>
-
-<p>If you were to put any of the above functions above in the input field below and click Submit, you’ll see that they only pass the basic test cases. This is because none of those functions handle arrays with 2 or more dimensions. The system will also give you an example of a multi-dimensional edge case that failed, so you can attempt to improve your solution.</p>
-
-<p>Try entering <code class="language-plaintext highlighter-rouge">{+/,⍵∊'AEIOU'}</code> which handles all test cases.</p>
-
-<script>
-    testCases = {"P0_Sample_Problem": {"a": ["'COOLAPL'","''","'NVWLSHR'","{⍵[?⍨≢⍵]}'AEIOU',⎕A[?26⍴⍨9+?16]"],"b": ["2 3⍴'APLYES'","⎕A[?26⍴⍨1+?2⍴⍨1+?2]","''⍴⍨¯1+?⍨3"],"f": "{+/,⍵∊'AEIOU'}","p": "{⊃⍣(1=≢,⍵)⊢⍵}"}};
-</script>
-
-<div class="pdiv"><span>your_function ← </span><input id="P0_Sample_Problem_Input" /><button onclick="submitSolution('P0_Sample_Problem')">✔ Test</button></div>
-<div id="P0_Sample_Problem_Output" class="tioOutput"></div>
+<li><p>Some of the problem test cases use "boxed display" to make the structure of the returned results clearer. Boxing is enabled by default on <a href="https://tryapl.org/?a=%u2373%A8%u23734&amp;run" target="_blank">TryAPL</a> and can be enabled in your local APL Session with the <code class="APL">]Box</code> user command:</p>
+<pre class="APL">      ⍳¨⍳4
+ 1  1 2  1 2 3  1 2 3 4 
+      ]Box on
+Was OFF
+      ⍳¨⍳4
+┌─┬───┬─────┬───────┐
+│1│1 2│1 2 3│1 2 3 4│
+└─┴───┴─────┴───────┘</pre></li>
+</ul>
            
         </div>  
         <script src='/lib/lb.js'></script>
