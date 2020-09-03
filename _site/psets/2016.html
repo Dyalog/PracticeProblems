@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/img/favicon.png" sizes="64x64">
-        <title>Learn Dyalog APL</title>
+        <title>2016 - APL Practice Problems</title>
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/alerts.css">
         <script type="text/javascript" src="/lib/pako.min.js"></script>
@@ -25,9 +25,10 @@
         C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
         window.onload = function(){                    
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
-            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
             let pt = document.querySelectorAll("h2");
-            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };            
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
+            document.title = 2016 + " P" + pt[0].innerHTML + " - APL Practice Problems";            
             s=new URLSearchParams(location.search) // Options from URL 
             console.log(s.get("goto"))
             if (expr = s.get("goto")) {show(expr)};
@@ -56,11 +57,13 @@
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
-            let b = document.querySelectorAll(".pbutton");            
+            let b = document.querySelectorAll(".pbutton"); 
+            let pt = document.querySelectorAll("h2");           
             for (let i=0; i<p.length; i++){                
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
+                    document.title = 2016 + " P" + pt[i].innerHTML + " - APL Practice Problems";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
@@ -72,23 +75,27 @@
 	<a id="back" href="http://0.0.0.0:4000">Home</a>
 	<br>
     
-    
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/help.html">Help</a>
+        
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2020.html">2020</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2019.html">2019</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2018.html">2018</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2017.html">2017</a>
         
-    
+            
         
             <br><a href="/psets/2016.html" class="active">2016</a>
                             
@@ -133,7 +140,7 @@
                 </button>                
                             
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2015.html">2015</a>
         
@@ -144,7 +151,9 @@
 
         </div>
         <div id="right">
-           <h1 id="apl-practice-problems">APL Practice Problems</h1>
+           <style>.math{font-family:serif}</style>
+
+<h1 id="apl-practice-problems">APL Practice Problems</h1>
 <h3 id="from-the-2016-apl-problem-solving-competition">from the 2016 APL Problem Solving Competition</h3>
 
 <div id="P1_Statistics_Mean" class="problem">
@@ -173,7 +182,7 @@
 <div id="P2_Statistics_Median" class="problem">
 
   <h2 id="statistics---median">2: Statistics - Median</h2>
-  <p>Write a function that takes a numeric vector as its right argument and returns the median of the array. The median is the number separating the higher half of the vector from the lower half. The median can be found by arranging all the observations from lowest value to highest value and picking the middle one. If there is an even number of observations, then there is no single middle value; the median is then usually defined to be the mean of the two middle values.</p>
+  <p>Write a function that takes a numeric vector as its right argument and returns the median of the array. The median is the number separating the higher half of the vector from the lower half. The median can be found by arranging all the observations from lowest value to highest value and picking the middle one. If there is an even number of observations, then there is no single middle value; the median is then defined to be the mean of the two middle values.</p>
 
   <h3 id="examples-1">Examples:</h3>
 
@@ -335,9 +344,9 @@ he wrd
 <div id="P10_Order_Total_Dot_Product" class="problem">
 
   <h2 id="order-total">10: Order Total</h2>
-  <p>Suppose you have a numeric vector that is the list of prices for a set of retail products. You also have a numeric vector that is the number ordered of each product. Write a function that takes as its right argument a vector of prices and as its left argument a numeric vector that indicates the number ordered and returns the total cost for the order.In case you hadn’t realized it, this is an application the dot product. The dot product of two vectors <strong>A</strong> = [A1, A2, …,An] and <strong>B</strong> = [B1, B2, …,Bn]  is defined as</p>
+  <p>Suppose you have a numeric vector that is the list of prices for a set of retail products. You also have a numeric vector that is the number ordered of each product. Write a function that takes as its right argument a vector of prices and as its left argument a numeric vector that indicates the number ordered and returns the total cost for the order. In case you hadn’t realized it, this is an application the dot product. The dot product of two vectors <span class="math"><i>A</i> = [<i>A</i><sub>1</sub>, <i>A</i><sub>2</sub>, …,<i>A</i><sub>n</sub>]</span> and <span class="math"><i>B</i> = [<i>B</i><sub>1</sub>, <i>B</i><sub>2</sub>, …,<i>B</i><sub>n</sub>]</span> is defined as</p>
 
-  <p><img src="http://0.0.0.0:4000/img/innerprod.svg" style="width: 60vw;" /></p>
+  <p><img src="http://0.0.0.0:4000/img/innerprod.svg" style="width: 30em;" /></p>
 
   <h3 id="examples-9">Examples:</h3>
 

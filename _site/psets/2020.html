@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/img/favicon.png" sizes="64x64">
-        <title>Learn Dyalog APL</title>
+        <title>2020 - APL Practice Problems</title>
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/alerts.css">
         <script type="text/javascript" src="/lib/pako.min.js"></script>
@@ -25,9 +25,10 @@
         C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
         window.onload = function(){                    
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
-            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
             let pt = document.querySelectorAll("h2");
-            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };            
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
+            document.title = 2020 + " P" + pt[0].innerHTML + " - APL Practice Problems";            
             s=new URLSearchParams(location.search) // Options from URL 
             console.log(s.get("goto"))
             if (expr = s.get("goto")) {show(expr)};
@@ -56,11 +57,13 @@
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
-            let b = document.querySelectorAll(".pbutton");            
+            let b = document.querySelectorAll(".pbutton"); 
+            let pt = document.querySelectorAll("h2");           
             for (let i=0; i<p.length; i++){                
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
+                    document.title = 2020 + " P" + pt[i].innerHTML + " - APL Practice Problems";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
@@ -72,7 +75,11 @@
 	<a id="back" href="http://0.0.0.0:4000">Home</a>
 	<br>
     
-    
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/help.html">Help</a>
+        
+            
         
             <br><a href="/psets/2020.html" class="active">2020</a>
                             
@@ -117,23 +124,23 @@
                 </button>                
                             
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2019.html">2019</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2018.html">2018</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2017.html">2017</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2016.html">2016</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2015.html">2015</a>
         

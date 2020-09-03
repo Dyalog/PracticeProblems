@@ -12,11 +12,11 @@ title: Home
 
 This site has automatically validated practice problems for [APL](https://aplwiki.com). These problems are sourced from [The APL Problem Solving Competition](https://www.dyalog.com/student-competition.htm).
 
-Each problem begins with a task description, followed by a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint will open the Dyalog documentation page for the suggested primitive.
+Each problem begins with a task description, some followed by a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint will open the Dyalog documentation page for the suggested primitive.
 
-After the hint is a section of example cases which, among others, are included in the automated tests. Use these as a basis for implementing your solution
+Each problem text ends with a section of example cases which, among others, are included in the automated tests. Use these as a basis for implementing your solution.
 
-{% include note.html content="The APL executor runs Dyalog version 17.1. Your solutions must work on this or earlier versions of Dyalog." %}
+{% include note.html content="The validation system runs Dyalog version 17.1 so your solutions must work on this version of Dyalog APL." %}
 
 # Sample Problem: Counting Vowels
 
