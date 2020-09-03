@@ -1,6 +1,7 @@
 # How to contribute.
-If there is something wrong or you think something could be improved, please [submit an issue]().
-If you have a problem or set of problems you think would work well on this site, please [let us know here]().
+Notice something wrong? [Report a bug](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=bug_report.md&title=)  
+Have an idea for a feature? [Submit a feature request](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=feature_request.md&title=)  
+Have an idea for a new practice problem? [Suggest a new Practice Problem](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=enhancement&template=practice-problem-suggestion.md&title=%5BPractice+Problem%5D+-+Problem+Title)
 
 If you would like to make changes yourself, please [fork and make a pull request](https://guides.github.com/activities/forking/).
 

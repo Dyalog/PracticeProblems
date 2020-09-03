@@ -18,6 +18,11 @@ Each problem text ends with a section of example cases which, among others, are 
 
 {% include note.html content="The validation system runs Dyalog version 17.1 so your solutions must work on this version of Dyalog APL." %}
 
+## Contributing
+Notice something wrong? [Report a bug](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=bug_report.md&title=)  
+Have an idea for a feature? [Submit a feature request](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=feature_request.md&title=)  
+Have an idea for a new practice problem? [Suggest a new Practice Problem](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=enhancement&template=practice-problem-suggestion.md&title=%5BPractice+Problem%5D+-+Problem+Title)
+
 # Sample Problem: Counting Vowels
 
 Write an APL function to count the number of vowels (A, E, I, O, U) in an array consisting of uppercase letters (A–Z).

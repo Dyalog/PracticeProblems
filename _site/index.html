@@ -72,7 +72,7 @@
             }
         }
     </script>
-	<a id="back" href="http://0.0.0.0:4000">Home</a>
+	<a id="home" href="http://0.0.0.0:4000">Home</a>
 	<br>
     
             
@@ -110,7 +110,12 @@
 
         </div>
         <div id="right">
-           <h1 id="apl-practice-problems">APL Practice Problems</h1>
+           <script type="text/javascript">
+    // Highlight home button on homepage
+    document.getElementById("home").classList.add("active");
+</script>
+
+<h1 id="apl-practice-problems">APL Practice Problems</h1>
 
 <p>This site has automatically validated practice problems for <a href="https://aplwiki.com">APL</a>. These problems are sourced from <a href="https://www.dyalog.com/student-competition.htm">The APL Problem Solving Competition</a>.</p>
 
@@ -123,6 +128,11 @@
 <strong>Note:</strong>
 The validation system runs Dyalog version 17.1 so your solutions must work on this version of Dyalog APL.
 </p>
+
+<h2 id="contributing">Contributing</h2>
+<p>Notice something wrong? <a href="https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&amp;labels=&amp;template=bug_report.md&amp;title=">Report a bug</a><br />
+Have an idea for a feature? <a href="https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&amp;labels=&amp;template=feature_request.md&amp;title=">Submit a feature request</a><br />
+Have an idea for a new practice problem? <a href="https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&amp;labels=enhancement&amp;template=practice-problem-suggestion.md&amp;title=%5BPractice+Problem%5D+-+Problem+Title">Suggest a new Practice Problem</a></p>
 
 <h1 id="sample-problem-counting-vowels">Sample Problem: Counting Vowels</h1>
 
