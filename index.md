@@ -2,6 +2,12 @@
 layout: set
 title: Home
 ---
+
+<script type="text/javascript">
+    // Highlight home button on homepage
+    document.getElementById("home").classList.add("active");
+</script>
+
 # APL Practice Problems
 
 This site has automatically validated practice problems for [APL](https://aplwiki.com). These problems are sourced from [The APL Problem Solving Competition](https://www.dyalog.com/student-competition.htm).
