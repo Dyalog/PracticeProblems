@@ -24,5 +24,6 @@ Each member's name must begin with an uppercase "P" followed by a number 0 throu
 - `"p"` (*optional*, can be omitted) is a post-processor which is applied to results of the user's code before being compared to the results of the reference solution. This allows problem definitions to be lenient.
 - `"x"` (*optional*, can be omitted) is a string containing prohibited characters, to restrict available primitives for a particular problem.
 
-FYI, the function `⎕JSON` in Dyalog can be used to correctly display APL arrays in JSON format.
+> **NOTE**  
+> The function `⎕JSON` in Dyalog can be used to correctly display APL arrays in JSON format. In particular, text vectors must be enclosed in two single-quotes `''`.
 
