@@ -1,7 +1,12 @@
 <div id="navbar">
     <script>         
         C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
-        window.onload = function(){                    
+        window.onload = function(){    
+            document.addEventListener("keypress", function(k){
+                if ((k.key === "Enter") && (document.activeElement.tagName === "INPUT")){                    
+                    submitSolution(document.activeElement.id.split("_").slice(0,-1).join("_"));
+                }
+            })                
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
             let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
             let pt = document.querySelectorAll("h2");
