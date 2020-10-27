@@ -24,11 +24,12 @@
     }
     #burgerBut > svg {height:100%;}
     #burgerBut > * {float:right;z-index: 1;}
-    body {background: lightgrey; overflow-x:hidden;}
+    body {overflow-x:hidden;}
     #left {display:none;}    
     #right {width:98vw!important;
     left:1ex!important;
     }
+    #right > h1 {width: 90%;}
     .pdiv{margin:0!important;}
     .pdiv > *{font-size:1em!important;}    
     .tioOutput{padding:0!important;}
