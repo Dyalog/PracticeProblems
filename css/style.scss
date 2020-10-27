@@ -7,9 +7,31 @@
 @font-face {font-family: "APL385";src: url("{{ site.baseurl}}/assets/Apl385.ttf");}
 
 @media only screen and (max-width: 600px) {
-    #navbar > h1 {
+    #navbar {
         display: none;
+        width: 80vw!important;
+        position: relative;
+        z-index: 1;
+    }    
+    .urfn{display:none!important;}
+    #burgerBut{
+        display: block!important;
+        float:right;
+        z-index:2;
+        position:relative;
+        padding:1ex;
+        height: 5vh;
     }
+    #burgerBut > svg {height:100%;}
+    #burgerBut > * {float:right;z-index: 1;}
+    body {background: lightgrey; overflow-x:hidden;}
+    #left {display:none;}    
+    #right {width:98vw!important;
+    left:1ex!important;
+    }
+    .pdiv{margin:0!important;}
+    .pdiv > *{font-size:1em!important;}    
+    .tioOutput{padding:0!important;}
 }
 
 body {
@@ -28,7 +50,8 @@ pre, code {
     overflow: auto;    
     font-family: "APL385";
     line-height: 1.2em;
-    white-space: pre;
+    white-space: pre;    
+    z-index: 1;
 }
 a, a code  {
     color: #655aa0;
@@ -46,6 +69,8 @@ a:hover {border-bottom: 0.25ex solid #655aa0;;}
 
 
 /* menu */
+
+#burgerBut{display:none;}
 
 #navbar {
     line-height: 0;
@@ -86,9 +111,9 @@ a:hover {border-bottom: 0.25ex solid #655aa0;;}
 /* content */
 
 .course-content {
-	top: 2.5em;
-	position: relative;
-	margin: 0 1vw;
+    top: 2.5em;
+    position: relative;
+    margin: 0 1vw;
 }
 
 #left, #right{ display:inline-block; position:absolute; }
@@ -148,6 +173,7 @@ table tbody tr td {
     left: 0;
     width: 100%;
     box-shadow: 0 0 2px #000;
+    z-index: 3;
 }
 
 .ngn_lb b {
