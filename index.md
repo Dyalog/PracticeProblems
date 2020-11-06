@@ -47,7 +47,7 @@ Below are three sample solutions. All three produce the correct answer, but the 
 3
       (+/∊∘'AEIOU') 'COOLAPL'     ⍝ good tacit function
 3
-      ⍝ suboptimal dfn:      {(+/⍵='A')+(+/⍵='E')+(+/⍵='I')+(+/⍵='O')+(+/⍵='U')} 'COOLAPL'
+      {(+/⍵='A')+(+/⍵='E')+(+/⍵='I')+(+/⍵='O')+(+/⍵='U')} 'COOLAPL' ⍝ suboptimal dfn      
 3
 ```
 
