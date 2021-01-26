@@ -10,13 +10,13 @@ title: Home
 
 # APL Practice Problems
 
-This site has automatically validated practice problems for [APL](https://aplwiki.com). These problems are sourced from [The APL Problem Solving Competition](https://www.dyalog.com/student-competition.htm).
+This site automatically validates [APL](https://aplwiki.com) solutions for problems are sourced from the annual [APL Problem Solving Competition](https://www.dyalog.com/student-competition.htm).
 
-Each problem begins with a task description, some followed by a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint will open the Dyalog documentation page for the suggested primitive.
+Each problem starts with a task description; some also include a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint opens the Dyalog documentation page for that primitive.
 
-Each problem text ends with a section of example cases which, among others, are included in the automated tests. Use these as a basis for implementing your solution.
+Each problem ends with some example cases. You can use these as a basis for implementing your solution.
 
-{% include note.html content="The validation system runs Dyalog version 17.1 so your solutions must work on this version of Dyalog APL." %}
+{% include note.html content="The validation system uses Dyalog version 17.1 so your solutions must work on this version of Dyalog APL." %}
 
 ## Contributing
 Notice something wrong? [Report a bug](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=bug_report.md&title=)  
@@ -51,7 +51,7 @@ Below are three sample solutions. All three produce the correct answer, but the 
 3
 ```
 
-If you were to put any of the above functions above in the input field below and click Submit, you'll see that they only pass the basic test cases. This is because none of those functions handle arrays with 2 or more dimensions. The system will also give you an example of a multi-dimensional edge case that failed, so you can attempt to improve your solution.
+If you put each of the above three functions into the input field below and click Submit, you'll see that they only pass the basic test cases. This is because none of those functions handle arrays with 2 or more dimensions. The system will also give you an example of a multi-dimensional edge case that failed, so that you can attempt to improve your solution.
 
 Try entering `{+/,⍵∊'AEIOU'}` which handles all test cases.
 
