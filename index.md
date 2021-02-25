@@ -10,7 +10,11 @@ title: Home
 
 # APL Practice Problems
 
-This site automatically validates [APL](https://aplwiki.com) solutions for problems are sourced from the annual [APL Problem Solving Competition](https://www.dyalog.com/student-competition.htm).
+<div align="right">
+	<img src="{{ site.url }}{{ site.baseurl }}/img/Brain.png" style="width: 10vw;float: right;padding: 0 3em;">
+</div>
+
+This site automatically validates [APL](https://apl.wiki) solutions for practice problems sourced from [The APL Problem Solving Competition](https://www.dyalog.com/student-competition.htm).
 
 Each problem starts with a task description; some also include a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint opens the Dyalog documentation page for that primitive.
 
