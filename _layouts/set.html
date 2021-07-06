@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="{{ site.baseurl }}/img/favicon.png" sizes="64x64">
-        <title>Learn Dyalog APL</title>
+        <title>{{ page.title }} - APL Practice Problems</title>
         <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
         <link rel="stylesheet" href="{{ site.baseurl }}/css/alerts.css">
         <script type="text/javascript" src="{{ site.baseurl }}/lib/pako.min.js"></script>
@@ -16,9 +16,37 @@
                 console.log(ptitle);
                 testCases = await fetch("{{ site.url }}{{ site.baseurl }}/testcases/" + ptitle + ".json").then(function(response){return response.json()});
             }
+            function toggleHidden(id){
+                if ($(id).style.display == "block") {
+                    $(id).style.display = "none";
+                } else {
+                    $(id).style.display = "block";
+                }
+            }
+            function modalMenu(mq) {
+                // mq: Mediq Query
+                if (mq.matches){
+                    window.onclick = function(event) {
+
+                        console.log(event.target.parentNode)
+                        if ((event.target.parentNode.parentNode == $("#burgerBut") || event.target.parentNode == $("#burgerBut") || event.target == $("#burgerBut")) && $("#navbar").display.style == "none"){
+                            $("#navbar").style.display="block";
+                        } else if(event.target != $("#navbar")) {
+                            $("#navbar").style.display="none";
+                        }
+                      } 
+                } 
+            }
+            var mq = window.matchMedia("(max-width: 600px)")
+            modalMenu(mq);
+            mq.addListener(modalMenu);
         </script>
     </head>
     <body>
+        <a href="javascript:void(0);" class="icon" id="burgerBut" onclick="toggleHidden('#navbar');">
+            <svg id="bbSVG" class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path id="bbPath" fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>            
+        </a>
+            <!-- <i class="fa fa-bars"></i></a> -->
         <div id="left">   
             {% include navbar.html %}
         </div>

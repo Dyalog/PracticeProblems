@@ -1,11 +1,17 @@
 <div id="navbar">
     <script>         
         C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
-        window.onload = function(){                    
+        window.onload = function(){    
+            document.addEventListener("keypress", function(k){
+                if ((k.key === "Enter") && (document.activeElement.tagName === "INPUT")){                    
+                    submitSolution(document.activeElement.id.split("_").slice(0,-1).join("_"));
+                }
+            })                
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
-            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
             let pt = document.querySelectorAll("h2");
-            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML };            
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
+            document.title = {{ page.title }} + " P" + pt[0].innerHTML + " - APL Practice Problems";            
             s=new URLSearchParams(location.search) // Options from URL 
             console.log(s.get("goto"))
             if (expr = s.get("goto")) {show(expr)};
@@ -13,6 +19,7 @@
                 var pdiv = document.createElement("div");    
                 pdiv.classList.add("pdiv");               
                 var your_fn = document.createElement("span");
+                your_fn.classList.add("urfn");
                 your_fn.innerHTML = "your_function ← "
                 var pi = document.createElement("input");
                 pi.id = pbm.id + "_Input";                             
@@ -20,7 +27,7 @@
                 sub.onclick = function(){
                     submitSolution(pbm.id);
                 }
-                sub.innerHTML = "✓ Submit";                
+                sub.innerHTML = "✔ Test";                
                 var odiv = document.createElement("div")
                 odiv.classList.add("tioOutput");
                 odiv.id = pbm.id + "_Output";
@@ -34,11 +41,13 @@
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
-            let b = document.querySelectorAll(".pbutton");            
+            let b = document.querySelectorAll(".pbutton"); 
+            let pt = document.querySelectorAll("h2");           
             for (let i=0; i<p.length; i++){                
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
+                    document.title = {{ page.title }} + " P" + pt[i].innerHTML + " - APL Practice Problems";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
@@ -46,11 +55,11 @@
                 }
             }
         }
-    </script>
-	<a id="back" href="{{ site.url }}{{ site.baseurl }}">Home</a>
+    </script>    
+	<a id="home" href="{{ site.url }}{{ site.baseurl }}">Home</a>
 	<br>
     {% assign sets = site.psets | sort | reverse %}
-    {% for pset in sets %}
+    {% for pset in sets %}        
         {% if pset.title == page.title %}
             <br><a href="{{ site.baseurl }}{{ pset.url }}" class="active">{{ pset.title }}</a>
             {% for p in page.problems %}                

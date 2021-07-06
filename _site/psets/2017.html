@@ -4,12 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/img/favicon.png" sizes="64x64">
-        <title>Learn Dyalog APL</title>
+        <title>2017 - APL Practice Problems</title>
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/alerts.css">
         <script type="text/javascript" src="/lib/pako.min.js"></script>
         <script type="text/javascript" src="/lib/tio-dyalog.js"></script>
         <script type="text/javascript" src="/lib/test.js"></script>
-        <script>
+        <script>            
             var testCases;
             async function loadTestCases(ptitle){
                 console.log(ptitle);
@@ -20,13 +21,17 @@
     <body>
         <div id="left">   
             <div id="navbar">
-    <script>        
-        window.onload = function(){
+    <script>         
+        C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
+        window.onload = function(){                    
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
-            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
-            b.forEach(fn=btn=>{
-                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
-            });
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
+            let pt = document.querySelectorAll("h2");
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
+            document.title = 2017 + " P" + pt[0].innerHTML + " - APL Practice Problems";            
+            s=new URLSearchParams(location.search) // Options from URL 
+            console.log(s.get("goto"))
+            if (expr = s.get("goto")) {show(expr)};
             p.forEach(fn=pbm=>{
                 var pdiv = document.createElement("div");    
                 pdiv.classList.add("pdiv");               
@@ -38,8 +43,9 @@
                 sub.onclick = function(){
                     submitSolution(pbm.id);
                 }
-                sub.innerHTML = "✓ Submit";                
+                sub.innerHTML = "✔ Test";                
                 var odiv = document.createElement("div")
+                odiv.classList.add("tioOutput");
                 odiv.id = pbm.id + "_Output";
                 pdiv.append(your_fn);
                 pdiv.append(pi);
@@ -51,11 +57,13 @@
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
-            let b = document.querySelectorAll(".pbutton");
+            let b = document.querySelectorAll(".pbutton"); 
+            let pt = document.querySelectorAll("h2");           
             for (let i=0; i<p.length; i++){                
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
+                    document.title = 2017 + " P" + pt[i].innerHTML + " - APL Practice Problems";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
@@ -64,25 +72,77 @@
             }
         }
     </script>
-	<a id="back" href="http://0.0.0.0:4000">Home</a>
+	<a id="home" href="http://0.0.0.0:4000">Home</a>
 	<br>
     
-    
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/help.html">Help</a>
+        
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2020.html">2020</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2019.html">2019</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2018.html">2018</a>
         
-    
+            
         
             <br><a href="/psets/2017.html" class="active">2017</a>
                             
+                <br><button class="pbutton" onclick="C('P1_What_an_Odd_Bunch');show('P1_What_an_Odd_Bunch')">
+                    P1_What_an_Odd_Bunch
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P2_Good_Evening');show('P2_Good_Evening')">
+                    P2_Good_Evening
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P3_Miss_Quoted');show('P3_Miss_Quoted')">
+                    P3_Miss_Quoted
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P4_Slices_of_Pies');show('P4_Slices_of_Pies')">
+                    P4_Slices_of_Pies
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P5_DNA');show('P5_DNA')">
+                    P5_DNA
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P6_k_mers');show('P6_k_mers')">
+                    P6_k_mers
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P7_Counting_DNA_Nucleotides');show('P7_Counting_DNA_Nucleotides')">
+                    P7_Counting_DNA_Nucleotides
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P8_Be_the_First_1');show('P8_Be_the_First_1')">
+                    P8_Be_the_First_1
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P9_Double_Trouble');show('P9_Double_Trouble')">
+                    P9_Double_Trouble
+                </button>                
+                            
+                <br><button class="pbutton" onclick="C('P10_Squaring_Off');show('P10_Squaring_Off')">
+                    P10_Squaring_Off
+                </button>                
+                            
+        
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/2016.html">2016</a>
+        
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/2015.html">2015</a>
         
     
     
@@ -94,8 +154,220 @@
            <h1 id="apl-practice-problems">APL Practice Problems</h1>
 <h3 id="from-the-2017-apl-problem-solving-competition">from the 2017 APL Problem Solving Competition</h3>
 
-<p>Coming soon…</p>
+<div id="P1_What_an_Odd_Bunch" class="problem">
 
+  <h2 id="what-an-odd-bunch">1: What an Odd Bunch</h2>
+  <p>Write a function that will return the first n odd natural numbers.</p>
+
+  <h3 id="examples">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 5
+1 3 5 7 9
+      your_function 1
+1     
+      your_function 0 ⍝ should return an empty vector
+
+</code></pre>
+
+</div>
+
+<div id="P2_Good_Evening" class="problem">
+
+  <h2 id="good-evening">2: Good Evening</h2>
+  <p>Write a function that takes an integer array and replaces all the odd numbers with the next greater even number.</p>
+
+  <h3 id="examples-1">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 1 2 3 4 5
+2 2 4 4 6       
+      your_function ⍬ ⍝ should return an empty vector      
+
+      your_function 4 4⍴⍳16 ⍝ should work with arrays of any rank  
+ 2  2  4  4
+ 6  6  8  8
+10 10 12 12
+14 14 16 16
+</code></pre>
+
+</div>
+
+<div id="P3_Miss_Quoted" class="problem">
+
+  <h2 id="miss-quoted">3: Miss Quoted</h2>
+  <p>Write a function that will remove text found between pairs of double quotes <code class="language-plaintext highlighter-rouge">(")</code>.</p>
+
+  <p>💡 Hint: One technique is to use <code class="language-plaintext highlighter-rouge">≠\</code>, but there are many ways to solve this problem.</p>
+
+  <h3 id="examples-2">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 'this "is" a test'
+this "" a test
+      your_function 'this is a test'
+this is a test
+      your_function 'this "is" a "test"'
+this "" a ""
+      your_function ''  ⍝ should return an empty vector
+
+</code></pre>
+
+</div>
+
+<div id="P4_Slices_of_Pies" class="problem">
+
+  <h2 id="slices-of-pies">4: Slice(s) of Pie(s)</h2>
+  <p>Write a function that calculates and returns the areas of 0 or more pie slices. The left argument is 0 or more angles (in degrees). The right argument is 0 or more pie diameters. If the number of angles and diameters are not equal to each other (and neither is a single number), a <code class="language-plaintext highlighter-rouge">LENGTH ERROR</code> should be generated.</p>
+
+  <div align="center">
+<img src="http://0.0.0.0:4000/img/pie.png" style="width:60vw" />
+</div>
+
+  <p>💡 Hint: If you use APL properly, you should not have to check for the length of either argument – it will just work.</p>
+
+  <h3 id="examples-3">Examples:</h3>
+
+  <pre><code class="language-APL">      60 your_function 12 
+18.84955592 
+      0 your_function 12  ⍝ 0 degree slice
+0
+      60 your_function 0  ⍝ 0 diameter pie
+0
+      60 your_function 9 12 15  ⍝ 60 degree slices of 3 different pies
+10.60287521 18.84955592 29.45243113 
+      60 90 120 your_function 12 ⍝ 3 different size slices of the same pie 
+18.84955592 28.27433388 37.69911184
+      60 90 120 your_function 9 12 15 ⍝ different sizes of different pies
+10.60287521 28.27433388 58.90486225 
+      60 90 120 your_function 9 12 ⍝ 3 slices, 2 pies? 
+LENGTH ERROR
+</code></pre>
+
+</div>
+
+<div id="P5_DNA" class="problem">
+
+  <h2 id="dna">5: DNA?</h2>
+  <p>Write a a function that takes a string representing a nucleotide and returns a <code class="language-plaintext highlighter-rouge">1</code> if it is a valid DNA string, <code class="language-plaintext highlighter-rouge">0</code> otherwise. In other words, are all the characters in the string in the set <code class="language-plaintext highlighter-rouge">'ACGT'</code>?</p>
+
+  <h3 id="examples-4">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 'ATGCTTCAGAAAGGTCTTACG'
+1
+      your_function 'Dyalog'
+0
+      your_function ''       ⍝ an empty string is valid
+1
+      your_function 'T'      
+1  
+</code></pre>
+
+</div>
+
+<div id="P6_k_mers" class="problem">
+
+  <h2 id="k-mers">6: k-mers</h2>
+  <p>The term k-mer typically refers to all the possible substrings of length k that are contained in a string. In computational genomics, k-mers refer to all the possible subsequences (of length k) from a read obtained through DNA Sequencing. Write a dfn that takes a character vector as its right argument and k (the substring length) as its left argument and returns a vector of the k-mers of the original string.</p>
+
+  <h3 id="examples-5">Examples:</h3>
+
+  <pre><code class="language-APL">      4 your_function 'ATCGAAGGTCGT'
+┌────┬────┬────┬────┬────┬────┬────┬────┬────┐
+│ATCG│TCGA│CGAA│GAAG│AAGG│AGGT│GGTC│GTCG│TCGT│
+└────┴────┴────┴────┴────┴────┴────┴────┴────┘
+      4 your_function 'AC'    ⍝  k&gt;string length? Return an empty vector
+
+</code></pre>
+
+</div>
+
+<div id="P7_Counting_DNA_Nucleotides" class="problem">
+
+  <h2 id="counting-dna-nucleotides">7: Counting DNA Nucleotides</h2>
+  <p>Write a function that takes a DNA string and returns 4 integers of the number of occurrences for each of the symbols ‘A’, ‘C’, ‘G’, and ‘T’ respectively.</p>
+
+  <h3 id="examples-6">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 'AGCTTTTCATTCTGACTGCTGTCTTTAAAAAAAGAGTGTCTGATAGCAG' 
+14 8 10 17
+      your_function 'CCAAATGGGG 
+3 2 4 1
+      your_function ''
+0 0 0 0
+      your_function 'G'
+0 0 1 0
+</code></pre>
+
+</div>
+
+<div id="P8_Be_the_First_1" class="problem">
+
+  <h2 id="be-the-first-1">8: Be the First 1</h2>
+  <p>Write a dfn that takes a Boolean vector or scalar and “turns off” all the 1s after the first 1.</p>
+
+  <h3 id="examples-7">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 0 1 0 1 0 0 1
+0 1 0 0 0 0 0
+      your_function ⍬ ⍝ should return an empty vector      
+
+      your_function 0 0 0 0 ⍝ no 1's?  no problem!
+0 0 0 0
+</code></pre>
+
+</div>
+
+<div id="P9_Double_Trouble" class="problem">
+
+  <h2 id="double-trouble">9: Double Trouble</h2>
+  <p>Write a function that takes a character vector or scalar and returns a Boolean vector indicating anywhere an element is followed by an element of the same value.</p>
+
+  <h3 id="examples-8">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 'bookkeeper'
+0 1 0 1 0 1 0 0 0 0  
+      your_function ''  ⍝ should return an empty vector      
+
+      your_function 'aaaaaa'
+1 1 1 1 1 0
+      your_function 'd'
+0 
+</code></pre>
+
+</div>
+
+<div id="P10_Squaring_Off" class="problem">
+
+  <h2 id="squaring-off">10: Squaring Off</h2>
+  <p>Write a function that will reshape a given array into the smallest square matrix that will contain all the elements of the argument, padding with additional elements if necessary. The pad element should be <code class="language-plaintext highlighter-rouge">0</code> if the array is numeric and space <code class="language-plaintext highlighter-rouge">' '</code> if the array is character.</p>
+
+  <h3 id="examples-9">Examples:</h3>
+
+  <pre><code class="language-APL">      your_function 1 2 3 4
+1 2 
+3 4
+      your_function 1 2 3 4 5
+1 2 3 
+4 5 0 
+0 0 0
+      your_function 'Dyalog APL'       ⍝ should work with any data
+Dyal  
+og A  
+PL     
+      ' '=your_function 'Dyalog APL'   ⍝ show where the spaces are
+0 0 0 0
+0 0 1 0
+0 0 1 1 
+1 1 1 1  
+      your_function 100  ⍝ should return a 1×1 matrix 
+100
+      your_function ⍬    ⍝ should return a 0×0 matrix
+
+      ⍴your_function ⍬   ⍝ should return a 0×0 matrix
+0 0
+</code></pre>
+
+</div>
+
+           
         </div>  
         <script src='/lib/lb.js'></script>
     </body>

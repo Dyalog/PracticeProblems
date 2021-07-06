@@ -4,12 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/img/favicon.png" sizes="64x64">
-        <title>Learn Dyalog APL</title>
+        <title>Home - APL Practice Problems</title>
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/alerts.css">
         <script type="text/javascript" src="/lib/pako.min.js"></script>
         <script type="text/javascript" src="/lib/tio-dyalog.js"></script>
         <script type="text/javascript" src="/lib/test.js"></script>
-        <script>
+        <script>            
             var testCases;
             async function loadTestCases(ptitle){
                 console.log(ptitle);
@@ -20,13 +21,17 @@
     <body>
         <div id="left">   
             <div id="navbar">
-    <script>        
-        window.onload = function(){
+    <script>         
+        C=q=>history.replaceState({},document.title,location.pathname+(q?"?goto="+encodeURIComponent(q):""));
+        window.onload = function(){                    
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
-            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");
-            b.forEach(fn=btn=>{
-                btn.innerHTML = btn.innerHTML.trim().replace(/^P/, "").replace(/^\d/,"$&:").split("_").join(" ");
-            });
+            let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
+            let pt = document.querySelectorAll("h2");
+            for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
+            document.title = Home + " P" + pt[0].innerHTML + " - APL Practice Problems";            
+            s=new URLSearchParams(location.search) // Options from URL 
+            console.log(s.get("goto"))
+            if (expr = s.get("goto")) {show(expr)};
             p.forEach(fn=pbm=>{
                 var pdiv = document.createElement("div");    
                 pdiv.classList.add("pdiv");               
@@ -38,8 +43,9 @@
                 sub.onclick = function(){
                     submitSolution(pbm.id);
                 }
-                sub.innerHTML = "✓ Submit";                
+                sub.innerHTML = "✔ Test";                
                 var odiv = document.createElement("div")
+                odiv.classList.add("tioOutput");
                 odiv.id = pbm.id + "_Output";
                 pdiv.append(your_fn);
                 pdiv.append(pi);
@@ -47,15 +53,17 @@
                 pbm.append(pdiv);
                 pbm.append(odiv);                
             });
-            loadTestCases("APL Practice Problems");
+            loadTestCases("Home");
         }
         function show(id) {
             let p = document.querySelectorAll(".problem");
-            let b = document.querySelectorAll(".pbutton");
+            let b = document.querySelectorAll(".pbutton"); 
+            let pt = document.querySelectorAll("h2");           
             for (let i=0; i<p.length; i++){                
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
+                    document.title = Home + " P" + pt[i].innerHTML + " - APL Practice Problems";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
@@ -64,24 +72,36 @@
             }
         }
     </script>
-	<a id="back" href="http://0.0.0.0:4000">Home</a>
+	<a id="home" href="http://0.0.0.0:4000">Home</a>
 	<br>
     
-    
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/help.html">Help</a>
+        
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2020.html">2020</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2019.html">2019</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2018.html">2018</a>
         
-    
+            
         
             <br><a href="http://0.0.0.0:4000/psets/2017.html">2017</a>
+        
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/2016.html">2016</a>
+        
+            
+        
+            <br><a href="http://0.0.0.0:4000/psets/2015.html">2015</a>
         
     
     
@@ -90,13 +110,29 @@
 
         </div>
         <div id="right">
-           <h1 id="apl-practice-problems">APL Practice Problems</h1>
+           <script type="text/javascript">
+    // Highlight home button on homepage
+    document.getElementById("home").classList.add("active");
+</script>
+
+<h1 id="apl-practice-problems">APL Practice Problems</h1>
 
 <p>This site has automatically validated practice problems for <a href="https://aplwiki.com">APL</a>. These problems are sourced from <a href="https://www.dyalog.com/student-competition.htm">The APL Problem Solving Competition</a>.</p>
 
-<p>Each problem begins with a task description, followed by a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint will open the Dyalog documentation page for the suggested primitive.</p>
+<p>Each problem begins with a task description, some followed by a hint suggesting one or more APL primitives. These may be helpful in solving the problem, but you are under no obligation to use them. Clicking on a primitive in the hint will open the Dyalog documentation page for the suggested primitive.</p>
 
-<p>After the hint is a section of example cases which, among others, are included in theautomated tests. Use these as a basis for implementing your solution</p>
+<p>Each problem text ends with a section of example cases which, among others, are included in the automated tests. Use these as a basis for implementing your solution.</p>
+
+<p class="alert alert-note">
+<span class="alert-symbol">i</span>
+<strong>Note:</strong>
+The validation system runs Dyalog version 17.1 so your solutions must work on this version of Dyalog APL.
+</p>
+
+<h2 id="contributing">Contributing</h2>
+<p>Notice something wrong? <a href="https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&amp;labels=&amp;template=bug_report.md&amp;title=">Report a bug</a><br />
+Have an idea for a feature? <a href="https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&amp;labels=&amp;template=feature_request.md&amp;title=">Submit a feature request</a><br />
+Have an idea for a new practice problem? <a href="https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&amp;labels=enhancement&amp;template=practice-problem-suggestion.md&amp;title=%5BPractice+Problem%5D+-+Problem+Title">Suggest a new Practice Problem</a></p>
 
 <h1 id="sample-problem-counting-vowels">Sample Problem: Counting Vowels</h1>
 
@@ -132,9 +168,9 @@
     testCases = {"P0_Sample_Problem": {"a": ["'COOLAPL'","''","'NVWLSHR'","{⍵[?⍨≢⍵]}'AEIOU',⎕A[?26⍴⍨9+?16]"],"b": ["2 3⍴'APLYES'","⎕A[?26⍴⍨1+?2⍴⍨1+?2]","''⍴⍨¯1+?⍨3"],"f": "{+/,⍵∊'AEIOU'}","p": "{⊃⍣(1=≢,⍵)⊢⍵}"}};
 </script>
 
-<div class="pdiv"><span>your_function ← </span><input id="P0_Sample_Problem_Input" /><button onclick="submitSolution('P0_Sample_Problem')">✓ Submit</button></div>
-<div id="P0_Sample_Problem_Output"></div>
-
+<div class="pdiv"><span>your_function ← </span><input id="P0_Sample_Problem_Input" /><button onclick="submitSolution('P0_Sample_Problem')">✔ Test</button></div>
+<div id="P0_Sample_Problem_Output" class="tioOutput"></div>
+           
         </div>  
         <script src='/lib/lb.js'></script>
     </body>

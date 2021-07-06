@@ -1,4 +1,4 @@
-var debug = true;
+var debug = false;
 var tioTest = "";
 var runURL = "https://tio.run/cgi-bin/run";
 var tioParams     = ["Vlang","1","apl-dyalog","Vargs","0","F.input.tio","0","F.code.tio"];
@@ -40,8 +40,10 @@ async function submitSolution(id) {
   if (code.length) {
     let problem = {"P0": testCases[id]};
     var expr = tns + "\n" + importTestNS + "\n" + "p← ⎕JSON'" + JSON.stringify(problem).split("'").join("''") + "'\n" + "⎕←(p Test.Run)1'" + code.split("'").join("''") +  "'";
-    tioTest = expr;
-    $("#"+id+"_Output").innerHTML = await tioProcess(runURL, expr, tioParams); 
+    // tioTest = expr;
+    var result = await tioProcess(runURL, expr, tioParams);    
+    tioTest = expr; 
+    $("#"+id+"_Output").innerHTML = result.replace(/`[^`]+`/g,x=>'<code>'+x.split('`')[1]+'</code>').replace(/^(¯|[0-9])+\s+/,"");
   }
 }
 

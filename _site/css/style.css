@@ -3,22 +3,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap&text=%E2%86%90|%E2%86%92");
 @font-face { font-family: "APL385"; src: url("/assets/Apl385.ttf"); }
 @media only screen and (max-width: 600px) { #navbar > h1 { display: none; } }
-a { /*width: 5em;*/ background: #eae9f3; text-decoration: none; text-align: center; border-radius: 0.7rem; color: black; padding: 0.3em; z-index: 2; }
+body { color: #555; font-family: 'Inter', sans-serif; text-rendering: optimizeLegibility; line-height: 2em; margin-bottom: 5em; }
 
-a:hover { background: #928abd; color: white; }
+button { cursor: pointer; }
 
-body { background: #fffff3; font-family: 'Inter', sans-serif; text-rendering: optimizeLegibility; line-height: 2em; margin-bottom: 5em; }
+pre, code { color: #000; padding: 0.3em 0.3em 0.3em 0.3em; overflow: auto; font-family: "APL385"; line-height: 1.2em; white-space: pre; }
+
+a, a code { color: #655aa0; }
+
+pre > * { padding: 0; }
+
+pre > * > * { padding: 0; }
+
+a { text-decoration: none; border-bottom: 0.25ex dotted #928abd; z-index: 2; }
+
+a:hover { border-bottom: 0.25ex solid #655aa0; }
 
 /* menu */
 #navbar { line-height: 0; width: 14em; }
 
-#navbar > a, .pbutton { display: block; border-radius: 0; padding: 1.4rem 1.25rem; margin-bottom: -1px; background-color: #f6f6d9; border: 1px solid rgba(0, 0, 0, 0.125); }
+#navbar > a, .pbutton { color: #000; text-align: center; display: block; border-radius: 0; padding: 1.4rem 1.25rem; margin-bottom: -1px; background-color: #f6f6d9; border: 1px solid rgba(0, 0, 0, 0.125); }
 
-#navbar > .pbutton { text-align: left; background: #eae9f3; width: 100%; padding: 0.8rem 1.4rem; }
+#navbar > .pbutton { text-align: left; background: #eae9f3; width: 100%; padding: 0.8rem 1.4rem 0.8rem 3rem; text-indent: -2rem; }
 
-#navbar > .pbutton:hover { cursor: pointer; background-color: #BBB5D6; }
+#navbar > .pbutton span { text-indent: 0; width: 2rem; display: inline-block; }
 
-#navbar > a:hover, .pbutton:hover { cursor: pointer; background-color: #BBB5D6; }
+#navbar > a:hover, #navbar > .pbutton:hover { background-color: #BBB5D6; }
 
 #navbar > .active { background-color: #928abd; color: white; }
 
@@ -29,7 +39,7 @@ body { background: #fffff3; font-family: 'Inter', sans-serif; text-rendering: op
 
 #left { width: 17em; left: 0; }
 
-#right { left: 17em; width: calc(100vw - 18em); padding-bottom: 5em; }
+#right { left: 17em; width: calc(100vw - 20em); padding-bottom: 5em; }
 
 .problem { display: none; }
 
@@ -39,9 +49,11 @@ body { background: #fffff3; font-family: 'Inter', sans-serif; text-rendering: op
 
 .pdiv > input { flex-grow: 1; margin-right: -0.1em; font-family: "APL385"; font-size: 1.5em; }
 
-.pdiv > button { font-size: 1.1em; border-radius: 0 0.5em 0.5em 0; color: #928abd; background: white; cursor: pointer; }
+.pdiv > button { font-weight: bold; font-size: 1.1em; border-radius: 0 0.5em 0.5em 0; color: #fff; background: #090; border: none; cursor: pointer; }
 
-.pdiv > button:hover { color: white; background: #928abd; transition: 0.2s; }
+.pdiv > button:hover { background: #0c0; transition: 0.2s; }
+
+.tioOutput { padding: 0 1em 0 12em; }
 
 h2, h3, h4 { left: 3vw; }
 
@@ -53,22 +65,10 @@ table { border-collapse: collapse; }
 
 table tbody tr td { border: solid; padding: 0.3em; }
 
-pre { margin: 0.5vh 3vw 3vh 3vw; }
-
-pre { background: #3C4F76; color: white; padding: 0.3em 0.7em 0.3em 0.7em; overflow: auto; border-radius: 0.7em; font-family: "APL385"; line-height: 1.2em; white-space: pre; }
-
-code { padding: 0.3em 0.7em 0.3em 0.7em; overflow: auto; border-radius: 0.7em; font-family: "APL385"; line-height: 1.2em; white-space: pre; }
-
-pre > * { padding: 0; }
-
-pre > * > * { padding: 0; }
-
-pre { margin: 0.5vh 3vw; }
-
 .language-APL { font-family: APL385; }
 
 /* language bar */
-.ngn_lb { background-color: #eae9f3; color: #555; cursor: default; border-radius: 0.25rem; font-family: "APL385"; padding: 2px; padding-left: 1em; word-wrap: break-word; top: 0; position: fixed; left: 0; width: 100%; }
+.ngn_lb { background-color: #eae9f3; color: #555; cursor: default; font-family: "APL385"; padding: 2px; padding-left: 1em; word-wrap: break-word; top: 0; position: fixed; left: 0; width: 100%; box-shadow: 0 0 2px #000; }
 
 .ngn_lb b { cursor: pointer; padding: 0 0.125rem; font-weight: normal; border-radius: 0.125rem; }
 
