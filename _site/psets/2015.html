@@ -156,7 +156,7 @@
 </style>
 
 <h1 id="apl-practice-problems">APL Practice Problems</h1>
-<h3 id="from-the-2016-apl-problem-solving-competition">from the 2016 APL Problem Solving Competition</h3>
+<h3 id="from-the-2016-apl-problem-solving-competition">from the 2015 APL Problem Solving Competition</h3>
 
 <div id="P1_Nag_A_Ram" class="problem">
 
@@ -165,13 +165,13 @@
 
   <h3 id="examples">Examples:</h3>
 
-  <pre><code class="language-APL">      'anagram' your_function 'Nag A Ram' 
+  <pre><code class="language-APL">      'anagram' (your_function) 'Nag A Ram' 
 1
-      'Dyalog APL' your_function 'Dog Pay All' 
+      'Dyalog APL' (your_function) 'Dog Pay All' 
 1
-      '' your_function '  !#!' 
+      '' (your_function) '  !#!' 
 1
-      'abcde' your_function 'zyxwvu'
+      'abcde' (your_function) 'zyxwvu'
 0
 </code></pre>
 
@@ -184,13 +184,13 @@
 
   <h3 id="examples-1">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 1 2 3 4 5 6 7 8 9 
+  <pre><code class="language-APL">      (your_function) 1 2 3 4 5 6 7 8 9 
 8
-      your_function 1 
+      (your_function) 1 
 0
-      your_function 9 8 7 6 5 4
+      (your_function) 9 8 7 6 5 4
 0
-      your_function 1 5 3 4 2 6 7 8
+      (your_function) 1 5 3 4 2 6 7 8
 3
 </code></pre>
 
@@ -201,19 +201,19 @@
   <h2 id="farey-tale">3: Farey Tale</h2>
 
   <h3 id="examples-2">Examples:</h3>
-  <p>In mathematics, the <a href="https://en.wikipedia.org/wiki/Farey_sequence">Farey_sequence</a> of order n is the sequence of completely reduced fractions between 0 and 1 which, when in lowest terms, have denominators less than or equal to n, arranged in order of increasing size. Each Farey sequence starts with the value 0, denoted by the fraction 0⁄1, and ends with the value 1, denoted by the fraction 1⁄1.</p>
+  <p>In mathematics, the <a href="https://en.wikipedia.org/wiki/Farey_sequence">Farey sequence</a> of order n is the sequence of completely reduced fractions between 0 and 1 which, when in lowest terms, have denominators less than or equal to n, arranged in order of increasing size. Each Farey sequence starts with the value 0, denoted by the fraction 0⁄1, and ends with the value 1, denoted by the fraction 1⁄1.</p>
 
   <p>Write a function that takes an integer right argument and returns a vector of the terms in the Farey sequence of that order. Each element in the returned vector is itself a 2-element vector of numerator and denominator for the corresponding term.</p>
 
-  <pre><code class="language-APL">      your_function 0 
+  <pre><code class="language-APL">      (your_function) 0 
 ┌───┐
 │0 1│
 └───┘
-      your_function 1
+      (your_function) 1
 ┌───┬───┐
 │0 1│1 1│
 └───┴───┘
-      your_function 5
+      (your_function) 5
 ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
 │0 1│1 5│1 4│1 3│2 5│1 2│3 5│2 3│3 4│4 5│1 1│
 └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
@@ -224,7 +224,7 @@
 <div id="P4_PDI_Progessive_Dyadic_Iota" class="problem">
 
   <h2 id="pdi---progressive-dyadic-iota">4: PDI - Progressive Dyadic Iota</h2>
-  <p>The index-of function <code class="language-plaintext highlighter-rouge">X⍳Y</code> returns a simple integer vector that identifies where the <a href="https://aplwiki.com/wiki/Major_cell">major cells</a> of <code class="language-plaintext highlighter-rouge">Y</code> are first found in <code class="language-plaintext highlighter-rouge">X</code>. If a major cell of <code class="language-plaintext highlighter-rouge">Y</code> cannot be found in <code class="language-plaintext highlighter-rouge">X</code>, then the corresponding item of the returned array will be <code class="language-plaintext highlighter-rouge">1+≢X</code>.</p>
+  <p>The Index Of function <code class="language-plaintext highlighter-rouge">X⍳Y</code> returns a simple integer vector that identifies where the <a href="https://aplwiki.com/wiki/Major_cell">major cells</a> of <code class="language-plaintext highlighter-rouge">Y</code> are first found in <code class="language-plaintext highlighter-rouge">X</code>. If a major cell of <code class="language-plaintext highlighter-rouge">Y</code> cannot be found in <code class="language-plaintext highlighter-rouge">X</code>, then the corresponding item of the returned array will be <code class="language-plaintext highlighter-rouge">1+≢X</code>.</p>
 
   <p>Example of <code class="language-plaintext highlighter-rouge">X⍳Y</code>:</p>
   <pre><code class="language-APL">      'DYALOG APL' ⍳ 'AAALLLB' 
@@ -235,11 +235,11 @@
 
   <h3 id="examples-3">Examples:</h3>
 
-  <pre><code class="language-APL">      'DYALOG APL' your_function 'AAALLLB' 
+  <pre><code class="language-APL">      'DYALOG APL' (your_function) 'AAALLLB' 
 3 8 11 4 10 11 11
-      '' your_function 'test'  ⍝ should work with empty left argument 
+      '' (your_function) 'test'  ⍝ should work with empty left argument 
 1 1 1 1 
-      ⍬≡'test' {your_function} ''  ⍝ should work with empty right argument
+      ⍬≡'test' {(your_function)} ''  ⍝ should work with empty right argument
 1
 </code></pre>
 
@@ -260,9 +260,9 @@
 
   <h3 id="examples-4">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 1 2 3 4 5
+  <pre><code class="language-APL">      (your_function) 1 2 3 4 5
 1.414213562
-      your_function 10 10⍴⍳100  ⍝ and higher dimensions as well
+      (your_function) 10 10⍴⍳100  ⍝ and higher dimensions as well
 28.86607005
 </code></pre>
 
@@ -271,7 +271,7 @@
 <div id="P6_Hey_This_is_My_Space" class="problem">
 
   <h2 id="hey-this-is-my-space">6: Hey! This is My Space</h2>
-  <p>Write a function that takes, as each of its right and left arguments, a pair of co-ordinates representing diagonally opposite corners of two rectangles and returns a <code class="language-plaintext highlighter-rouge">1</code> if the rectangles overlap. The co-ordinates could be either (upper-left, lower-right) or (upper-right, lower left).</p>
+  <p>Write a function that takes, as each of its right and left arguments, a pair of coordinates representing diagonally opposite corners of two rectangles and returns a <code class="language-plaintext highlighter-rouge">1</code> if the rectangles overlap. The co-ordinates could be either (upper-left, lower-right) or (upper-right, lower left).</p>
 
   <div align="center">
 <img src="http://0.0.0.0:4000/img/overlaprect.png" style="width: 50vw;" />
@@ -279,13 +279,13 @@
 
   <h3 id="examples-5">Examples:</h3>
 
-  <pre><code class="language-APL">      (1 1)(5 5) your_function (3 3)(7 7)
+  <pre><code class="language-APL">      (1 1)(5 5) (your_function) (3 3)(7 7)
 1
-      (1 1)(5 5) your_function (5 5)(1 1)
+      (1 1)(5 5) (your_function) (5 5)(1 1)
 1
-      (1 1)(3 3) your_function (4 4)(7 7)
+      (1 1)(3 3) (your_function) (4 4)(7 7)
 0
-      (1.1 1.1)(5.5 5.5) your_function (3.3 3.3)(4.4 4.4)
+      (1.1 1.1)(5.5 5.5) (your_function) (3.3 3.3)(4.4 4.4)
 1 
 </code></pre>
 
@@ -302,9 +302,9 @@
 
   <h3 id="examples-6">Examples:</h3>
 
-  <pre><code class="language-APL">      'dyalog' your_function 'APL'
+  <pre><code class="language-APL">      'dyalog' (your_function) 'APL'
 0 0 1 1 0 0
-      'bramley' your_function 'HAMPSHIRE'
+      'bramley' (your_function) 'HAMPSHIRE'
 0 1 1 1 0 1 0
 </code></pre>
 
@@ -317,13 +317,13 @@
 
   <h3 id="examples-7">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 13
+  <pre><code class="language-APL">      (your_function) 13
 12.99
-      your_function ⍳15 
+      (your_function) ⍳15 
 1 2 3 4 5 6 7 8 9 10 11 12 12.99 14 15
-      your_function 6+5 6 7 8 9
+      (your_function) 6+5 6 7 8 9
 11 12 12.99 14 15
-      your_function 13 130 13.13 1300  ⍝ we only care about the number 13
+      (your_function) 13 130 13.13 1300  ⍝ we only care about the number 13
 12.99 130 13.13 1300
 </code></pre>
 
@@ -343,15 +343,15 @@ Teher is an ubran mtyh aobut smoe rseaecrh taht was spuopesldy dnoe at Cmarbdige
 
   <h3 id="examples-8">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 'argument'
+  <pre><code class="language-APL">      (your_function) 'argument'
 agrmunet
       ]box on
-      your_function¨'this' 'is' 'awesome'
+      (your_function)¨'this' 'is' 'awesome'
 ┌────┬──┬───────┐
 │tihs│is│aewosme│
 └────┴──┴───────┘
       ]box off 
-      your_function¨'this' 'is' 'awesome'
+      (your_function)¨'this' 'is' 'awesome'
  tihs  is  aewosme 
 </code></pre>
 
@@ -380,7 +380,7 @@ agrmunet
 
   <h3 id="examples-9">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 10 
+  <pre><code class="language-APL">      (your_function) 10 
                  1                     
                 1 1           
                1 2 1                   
@@ -392,10 +392,10 @@ agrmunet
       1 8 28 56 70 56 28 8 1        
     1 9 36 84 126 126 84 36 9 1     
 1 10 45 120 210 252 210 120 45 10 1
-      your_function 1
+      (your_function) 1
  1 
 1 1
-      your_function 0 
+      (your_function) 0 
 1 
 </code></pre>
 
