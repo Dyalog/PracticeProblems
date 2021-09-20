@@ -163,15 +163,15 @@
 
   <h3 id="examples">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 1 2 3 4 5 6
+  <pre><code class="language-APL">      (your_function) 1 2 3 4 5 6
 3.5
-      your_function ⍬           ⍝ the average of an empty vector is 0 
+      (your_function) ⍬           ⍝ the average of an empty vector is 0 
 0
-      your_function 17          ⍝ your solution should work with a scalar argument
+      (your_function) 17          ⍝ your solution should work with a scalar argument
 17 
-      your_function 5 3⍴⍳15     ⍝ and average the rows of a matrix
+      (your_function) 5 3⍴⍳15     ⍝ and average the rows of a matrix
 7 8 9
-      your_function 3 3 3⍴⍳15   ⍝ or the matrices of a 3D array etc.
+      (your_function) 3 3 3⍴⍳15   ⍝ or the matrices of a 3D array etc.
 5 6  7
 8 9 10
 6 7  8
@@ -186,13 +186,13 @@
 
   <h3 id="examples-1">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 1 2 3 4 5 6 7 8 9 
+  <pre><code class="language-APL">      (your_function) 1 2 3 4 5 6 7 8 9 
 5
-      your_function 1 8 2 7 3 6 4 5
+      (your_function) 1 8 2 7 3 6 4 5
 4.5
-      your_function ⍬
+      (your_function) ⍬
 0
-      your_function 7 
+      (your_function) 7 
 7
 </code></pre>
 
@@ -205,11 +205,11 @@
 
   <h3 id="examples-2">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 2 1 4 3 2 5 1 2
+  <pre><code class="language-APL">      (your_function) 2 1 4 3 2 5 1 2
 2
-      your_function ⍬   ⍝ should return an empty vector       
+      (your_function) ⍬   ⍝ should return an empty vector       
 
-      your_function 1 2 3 4 1 2
+      (your_function) 1 2 3 4 1 2
 1 2 
 </code></pre>
 
@@ -222,15 +222,15 @@
 
   <h3 id="examples-3">Examples:</h3>
 
-  <pre><code class="language-APL">      'MENS' your_function 'EKES' 
+  <pre><code class="language-APL">      'MENS' (your_function) 'EKES' 
 MEEKNESS
-      'Dyalog' your_function 'APL'   
+      'Dyalog' (your_function) 'APL'   
 DAaPlLog
-      'APL' your_function 'Dyalog' 
+      'APL' (your_function) 'Dyalog' 
 ADPyLalog
-       1 3 5 7 your_function 2 4 6 8   ⍝ should work with numeric vectors 
+       1 3 5 7 (your_function) 2 4 6 8   ⍝ should work with numeric vectors 
 1 2 3 4 5 6 7 8
-       '' your_function 'Hello'  ⍝ either or both arguments could be empty
+       '' (your_function) 'Hello'  ⍝ either or both arguments could be empty
 Hello
 </code></pre>
 
@@ -243,11 +243,11 @@ Hello
 
   <h3 id="examples-4">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 1 2 3 4 5
+  <pre><code class="language-APL">      (your_function) 1 2 3 4 5
 1 2 3 4 5
-      your_function 1 2 3 4 5 4 3 2 1 
+      (your_function) 1 2 3 4 5 4 3 2 1 
 5
-      your_function 'hello world' 
+      (your_function) 'hello world' 
 he wrd
 </code></pre>
 
@@ -260,17 +260,17 @@ he wrd
 
   <h3 id="examples-5">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 'one' 'two' 'three' 'four' 'five' 'six'
+  <pre><code class="language-APL">      (your_function) 'one' 'two' 'three' 'four' 'five' 'six'
 ┌───┬───┬───┬────┬────┬─────┐
 │one│two│six│four│five│three│
 └───┴───┴───┴────┴────┴─────┘
-      your_function (2 4 3) (4 5) 1 (7 3)
+      (your_function) (2 4 3) (4 5) 1 (7 3)
 ┌─┬───┬───┬─────┐
 │1│4 5│7 3│2 4 3│
 └─┴───┴───┴─────┘
-      your_function ⍬   ⍝ should return an empty vector      
+      (your_function) ⍬   ⍝ should return an empty vector      
 
-      your_function 'one' 2 'three' '' 'four' (5 6 7 8)
+      (your_function) 'one' 2 'three' '' 'four' (5 6 7 8)
 ┌┬─┬───┬────┬───────┬─────┐
 ││2│one│four│5 6 7 8│three│
 └┴─┴───┴────┴───────┴─────┘
@@ -285,9 +285,9 @@ he wrd
 
   <h3 id="examples-6">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 1 2 3 4 5 6 7 8 9 10
+  <pre><code class="language-APL">      (your_function) 1 2 3 4 5 6 7 8 9 10
 3 5 6 9 10
-      your_function ⍬   ⍝ should return an empty vector
+      (your_function) ⍬   ⍝ should return an empty vector
 
 </code></pre>
 
@@ -296,19 +296,19 @@ he wrd
 <div id="P8_Separating_Out_the_Negative" class="problem">
 
   <h2 id="separating-out-the-negative">8: Separating Out the Negative</h2>
-  <p>Write a function that takes a numeric vector and returns a two element vector whose first element contains the values less than 0 (zero) in the vector and the second element contains all values greater than or equal to 0.</p>
+  <p>Write a function that takes a numeric vector and returns a 2-element vector whose first element contains the values less than 0 (zero) in the vector and the second element contains all values greater than or equal to 0.</p>
 
   <h3 id="examples-7">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 0 1 ¯2 3 ¯4 ¯5 6 7 8 ¯9 10 
+  <pre><code class="language-APL">      (your_function) 0 1 ¯2 3 ¯4 ¯5 6 7 8 ¯9 10 
 ┌───────────┬──────────────┐
 │¯2 ¯4 ¯5 ¯9│0 1 3 6 7 8 10│
 └───────────┴──────────────┘
-      your_function 1 2 3 4 5
+      (your_function) 1 2 3 4 5
 ┌┬─────────┐
 ││1 2 3 4 5│
 └┴─────────┘
-      your_function ⍬   ⍝ should return a vector of two empty vectors 
+      (your_function) ⍬   ⍝ should return a vector of two empty vectors 
 ┌┬┐
 │││
 └┴┘
@@ -319,21 +319,21 @@ he wrd
 <div id="P9_Delimited_Text" class="problem">
 
   <h2 id="delimited-text">9: Delimited Text</h2>
-  <p>It’s common to encounter delimited text – for example, comma- separated values in a file.</p>
+  <p>It’s common to encounter delimited text – for example, comma-separated values in a file.</p>
 
   <p>Write a function that takes a character vector as its right argument and one or more characters as its left argument, where those characters are delimiters in the right argument. The function should return the delimited text as a vector of vectors.</p>
 
   <h3 id="examples-8">Examples:</h3>
 
-  <pre><code class="language-APL">      ',' your_function 'comma,delimited,values' 
+  <pre><code class="language-APL">      ',' (your_function) 'comma,delimited,values' 
 ┌─────┬─────────┬──────┐
 │comma│delimited│values│
 └─────┴─────────┴──────┘
-      ' ' {your_function} 'break up words'
+      ' ' {(your_function)} 'break up words'
 ┌─────┬──┬─────┐
 │break│up│words│
 └─────┴──┴─────┘
-      ',' {your_function} ',' 
+      ',' {(your_function)} ',' 
 ┌┬┐
 │││
 └┴┘
@@ -344,15 +344,15 @@ he wrd
 <div id="P10_Order_Total_Dot_Product" class="problem">
 
   <h2 id="order-total">10: Order Total</h2>
-  <p>Suppose you have a numeric vector that is the list of prices for a set of retail products. You also have a numeric vector that is the number ordered of each product. Write a function that takes as its right argument a vector of prices and as its left argument a numeric vector that indicates the number ordered and returns the total cost for the order. In case you hadn’t realized it, this is an application the dot product. The dot product of two vectors <span class="math"><i>A</i> = [<i>A</i><sub>1</sub>, <i>A</i><sub>2</sub>, …,<i>A</i><sub>n</sub>]</span> and <span class="math"><i>B</i> = [<i>B</i><sub>1</sub>, <i>B</i><sub>2</sub>, …,<i>B</i><sub>n</sub>]</span> is defined as</p>
+  <p>Suppose you have a numeric vector that is the list of prices for a set of retail products. You also have a numeric vector that is the number ordered of each product. Write a function that takes as its right argument a vector of prices and as its left argument a numeric vector that indicates the number ordered and returns the total cost for the order. In case you hadn’t realized it, this is an application of the dot product. The dot product of two vectors <span class="math"><i>A</i> = [<i>A</i><sub>1</sub>, <i>A</i><sub>2</sub>, …, <i>A</i><sub>n</sub>]</span> and <span class="math"><i>B</i> = [<i>B</i><sub>1</sub>, <i>B</i><sub>2</sub>, …, <i>B</i><sub>n</sub>]</span> is defined as</p>
 
   <p><img src="http://0.0.0.0:4000/img/innerprod.svg" style="width: 30em;" /></p>
 
   <h3 id="examples-9">Examples:</h3>
 
-  <pre><code class="language-APL">      5 0 2 your_function 2.99 4.99 1.99
+  <pre><code class="language-APL">      5 0 2 (your_function) 2.99 4.99 1.99
 18.93
-      0 0 0 your_function 2.99 4.99 1.99
+      0 0 0 (your_function) 2.99 4.99 1.99
 0 
 </code></pre>
 
