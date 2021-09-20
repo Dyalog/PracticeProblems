@@ -161,11 +161,11 @@
 
   <h3 id="examples">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 5
+  <pre><code class="language-APL">      (your_function) 5
 1 3 5 7 9
-      your_function 1
+      (your_function) 1
 1     
-      your_function 0 ⍝ should return an empty vector
+      (your_function) 0 ⍝ should return an empty vector
 
 </code></pre>
 
@@ -178,11 +178,11 @@
 
   <h3 id="examples-1">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 1 2 3 4 5
+  <pre><code class="language-APL">      (your_function) 1 2 3 4 5
 2 2 4 4 6       
-      your_function ⍬ ⍝ should return an empty vector      
+      (your_function) ⍬ ⍝ should return an empty vector      
 
-      your_function 4 4⍴⍳16 ⍝ should work with arrays of any rank  
+      (your_function) 4 4⍴⍳16 ⍝ should work with arrays of any rank  
  2  2  4  4
  6  6  8  8
 10 10 12 12
@@ -200,13 +200,13 @@
 
   <h3 id="examples-2">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 'this "is" a test'
+  <pre><code class="language-APL">      (your_function) 'this "is" a test'
 this "" a test
-      your_function 'this is a test'
+      (your_function) 'this is a test'
 this is a test
-      your_function 'this "is" a "test"'
+      (your_function) 'this "is" a "test"'
 this "" a ""
-      your_function ''  ⍝ should return an empty vector
+      (your_function) ''  ⍝ should return an empty vector
 
 </code></pre>
 
@@ -225,19 +225,19 @@ this "" a ""
 
   <h3 id="examples-3">Examples:</h3>
 
-  <pre><code class="language-APL">      60 your_function 12 
+  <pre><code class="language-APL">      60 (your_function) 12 
 18.84955592 
-      0 your_function 12  ⍝ 0 degree slice
+      0 (your_function) 12  ⍝ 0 degree slice
 0
-      60 your_function 0  ⍝ 0 diameter pie
+      60 (your_function) 0  ⍝ 0 diameter pie
 0
-      60 your_function 9 12 15  ⍝ 60 degree slices of 3 different pies
+      60 (your_function) 9 12 15  ⍝ 60 degree slices of 3 different pies
 10.60287521 18.84955592 29.45243113 
-      60 90 120 your_function 12 ⍝ 3 different size slices of the same pie 
+      60 90 120 (your_function) 12 ⍝ 3 different size slices of the same pie 
 18.84955592 28.27433388 37.69911184
-      60 90 120 your_function 9 12 15 ⍝ different sizes of different pies
+      60 90 120 (your_function) 9 12 15 ⍝ different sizes of different pies
 10.60287521 28.27433388 58.90486225 
-      60 90 120 your_function 9 12 ⍝ 3 slices, 2 pies? 
+      60 90 120 (your_function) 9 12 ⍝ 3 slices, 2 pies? 
 LENGTH ERROR
 </code></pre>
 
@@ -250,13 +250,13 @@ LENGTH ERROR
 
   <h3 id="examples-4">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 'ATGCTTCAGAAAGGTCTTACG'
+  <pre><code class="language-APL">      (your_function) 'ATGCTTCAGAAAGGTCTTACG'
 1
-      your_function 'Dyalog'
+      (your_function) 'Dyalog'
 0
-      your_function ''       ⍝ an empty string is valid
+      (your_function) ''       ⍝ an empty string is valid
 1
-      your_function 'T'      
+      (your_function) 'T'      
 1  
 </code></pre>
 
@@ -269,11 +269,11 @@ LENGTH ERROR
 
   <h3 id="examples-5">Examples:</h3>
 
-  <pre><code class="language-APL">      4 your_function 'ATCGAAGGTCGT'
+  <pre><code class="language-APL">      4 (your_function) 'ATCGAAGGTCGT'
 ┌────┬────┬────┬────┬────┬────┬────┬────┬────┐
 │ATCG│TCGA│CGAA│GAAG│AAGG│AGGT│GGTC│GTCG│TCGT│
 └────┴────┴────┴────┴────┴────┴────┴────┴────┘
-      4 your_function 'AC'    ⍝  k&gt;string length? Return an empty vector
+      4 (your_function) 'AC'    ⍝  k&gt;string length? Return an empty vector
 
 </code></pre>
 
@@ -286,13 +286,13 @@ LENGTH ERROR
 
   <h3 id="examples-6">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 'AGCTTTTCATTCTGACTGCTGTCTTTAAAAAAAGAGTGTCTGATAGCAG' 
+  <pre><code class="language-APL">      (your_function) 'AGCTTTTCATTCTGACTGCTGTCTTTAAAAAAAGAGTGTCTGATAGCAG' 
 14 8 10 17
-      your_function 'CCAAATGGGG 
+      (your_function) 'CCAAATGGGG 
 3 2 4 1
-      your_function ''
+      (your_function) ''
 0 0 0 0
-      your_function 'G'
+      (your_function) 'G'
 0 0 1 0
 </code></pre>
 
@@ -305,11 +305,11 @@ LENGTH ERROR
 
   <h3 id="examples-7">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 0 1 0 1 0 0 1
+  <pre><code class="language-APL">      (your_function) 0 1 0 1 0 0 1
 0 1 0 0 0 0 0
-      your_function ⍬ ⍝ should return an empty vector      
+      (your_function) ⍬ ⍝ should return an empty vector      
 
-      your_function 0 0 0 0 ⍝ no 1's?  no problem!
+      (your_function) 0 0 0 0 ⍝ no 1's?  no problem!
 0 0 0 0
 </code></pre>
 
@@ -322,13 +322,13 @@ LENGTH ERROR
 
   <h3 id="examples-8">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 'bookkeeper'
+  <pre><code class="language-APL">      (your_function) 'bookkeeper'
 0 1 0 1 0 1 0 0 0 0  
-      your_function ''  ⍝ should return an empty vector      
+      (your_function) ''  ⍝ should return an empty vector      
 
-      your_function 'aaaaaa'
+      (your_function) 'aaaaaa'
 1 1 1 1 1 0
-      your_function 'd'
+      (your_function) 'd'
 0 
 </code></pre>
 
@@ -341,27 +341,27 @@ LENGTH ERROR
 
   <h3 id="examples-9">Examples:</h3>
 
-  <pre><code class="language-APL">      your_function 1 2 3 4
+  <pre><code class="language-APL">      (your_function) 1 2 3 4
 1 2 
 3 4
-      your_function 1 2 3 4 5
+      (your_function) 1 2 3 4 5
 1 2 3 
 4 5 0 
 0 0 0
-      your_function 'Dyalog APL'       ⍝ should work with any data
+      (your_function) 'Dyalog APL'       ⍝ should work with any data
 Dyal  
 og A  
 PL     
-      ' '=your_function 'Dyalog APL'   ⍝ show where the spaces are
+      ' '=(your_function) 'Dyalog APL'   ⍝ show where the spaces are
 0 0 0 0
 0 0 1 0
 0 0 1 1 
 1 1 1 1  
-      your_function 100  ⍝ should return a 1×1 matrix 
+      (your_function) 100  ⍝ should return a 1×1 matrix 
 100
-      your_function ⍬    ⍝ should return a 0×0 matrix
+      (your_function) ⍬    ⍝ should return a 0×0 matrix
 
-      ⍴your_function ⍬   ⍝ should return a 0×0 matrix
+      ⍴(your_function) ⍬   ⍝ should return a 0×0 matrix
 0 0
 </code></pre>
 
