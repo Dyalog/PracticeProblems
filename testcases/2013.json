@@ -31,7 +31,7 @@
    "' this vector has extra blanks '",
    "'a b c d e f g h i j k l m n o p q r s t u v w x y z'"],
   "b": ["' '","''","'    '",
-   "(?20)⍴' '","'ABC'"],
+   "(?20)⍴' '","'ABC'","'hyphen-dash'"],
   "f": "{0.5×+/2≠/(' ',⍵,' ')≠' '}"
  },
  "P4_Keeping_Things_In_Balance": {
