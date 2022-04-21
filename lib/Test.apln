@@ -68,7 +68,7 @@
           as←{⍎¨⊆a⊢←⍵}¨defs.a
       :Else
           (ok report)←¯315 'Internal error – '
-          report,←(Code a),' as test case ',Error ⎕EN
+          report,←('language-APL'CodeTag a),' as test case ',Error ⎕EN
           :Return
       :EndTrap
       b←''
@@ -77,7 +77,7 @@
               bs←{⍎¨⊆a⊢←⍵}¨defs.b
           :Else
               (ok report)←¯315 'Internal error – '
-              report,←(Code b),' as edge case ',Error ⎕EN
+              report,←('language-APL'CodeTag b),' as edge case ',Error ⎕EN
               :Return
           :EndTrap
       :Else
@@ -90,7 +90,7 @@
               ans←Rep defs.f On a
           :Else
               (ok report)←¯315 'Internal error – reference solution'
-              report,←(Error ⎕EN),' with ',(Code'language-APL'∘CodeTag)Args a
+              report,←(Error ⎕EN),' with ','language-APL'CodeTag Args a
               :Return
           :EndTrap
           line←('''',tag,''',(',p,ans,')≡',p)(Norm expr)
@@ -125,7 +125,7 @@
       :ElseIf ∨/0≥respa
           (a ok)←as respa⊃¨⍨ca⌊1⍳⍨1≠respa
           :If 0=⌊/ok
-              report←'Result should have been `',(Code defs.f On a),'`'
+              report←'Result should have been ','language-APL'CodeTag defs.f On a
           :Else
               report←'Submission',Error ok
           :EndIf
@@ -167,7 +167,7 @@
       }
       Args←{
           val←-≢⍵
-          ∊val↑' as left argument and ' ' as right argument',⍨∘{'`',⍵,'`'}∘⍺⍺¨⍵
+          ∊val↑' as left argument and ' ' as right argument',⍨∘{'language-APL'CodeTag ⍵}∘⍺⍺¨⍵
       }
       Error←{
           ' caused ','language-APL'CodeTag ⎕EM|⍵
