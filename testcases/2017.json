@@ -66,7 +66,7 @@
  "P7_Counting_DNA_Nucleotides": {
   "a": ["'CCAAATGGGG'",
    "'AGCTTTTCATTCTGACTGCTGTCTTTAAAAAAAGAGTGTCTGATAGCAG'",
-   "'T'","'GACT'"],
+   ",'T'","'GACT'"],
   "b": ["''",
    "'CCCCCCCCCCCCCCCC'"],
   "f": "{+/'ACGT'∘.=⍵}"
