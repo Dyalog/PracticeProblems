@@ -90,7 +90,7 @@
               ans←Rep defs.f On a
           :Else
               (ok report)←¯315 'Internal error – reference solution'
-              report,←(Error ⎕EN),' with ','language-APL'CodeTag Args a
+              report,←(Error ⎕EN),' with ','language-APL'∘CodeTag Args a
               :Return
           :EndTrap
           line←('''',tag,''',(',p,ans,')≡',p)(Norm expr)
