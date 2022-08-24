@@ -63,7 +63,7 @@
   "b": ["''","'<name<>first>'",
    "'>name><first<'","'<><name><><first><>'",
    "'><'","'name<first>Drake</first><last>Mallard</last>/name'"],
-  "f": "{0(∧.≤∧=∘⊃∘⌽)+\-⌿'<>'∘.=⍵}"
+  "f": "{0(∧.≤∧=∘⊃∘⌽)+\\-⌿'<>'∘.=⍵}"
  },
  "P7_Unconditionally_Shifty": {
   "a": [["3","1 0 1 1 1 0 1 1"],
