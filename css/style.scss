@@ -140,12 +140,14 @@ a:hover {border-bottom: 0.25ex solid #655aa0;;}
     font-weight: bold;
     font-size: 1.1em; 
     border-radius: 0 0.5em 0.5em 0; 
-    color: #fff;
-    background: #090;
+    color: #000;
+    background: #BBB5D6;
     border: none;    
     cursor: pointer;
+    padding: 0 0.5em;
 }
-.pdiv > button:hover { background: #0c0; transition: 0.2s;}
+.pdiv > button:hover { background: #928abd; transition: 0.2s;}
+.pdiv > button:disabled { color: rgba(0,0,0,0.25); background: #eae9f3; cursor: not-allowed;}
 .tioOutput {padding: 0 1em 0 12em;}
 
 h2, h3, h4 {left: 3vw;}
