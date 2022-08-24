@@ -61,5 +61,5 @@ Try entering `{+/,⍵∊'AEIOU'}` which handles all test cases.
     testCases = {"P0_Sample_Problem": {"a": ["'COOLAPL'","''","'NVWLSHR'","{⍵[?⍨≢⍵]}'AEIOU',⎕A[?26⍴⍨9+?16]"],"b": ["2 3⍴'APLYES'","⎕A[?26⍴⍨1+?2⍴⍨1+?2]","''⍴⍨¯1+?⍨3"],"f": "{+/,⍵∊'AEIOU'}","p": "{⊃⍣(1=≢,⍵)⊢⍵}"}};
 </script>
 
-<div class="pdiv"><span class="urfn">your_function ← </span><input id="P0_Sample_Problem_Input"><button onclick="submitSolution('P0_Sample_Problem')">✔ Test</button></div>
+<div class="pdiv"><span class="urfn">your_function ← </span><input oninput='this.parentElement.querySelector("button").disabled = false' id="P0_Sample_Problem_Input"><button onclick="submitSolution('P0_Sample_Problem')">Test</button></div>
 <div id="P0_Sample_Problem_Output" class="tioOutput"></div>

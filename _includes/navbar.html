@@ -22,12 +22,15 @@
                 your_fn.classList.add("urfn");
                 your_fn.innerHTML = "your_function ← "
                 var pi = document.createElement("input");
-                pi.id = pbm.id + "_Input";                             
+                pi.id = pbm.id + "_Input"; 
+                pi.oninput = function(e){
+                    e.target.parentElement.querySelector("button").disabled = false
+                }                            
                 var sub = document.createElement("button");
-                sub.onclick = function(){
+                sub.onclick = function(e){
                     submitSolution(pbm.id);
                 }
-                sub.innerHTML = "✔ Test";                
+                sub.innerHTML = "Test";                
                 var odiv = document.createElement("div")
                 odiv.classList.add("tioOutput");
                 odiv.id = pbm.id + "_Output";
