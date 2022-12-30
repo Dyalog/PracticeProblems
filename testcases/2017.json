@@ -72,7 +72,7 @@
    "'AGCTTTTCATTCTGACTGCTGTCTTTAAAAAAAGAGTGTCTGATAGCAG'",
    ",'T'","'GACT'"],
   "b": ["''",
-   "'CCCCCCCCCCCCCCCC'"],
+  "'CCCCCCCCCCCCCCCC'"],
   "f": "{+/'ACGT'∘.=⍵}"
  },
  "P8_Be_the_First_1": {
@@ -80,6 +80,10 @@
    "0 0 0 0","1 1 1 1",
    "(?2 2 2 2 2 2 2 2)-1"],
   "b": ["⍬",
+   "0",
+   "1",
+   ",0",
+   ",1",
    "(?(?10)⍴2)-1"],
   "f": "{⍵{(↑⍵↑⍺),((≢⍺)-⍵)⍴0}+/⍸(⍋⍋⍵)=1+(≢⍵)-+/⍵}"
  },
