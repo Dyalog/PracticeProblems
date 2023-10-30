@@ -27,3 +27,5 @@ Each member's name must begin with an uppercase "P" followed by a number 0 throu
 > **NOTE**  
 > The function `⎕JSON` in Dyalog can be used to correctly display APL arrays in JSON format. In particular, text vectors must be enclosed in two single-quotes `''`.
 
+## Troubleshooting
+If you add a markdown file to `/_psets/` and find that it does not appear in the left-hand menu of the site when you run `serve.bat` or `serve.sh`, delete the `/_site/` directory and try again.

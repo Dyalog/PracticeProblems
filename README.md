@@ -6,7 +6,7 @@ Automatic Validation of APL Practice Problems
 Problem descriptions for each set are in `/_psets/`
 Test cases for each set are in `/testcases/`
 
-The left menu is automatically generated using Jekyll/Liquid and JavaScript in `/_includes/navbar.html`
+The left menu is automatically generated using Jekyll/Liquid and JavaScript in `/_includes/navbar.html`. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 Notice something wrong? [Report a bug](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=bug_report.md&title=)  
 Have an idea for a feature? [Submit a feature request](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=feature_request.md&title=)  
