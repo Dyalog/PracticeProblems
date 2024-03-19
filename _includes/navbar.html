@@ -50,7 +50,7 @@
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
-                    document.title = {{ page.title }} + " P" + pt[i].innerHTML + " - APL Quest";
+                    document.title = {{ page.title }} + "-" + pt[i].innerHTML + " - APL Quest";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";
