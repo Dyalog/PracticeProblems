@@ -39,6 +39,7 @@
                 pdiv.append(sub);                
                 pbm.append(pdiv);
                 pbm.append(odiv);                
+                pbm.append(document.querySelector("#"+pbm.id+">details"));
             });
             loadTestCases("{{ page.title }}");
         }
