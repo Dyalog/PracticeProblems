@@ -11,7 +11,7 @@
             let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
             let pt = document.querySelectorAll("h2");
             for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
-            document.title = {{ page.title }} + " P" + pt[0].innerHTML + " - APL Practice Problems";            
+            document.title = {{ page.title }} + " P" + pt[0].innerHTML + " - APL Quest";            
             s=new URLSearchParams(location.search) // Options from URL 
             console.log(s.get("goto"))
             if (expr = s.get("goto")) {show(expr)};
@@ -50,7 +50,7 @@
                 if (id == p[i].id) {
                     p[i].style.display = "block";
                     b[i].classList.add("active");
-                    document.title = {{ page.title }} + " P" + pt[i].innerHTML + " - APL Practice Problems";
+                    document.title = {{ page.title }} + " P" + pt[i].innerHTML + " - APL Quest";
                     console.log(b[i]);
                 } else {
                     p[i].style.display = "none";

@@ -3,9 +3,7 @@ layout: set
 title: Help
 ---
 
-# APL Practice Problems
-
-<h3>Help</h3>
+<h2>Help</h3>
 <ul>
 <li><p>The problems are designed to be solved using short APL dfns or tacit functions. If you find yourself writing more than a couple of statements in your solution, you can probably find a better way to do it.</p></li>
 

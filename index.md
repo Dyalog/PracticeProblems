@@ -8,7 +8,7 @@ title: Home
     document.getElementById("home").classList.add("active");
 </script>
 
-# APL Practice Problems
+# APL Quest
 
 <div align="right">
 	<img src="{{ site.url }}{{ site.baseurl }}/img/Brain.png" style="width: 10vw;float: right;padding: 0 3em;">
