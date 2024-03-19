@@ -20,12 +20,9 @@ Each problem starts with a task description; some also include a hint suggesting
 
 Each problem ends with some example cases. You can use these as a basis for implementing your solution.
 
-## Contributing
 Notice something wrong? [Report a bug](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=bug_report.md&title=)  
-Have an idea for a feature? [Submit a feature request](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=feature_request.md&title=)  
-Have an idea for a new practice problem? [Suggest a new Practice Problem](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=enhancement&template=practice-problem-suggestion.md&title=%5BPractice+Problem%5D+-+Problem+Title)
 
-# Sample Problem: Counting Vowels
+## Sample Problem: Counting Vowels
 
 Write an APL function to count the number of vowels (A, E, I, O, U) in an array consisting of uppercase letters (A–Z).
 

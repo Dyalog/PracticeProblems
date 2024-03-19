@@ -9,7 +9,7 @@
             })                
             let p = document.querySelectorAll(".problem");p[0].style.display = "block";
             let b = document.querySelectorAll(".pbutton");b[0].classList.add("active");            
-            let pt = document.querySelectorAll("h2");
+            let pt = document.querySelectorAll("h1");
             for (i=0; i<b.length; i++){ b[i].innerHTML = pt[i].innerHTML.replace(/\d+: /,(x=>("<span class='pnum'>"+x+"</span>"))) };     
             document.title = {{ page.title }} + "-" + pt[0].innerHTML + " - APL Quest";            
             s=new URLSearchParams(location.search) // Options from URL 
