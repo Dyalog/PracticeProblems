@@ -23,6 +23,7 @@
         position:relative;
         padding:1ex;
         height: 5vh;
+        border-bottom: none;
     }
     #burgerBut > svg {height:100%;}
     #burgerBut > * {float:right;z-index: 1;}
@@ -52,7 +53,8 @@ pre, code {
     padding: 0.3em 0.3em 0.3em 0.3em;    
     overflow: auto;    
     font-family: SAX2;
-    line-height: 1.2em;
+    -webkit-text-stroke: .05ex;
+    line-height: 1em;
     white-space: pre;    
     z-index: 1;
 }
@@ -93,7 +95,7 @@ a:hover {border-bottom: 0.25ex solid currentColor;}
 }
 #navbar > .pbutton { 
     text-align: left; 
-    background: #eae9f3; 
+    background: #3b4252; 
     width: 100%;
     padding: 0.8rem 1.4rem 0.8rem 3rem;
     text-indent: -2rem;
@@ -104,11 +106,11 @@ a:hover {border-bottom: 0.25ex solid currentColor;}
     display:inline-block;
 }
 #navbar > a:hover, #navbar > .pbutton:hover{  
-    background-color: #4c566a;    
+    background-color: #81a1c1;    
 }
 #navbar > .active{
-    background-color: #434c5e;
-    color: white;
+    background-color: #5e81ac;
+    color: #eceff4;
 }
 
 /* content */
@@ -141,6 +143,7 @@ a:hover {border-bottom: 0.25ex solid currentColor;}
     flex-grow: 1; 
     margin-right: -0.1em; 
     font-family: SAX2; 
+    -webkit-text-stroke: .05ex;
     font-size: 1.5em;
     -webkit-text-stroke: .05ex;
     color: #2e3440;
@@ -156,7 +159,7 @@ a:hover {border-bottom: 0.25ex solid currentColor;}
     padding: 0 0.5em;
 }
 .pdiv > button:hover {
-    background: #4c566a;
+    background: #81a1c1;
     transition: 0.2s;
 }
 .pdiv > button:disabled { 
@@ -213,8 +216,7 @@ pre {
 
 .ngn_lb b:hover,
 .ngn_bq .ngn_lb {
-    background-color: #434c5e;
-    color: #eceff4
+    background-color: #81a1c1;
 }
 
 .lb~.input-group {
