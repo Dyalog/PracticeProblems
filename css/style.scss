@@ -2,9 +2,11 @@
 ---
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap&text=%E2%86%90|%E2%86%92');
-@font-face {font-family: "APL385";src: url("{{ site.baseurl}}/assets/Apl385.ttf");}
+@font-face {font-family: "Go";src: url("{{ site.baseurl}}/assets/Go-Regular.ttf");}
+@font-face {font-family: "Go";src: url("{{ site.baseurl}}/assets/Go-Bold.ttf");font-weight: bold;}
+@font-face {font-family: "Go";src: url("{{ site.baseurl}}/assets/Go-Bold.ttf");font-style: italic;}
+@font-face {font-family: "Go Medium";src: url("{{ site.baseurl}}/assets/Go-Medium.ttf");}
+@font-face {font-family: SAX2;src: url("{{ site.baseurl}}/assets/SAX2.ttf");}
 
 @media only screen and (max-width: 600px) {
     #navbar {
@@ -36,36 +38,36 @@
 }
 
 body {
-    color:#555;
-    font-family: 'Inter', sans-serif;
+    color:#eceff4;
+    font-family: 'Go', sans-serif;
     text-rendering: optimizeLegibility;
     line-height: 1.5em;
     margin-bottom: 5em;
+    background: #2e3440;
 }
 button {
     cursor: pointer;
 }
 pre, code {
-    color: #000;
     padding: 0.3em 0.3em 0.3em 0.3em;    
     overflow: auto;    
-    font-family: "APL385";
+    font-family: SAX2;
     line-height: 1.2em;
     white-space: pre;    
     z-index: 1;
 }
 a, a code  {
-    color: #655aa0;
+    color: #eceff4;
 }
 pre > * {padding: 0;}
 pre > * > * {padding: 0;}
 
 a{
     text-decoration: none;
-    border-bottom: 0.25ex dotted #928abd;
+    border-bottom: 0.25ex dotted #eceff4;
     z-index: 2;
 }
-a:hover {border-bottom: 0.25ex solid #655aa0;;}
+a:hover {border-bottom: 0.25ex solid currentColor;}
 
 
 
@@ -80,13 +82,13 @@ a:hover {border-bottom: 0.25ex solid #655aa0;;}
 #navbar > h1 {
 }
 #navbar > a, .pbutton{
-    color: #000;
+    color: #eceff4;
     text-align: center;   
     display: block;    
     border-radius: 0;    
     padding: 1.4rem 1.25rem;
     margin-bottom: -1px;
-    background-color: #f6f6d9;
+    background-color: #3b4252;
     border: 1px solid rgba(0,0,0,.125);
 }
 #navbar > .pbutton { 
@@ -102,10 +104,10 @@ a:hover {border-bottom: 0.25ex solid #655aa0;;}
     display:inline-block;
 }
 #navbar > a:hover, #navbar > .pbutton:hover{  
-    background-color: #BBB5D6;    
+    background-color: #4c566a;    
 }
 #navbar > .active{
-    background-color: #928abd;
+    background-color: #434c5e;
     color: white;
 }
 
@@ -127,27 +129,41 @@ a:hover {border-bottom: 0.25ex solid #655aa0;;}
     width: 95%;
 }
 .pdiv > span {
-    background: #ccc;
+    background: #d8dee9;
     height: 100%;
     display: inline-block;
     padding: 0.5em;
-    color: #777;
-    font-family: APL385;
+    color: #4c566a;
+    font-family: SAX2;
     border-radius: 0.5em 0 0 0.5em;
 }
-.pdiv > input { flex-grow: 1; margin-right: -0.1em; font-family: "APL385"; font-size: 1.5em;}
+.pdiv > input { 
+    flex-grow: 1; 
+    margin-right: -0.1em; 
+    font-family: SAX2; 
+    font-size: 1.5em;
+    -webkit-text-stroke: .05ex;
+    color: #2e3440;
+}
 .pdiv > button {
-    font-weight: bold;
+    font-family: "Go Medium";
     font-size: 1.1em; 
     border-radius: 0 0.5em 0.5em 0; 
-    color: #000;
-    background: #BBB5D6;
+    color: #eceff4;
+    background: #4c566a;
     border: none;    
     cursor: pointer;
     padding: 0 0.5em;
 }
-.pdiv > button:hover { background: #928abd; transition: 0.2s;}
-.pdiv > button:disabled { color: rgba(0,0,0,0.25); background: #eae9f3; cursor: not-allowed;}
+.pdiv > button:hover {
+    background: #4c566a;
+    transition: 0.2s;
+}
+.pdiv > button:disabled { 
+    color: rgba(0,0,0,0.25); 
+    background: #d8dee9; 
+    cursor: not-allowed;
+}
 .tioOutput {padding: 0 1em 0 12em;}
 
 h2, h3, h4 {left: 3vw;}
@@ -159,7 +175,10 @@ table tbody tr td {
     padding: 0.3em;
 }
 
-.language-APL, .APL {font-family: APL385;}
+.language-APL, .APL {
+    font-family: SAX2;
+    -webkit-text-stroke: .05ex;
+}
 
 pre {
     position: relative;
@@ -169,10 +188,11 @@ pre {
 /* language bar */
 
 .ngn_lb {
-    background-color: #eae9f3;
-    color: #555;
+    background-color: #4c566a;
+    color: #eceff4;
     cursor: default;
-    font-family: "APL385";
+    font-family: SAX2;
+    -webkit-text-stroke: .05ex;
     padding: 2px;
     padding-left: 1em;
     word-wrap: break-word;
@@ -193,8 +213,8 @@ pre {
 
 .ngn_lb b:hover,
 .ngn_bq .ngn_lb {
-    background-color: #928abd;
-    color: #fff
+    background-color: #434c5e;
+    color: #eceff4
 }
 
 .lb~.input-group {
@@ -232,42 +252,10 @@ pre {
     color: white;
 }
 
-#gcaptcha:hover path:nth-child(2) {
-    fill: #2a57fe;
-}
-
-#gcaptcha:hover path:nth-child(2) {
-    fill: #63c8ff
-}
-
-#gcaptcha:hover path:nth-child(3) {
-    fill: #ffffff;
-}
-
 .trans {
     color: transparent;
 }
 
-.jBox-Tooltip {
-    font-family: "APL385 Unicode";
-}
-
-.jBox-Tooltip pre.APL {
-    margin-bottom: 0;
-}
-
-.jBox-Tooltip p {
-    margin-bottom: 0;
-    text-align: center;
-}
-
-.ngn_tth {
-    color: #ed7f00;
-    font-size: 150%;
-    margin: -0.25em;
-}
-
-kbd,
-.jBox-Tooltip span {
+kbd {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
