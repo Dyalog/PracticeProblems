@@ -137,6 +137,7 @@ a:hover {border-bottom: 0.25ex solid currentColor;}
     padding: 0.5em;
     color: #4c566a;
     font-family: SAX2;
+    -webkit-text-stroke: .05ex;
     border-radius: 0.5em 0 0 0.5em;
 }
 .pdiv > input { 
@@ -145,7 +146,6 @@ a:hover {border-bottom: 0.25ex solid currentColor;}
     font-family: SAX2; 
     -webkit-text-stroke: .05ex;
     font-size: 1.5em;
-    -webkit-text-stroke: .05ex;
     color: #2e3440;
 }
 .pdiv > button {
