@@ -20,7 +20,9 @@ Each problem starts with a task description; some also include a hint suggesting
 
 Each problem ends with some example cases. You can use these as a basis for implementing your solution.
 
-Notice something wrong? [Report a bug](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=bug_report.md&title=)  
+Notice something wrong? [Report a bug](https://github.com/Dyalog/PracticeProblems/issues/new?assignees=&labels=&template=bug_report.md&title=).
+
+Every problem has one or more solutions explained fully in [the APL Quest video series](https://www.youtube.com/playlist?list=PLYKQVqyrAEj9wDIUyLDGtDAFTKY38BUMN).
 
 ## Sample Problem: Counting Vowels
 
