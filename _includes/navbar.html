@@ -62,7 +62,7 @@
 	<a id="home" href="{{ site.url }}{{ site.baseurl }}">Home</a>
 	<br>
     {% assign alls = site.psets | sort %}
-    {% assign sets = alls | slice: -2 | reverse | concat: alls | slice: -2 %}
+    {% assign sets = alls | slice: -2 | reverse | concat: alls | slice: 0, 13 %}
     {% for pset in sets %}        
         {% if pset.title == page.title %}
             <br><a href="{{ site.baseurl }}{{ pset.url }}" class="active">{{ pset.title }}</a>
