@@ -61,9 +61,9 @@
     </script>    
 	<a id="home" href="{{ site.url }}{{ site.baseurl }}">Home</a>
 	<br>
-    {% assign years = site.psets | sort: "title" | slice: 0, 11 %}
-    {% assign sets = site.psets | sort: "title" | slice: -2, 2 | concat: years %}
-    {% for pset in sets %}        
+    {% assign sets = site.psets | sort %}
+    {% assign sets = sets | last | concat: sets | slice: 0, 12 %}
+	{% for pset in sets %}        
         {% if pset.title == page.title %}
             <br><a href="{{ site.baseurl }}{{ pset.url }}" class="active">{{ pset.title }}</a>
             {% for p in page.problems %}                
