@@ -49,6 +49,7 @@
  "P5_Doubling_Up": {
   "a": [",¨'I' 'feed' 'the' 'bookkeeper'",
     "⎕A","2/⎕A",
+    "'blabla' 'blibli'",
     "'oo' 'zzz' 'baaah'",
     "{'abc'[?15⍴3]}¨⍳2+?2"],
   "b": ["'I' 'feed' 'the' 'bookkeeper'",
